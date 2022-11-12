@@ -1,13 +1,16 @@
 {
-    "name": "Real Verification",
+    "name": "Bird checked",
     "version": "0.1.0",
-    "description": "Check if a user has paid to get a verification badge or not",
-    "manifest_version":3,  
-    "permissions": ["activeTab", "scripting","storage"],
+    "description": "Identifies verified users against users with blue twitter subscription",
+    "manifest_version":3,
+    "icons": { "16": "assets/icon16.png",
+                "48": "assets/icon48.png",
+                "128": "assets/icon128.png" 
+    },
     "action":{
-      "default_popup":"background.js",
-      "default_icon":"assets/iconprov.jpg"
-    },"content_scripts": [
+      "default_popup":"settingsBox.html"
+    },
+    "content_scripts": [
       {
         "js": ["contentScript.js"],
         "matches": [
@@ -15,15 +18,16 @@
           "https://twitter.com/*"
         ]
       }
-    ],"web_accessible_resources": [
+    ],
+    "web_accessible_resources": [
       {
-          "resources": [
-              "script.js"
-          ],
-          "matches": [
-              "https://mobile.twitter.com/*",
-              "https://twitter.com/*"
-          ]
+        "resources": [
+            "script.js"
+        ],
+        "matches": [
+            "https://mobile.twitter.com/*",
+            "https://twitter.com/*"
+        ]
       }
   ]
 }
