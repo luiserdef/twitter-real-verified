@@ -1,0 +1,29 @@
+{
+    "name": "Real Verification",
+    "version": "0.1.0",
+    "description": "Check if a user has paid to get a verification badge or not",
+    "manifest_version":3,  
+    "permissions": ["activeTab", "scripting","storage"],
+    "action":{
+      "default_popup":"background.js",
+      "default_icon":"assets/iconprov.jpg"
+    },"content_scripts": [
+      {
+        "js": ["contentScript.js"],
+        "matches": [
+          "https://mobile.twitter.com/*",
+          "https://twitter.com/*"
+        ]
+      }
+    ],"web_accessible_resources": [
+      {
+          "resources": [
+              "script.js"
+          ],
+          "matches": [
+              "https://mobile.twitter.com/*",
+              "https://twitter.com/*"
+          ]
+      }
+  ]
+}
