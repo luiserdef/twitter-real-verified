@@ -1,7 +1,7 @@
 {
-  "name": "Real Verify",
+  "name": "Twitter Real Verified",
   "version": "1.0.0",
-  "description": "Identifies verified users against users with blue twitter subscription",
+  "description": "Identifies verified users against users with Blue Twitter subscription",
   "manifest_version":3,
   "permissions": [
     "declarativeContent"
@@ -12,11 +12,6 @@
     "128": "assets/icon128.png" 
   },
   "action":{
-    "default_icon": { 
-      "16": "assets/icon16.png",
-      "48": "assets/icon48.png",
-      "128": "assets/icon128.png" 
-    },
     "default_popup":"popup/popup.html"
   },
   "background": {

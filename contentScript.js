@@ -1,4 +1,4 @@
-const elementInject = document.createElement("script")
-  elementInject.src = chrome.runtime.getURL("script.js")
-  elementInject.onload = function () { this.remove() }
-  document.head.appendChild(elementInject)
+const addElement = document.createElement("script")
+  addElement.src = chrome.runtime.getURL("script.js")
+  addElement.onload = function () { this.remove() }
+  document.head.appendChild(addElement)
