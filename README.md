@@ -15,11 +15,6 @@ Recognition in themes            |  Identification in the timeline
 :-------------------------:|:-------------------------:
 <img src="assets/overview1.jpg" alt="AdGuard Browser Extension" />  |  <img src="assets/overview2.png"  alt="AdGuard Browser Extension" />
 
-## :large_blue_circle: Status
-
-- The extension is currently in process to be accepted in Chrome Web Store
-- You can use the extension now following the steps of the next section `Installation`
-
 ## 🔧 Installation
 
 1. Clone this repository or download this repository as ZIP
