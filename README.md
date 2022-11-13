@@ -1,3 +1,30 @@
-# Verify-identification
-This extension allows you to easily identify which users are verified by paying Twitter verification from those who are not.
-Extract package
+<p align="center">
+  <img src="assets/Icon.png" width="200px" alt="Real Verify Extension" />
+</p>
+<h3 align="center">Real Verify</h3>
+<p align="center">
+  A Chrome extension that allows you to easily identify which users are verified by paying Twitter verification from those who are not.
+</p>
+
+## 👀 Overview - Screenshots
+<p align="center">
+  <img src="assets/overview3.PNG" width="300px" alt="Real Verify Extension" />
+</p>
+
+Recognition in themes            |  Identification in the timeline
+:-------------------------:|:-------------------------:
+<img src="assets/overview1.jpg" alt="AdGuard Browser Extension" />  |  <img src="assets/overview2.png"  alt="AdGuard Browser Extension" />
+
+## :large_blue_circle: Status
+
+- The extension is currently in process to be accepted in Chrome Web Store
+- You can use the extension now following the steps of the next section `Installation`
+
+## 🔧 Installation
+
+1. Clone this repository
+2. Open Chrome -> More Tools -> Extensions
+3. Toggle "Developer mode" (if such a toggle exists)
+4. Click "Load unpacked"
+5. Select the `real-verified` folder you created
+6. That is all!
