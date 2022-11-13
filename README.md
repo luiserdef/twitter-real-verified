@@ -18,7 +18,6 @@ Recognition in themes            |  Identification in the timeline
 ## :large_blue_circle: Status
 
 - The extension is currently in process to be accepted in Chrome Web Store
-- T
 - You can use the extension now following the steps of the next section `Installation`
 
 ## 🔧 Installation
@@ -31,4 +30,4 @@ Recognition in themes            |  Identification in the timeline
 6. That is all!
 
 ## :bulb: Can I contribute
-ofCourse! You can open a new issue or pull request with a new improvement or fix bugs.
+OfCourse! You can open a new issue or pull request with a new improvement or fix bugs.
