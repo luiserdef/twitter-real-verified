@@ -1,14 +1,24 @@
 {
     "name": "Bird checked",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Identifies verified users against users with blue twitter subscription",
     "manifest_version":3,
-    "icons": { "16": "assets/icon16.png",
-                "48": "assets/icon48.png",
-                "128": "assets/icon128.png" 
-    },
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "scripting",
+      "declarativeContent"
+    ],
     "action":{
-      "default_popup":"settingsBox.html"
+      "default_icon": { 
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png" 
+      },
+      "default_popup":"popup/popup.html"
+    },
+    "background": {
+      "service_worker": "background.js"
     },
     "content_scripts": [
       {
