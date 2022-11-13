@@ -1,4 +1,4 @@
-//make extension only available at Twitter site
+//make extension only available on the Twitter site
 const rule = {
     conditions: [
       new chrome.declarativeContent.PageStateMatcher({

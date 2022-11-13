@@ -1,43 +1,45 @@
 {
-    "name": "Bird checked",
-    "version": "1.0.0",
-    "description": "Identifies verified users against users with blue twitter subscription",
-    "manifest_version":3,
-    "permissions": [
-      "tabs",
-      "activeTab",
-      "scripting",
-      "declarativeContent"
-    ],
-    "action":{
-      "default_icon": { 
-        "16": "assets/icon16.png",
-        "48": "assets/icon48.png",
-        "128": "assets/icon128.png" 
-      },
-      "default_popup":"popup/popup.html"
+  "name": "Real Verify",
+  "version": "1.0.0",
+  "description": "Identifies verified users against users with blue twitter subscription",
+  "manifest_version":3,
+  "permissions": [
+    "declarativeContent"
+  ],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png" 
+  },
+  "action":{
+    "default_icon": { 
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png" 
     },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "js": ["contentScript.js"],
-        "matches": [
+    "default_popup":"popup/popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["contentScript.js"],
+      "matches": [
+        "https://mobile.twitter.com/*",
+        "https://twitter.com/*"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+          "script.js"
+      ],
+      "matches": [
           "https://mobile.twitter.com/*",
           "https://twitter.com/*"
-        ]
-      }
-    ],
-    "web_accessible_resources": [
-      {
-        "resources": [
-            "script.js"
-        ],
-        "matches": [
-            "https://mobile.twitter.com/*",
-            "https://twitter.com/*"
-        ]
-      }
+      ]
+    }
   ]
 }
