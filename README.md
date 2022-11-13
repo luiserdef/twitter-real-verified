@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Real Verify</h3>
 <p align="center">
-  A Chrome extension that allows you to easily identify which users are verified by paying Twitter verification from those who are not.
+  A Chrome extension that allows you to easily identify which users are actually verified from those who have purchased a subscription (Twitter Blue subscription)
 </p>
 
 ## 👀 Overview - Screenshots
@@ -18,13 +18,17 @@ Recognition in themes            |  Identification in the timeline
 ## :large_blue_circle: Status
 
 - The extension is currently in process to be accepted in Chrome Web Store
+- T
 - You can use the extension now following the steps of the next section `Installation`
 
 ## 🔧 Installation
 
-1. Clone this repository
+1. Clone this repository or download this repository as ZIP
 2. Open Chrome -> More Tools -> Extensions
 3. Toggle "Developer mode" (if such a toggle exists)
 4. Click "Load unpacked"
 5. Select the `real-verified` folder you created
 6. That is all!
+
+## :bulb: Can I contribute
+ofCourse! You can open a new issue or pull request with a new improvement or fix bugs.
