@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Real Verify</h3>
 <p align="center">
-  A Chrome extension that allows you to easily identify which users are actually verified from those who have purchased a subscription (Twitter Blue subscription)
+  Identify which users are actually verified from those who have purchased a subscription (Twitter Blue subscription)
 </p>
 
 ## 👀 Overview - Screenshots
