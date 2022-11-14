@@ -1,7 +1,7 @@
 <p align="center">
   <img src="assets/Icon.png" width="200px" alt="Real Verify Extension" />
 </p>
-<h3 align="center">Real Verify</h3>
+<h3 align="center">Twitter Real Verified</h3>
 <p align="center">
   Identify which users are actually verified from those who have purchased a subscription (Twitter Blue subscription)
 </p>
