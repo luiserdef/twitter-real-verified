@@ -13,6 +13,12 @@
         <p align="center">Firefox Add-ons</p>
       </a>
     </td>
+        <td valign="center">
+      <a href="https://microsoftedge.microsoft.com/addons/detail/twitter-real-verified/llkfeengcmnpbpcgmchgjcjmfoekedij">
+        <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/microsoftstore.png?mode=crop" alt="Firefox add-ons" />
+        <p align="center">Edge Extension</p>
+      </a>
+    </td>
   </tr>
 </table>
 
