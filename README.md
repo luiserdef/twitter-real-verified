@@ -31,5 +31,5 @@ Recognition in themes            |  Identification in the timeline
   <img src="assets/overview3.PNG" width="300px" alt="Real Verify Extension" />
 </p>
 
-## :bulb: Can I contribute
+## :bulb: Can I contribute?
 OfCourse! You can open a new issue or pull request with a new improvement or fix bugs.
