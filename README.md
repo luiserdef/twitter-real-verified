@@ -32,4 +32,4 @@ Recognition in themes            |  Identification in the timeline
 </p>
 
 ## :bulb: Can I contribute?
-OffCourse! You can open a new issue or pull request with a new improvement or fix bugs.
+Off Course! You can open a new issue or pull request with a new improvement or fix bugs.
