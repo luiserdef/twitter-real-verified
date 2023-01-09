@@ -31,5 +31,8 @@ Recognition in themes            |  Identification in the timeline
   <img src="assets/overview3.PNG" width="300px" alt="Real Verify Extension" />
 </p>
 
+## :page_with_curl: Manifest
+This extension use manifest V2 for Firefox and manifest V3 for Edge (for develepment purpouse)
+
 ## :bulb: Can I contribute?
 Off Course! You can open a new issue or pull request with a new improvement or fix bugs.
