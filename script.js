@@ -4,13 +4,13 @@ const checkAtTopProfile ='css-901oao css-16my406 r-xoduu5 r-18u37iz r-1q142lx r-
 const checkAtNameProfile= 'css-901oao css-16my406 r-xoduu5 r-18u37iz r-1q142lx r-poiln3 r-adyw6z r-135wba7 r-bcqeeo r-qvutc0'
 
 //**Target badges**
-//in DarkMode
+//DarkMode
 const checkAtTimelineDarkMode ='css-901oao r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
 const hoveredUserDarkMode = 'css-901oao r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-//in LightMode
+//LightMode
 const checkAtTimelineLighMode ='css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
 const hoveredUserLightMode='css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-//in DimMode
+//DimMode
 const checkAtTimelineDimMode = 'css-901oao r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
 const hoveredUserDimMode='css-901oao r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
 
@@ -25,7 +25,7 @@ const badgesTargets = [
     hoveredUserDarkMode
 ]
 
-//find elements using recursion
+//find elements that target badges (elements)
 function findElement (element) {
     if(badgesTargets.includes(element.className)){
         userVerifyStatus(element)
@@ -45,7 +45,7 @@ function changeBadge (element){
         element.setAttribute('d', blueVerifiedBadgePath)
     }
     
-    //find svg using recursion
+    //find svg element
     if (element.childNodes) {
         [...element.childNodes].forEach(changeBadge);
     }
