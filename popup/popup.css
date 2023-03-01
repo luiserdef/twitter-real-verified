@@ -39,3 +39,54 @@
 .info-element .two-badges-info{
     display: flex;
 }
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    background-color: #2b6194;
+    margin-top: 1em;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.badge-color-container{
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+}
+
+.badge-color-container .bg-badge{
+    padding: 10px;
+}
+.badge-color-container .bg-badge:nth-child(1){
+    background-color:  #192734;
+}
+.badge-color-container .bg-badge:nth-child(2){
+    background-color: #ffffff;
+}
+
+.change-badge-container{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+#color-picker{
+    border-radius: 10px;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+#color-picker::-webkit-color-swatch{
+    border-radius: 5px;
+}
+.pick-color-box{
+    display: flex;
+    align-items: center;
+}
+
