@@ -89,4 +89,39 @@ section{
     display: flex;
     align-items: center;
 }
+.action-bt{
+    margin-top: 5px;
+    display: flex;
+    gap: 5px;
+}
+.bt{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    display: flex;
+    width: 100%;
+    height: 25px;
+}
 
+.bt-save{
+    cursor: pointer;
+    background-color: #467e48;
+}
+.bt-save:hover{
+    background-color: #5a9e5e;
+}
+
+.bt-cancel{
+    cursor: pointer;
+    background-color: #b64e4e;
+}
+.bt-cancel:hover{
+    background-color: #bd6161;
+}
+
+
+  
