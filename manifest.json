@@ -4,7 +4,8 @@
   "description": "Identifies verified users against users with Blue Twitter subscription",
   "manifest_version":3,
   "permissions": [
-    "declarativeContent"
+    "declarativeContent",
+    "tabs"
   ],
   "icons": {
     "16": "assets/icon16.png",

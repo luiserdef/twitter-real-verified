@@ -2,7 +2,6 @@ const colorPicker = document.getElementById("color-picker")
 const blueBadgePopup = document.getElementById("blue-badge-popup")
 const badgePickColor = document.querySelectorAll(".badge-pick-color")
 const btSaveAction = document.querySelector(".bt-save-action")
-const btCancelAction = document.querySelector(".bt-cancel-action")
 const infoSaveText = document.getElementById("info-save")
 
 const LOCAL_STORAGE_NAME = "TVerifiedConfig"
@@ -41,9 +40,6 @@ btSaveAction.addEventListener("click",()=>{
 function activateChangeOptions(){
     btSaveAction.removeAttribute("disabled")
     btSaveAction.classList.add("bt-save")
-
-    btCancelAction.removeAttribute("disabled")
-    btCancelAction.classList.add("bt-cancel")
 }
 
 
@@ -53,8 +49,14 @@ function saveChanges(configKey,configValue){
         ...configValues,
         [configKey]:configValue
     }
-    localStorage.setItem(LOCAL_STORAGE_NAME,JSON.stringify(newValues))
+    let configObjectToString = JSON.stringify(newValues)
 
+    localStorage.setItem(LOCAL_STORAGE_NAME, configObjectToString)
+    sendConfig(configObjectToString)
 }
 
+async function sendConfig(configObjectToString) {
+    const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+    const response = await chrome.tabs.sendMessage(tab.id, {config: configObjectToString});
+}
 
