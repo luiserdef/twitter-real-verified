@@ -3,27 +3,26 @@ const blueBadgePopup = document.getElementById("blue-badge-popup")
 const badgePickColor = document.querySelectorAll(".badge-pick-color")
 const btSaveAction = document.querySelector(".bt-save-action")
 const infoSaveText = document.getElementById("info-save")
-
-const LOCAL_STORAGE_NAME = "TVerifiedConfig"
-const localStorageConfig = localStorage.getItem(LOCAL_STORAGE_NAME)
+let configExtensionValues ={}
 let blueVerifiedBadgeColor = '#3297c579'
 
-if(!localStorageConfig){
-    localStorageValues={
-        badgeColor:blueVerifiedBadgeColor
+//Loading Config
+document.addEventListener("DOMContentLoaded", async ()=>{
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    const configResponse = await chrome.tabs.sendMessage(tab.id, {
+        loadConfig: true
+    });
+    if(configResponse != "Not Found"){
+        const badgeColorConfig = configResponse.badgeColor
+        blueVerifiedBadgeColor = badgeColorConfig
+        blueBadgePopup.style.fill= badgeColorConfig
     }
-    localStorage.setItem(LOCAL_STORAGE_NAME,JSON.stringify(localStorageValues))
-}else{
-    let configValues= JSON.parse(localStorageConfig)
-    blueBadgePopup.style.fill=configValues.badgeColor
-    blueVerifiedBadgeColor = configValues.badgeColor
-}
+    badgePickColor.forEach(element => {
+        element.style.fill= blueVerifiedBadgeColor
+    });
+})
 
 //Change badge color options
-badgePickColor.forEach(element => {
-    element.style.fill= blueVerifiedBadgeColor
-});
-
 colorPicker.addEventListener("input",(e)=>{
     badgePickColor.forEach(element => {
         element.style.fill= e.target.value
@@ -42,21 +41,17 @@ function activateChangeOptions(){
     btSaveAction.classList.add("bt-save")
 }
 
-
 function saveChanges(configKey,configValue){
-    let configValues= JSON.parse(localStorageConfig)
     let newValues = {
-        ...configValues,
+        ...configExtensionValues,
         [configKey]:configValue
     }
-    let configObjectToString = JSON.stringify(newValues)
-
-    localStorage.setItem(LOCAL_STORAGE_NAME, configObjectToString)
-    sendConfig(configObjectToString)
+    sendConfig(newValues)
 }
 
-async function sendConfig(configObjectToString) {
+async function sendConfig(newConfig) {
     const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
-    const response = await chrome.tabs.sendMessage(tab.id, {config: configObjectToString});
+    const response = await chrome.tabs.sendMessage(tab.id, {
+        config: newConfig
+    });
 }
-
