@@ -1,6 +1,6 @@
 const addElement = document.createElement("script")
 
-addElement.src = chrome.runtime.getURL("script.js")
+  addElement.src = chrome.runtime.getURL("script.js")
   addElement.onload = function () { this.remove() }
   document.head.appendChild(addElement)
 
@@ -8,12 +8,18 @@ addElement.src = chrome.runtime.getURL("script.js")
 
   chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.config)
-        sendResponse("config saved");
+      if (request.config){
         saveChanges(request.config)
+      }
+      if (request.loadConfig){
+        const getLocalStorage = localStorage.getItem(LOCAL_STORAGE_NAME)
+        const parseConfig = JSON.parse(getLocalStorage)
+        getLocalStorage ? sendResponse(parseConfig) : sendResponse("Not Found");
+      }
     }
   );
 
   function saveChanges(configValues){
-    localStorage.setItem(LOCAL_STORAGE_NAME,configValues)
+    const convertedConfig = JSON.stringify(configValues)
+    localStorage.setItem(LOCAL_STORAGE_NAME,convertedConfig)
   }
