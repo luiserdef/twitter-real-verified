@@ -8,8 +8,8 @@ let blueVerifiedBadgeColor = '#3297c579'
 
 //Loading Config
 document.addEventListener("DOMContentLoaded", async ()=>{
-    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    const configResponse = await chrome.tabs.sendMessage(tab.id, {
+    const [tab] = await browser.tabs.query({active: true, lastFocusedWindow: true});
+    const configResponse = await browser.tabs.sendMessage(tab.id, {
         loadConfig: true
     });
     if(configResponse != "Not Found"){
@@ -50,8 +50,8 @@ function saveChanges(configKey,configValue){
 }
 
 async function sendConfig(newConfig) {
-    const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
-    const response = await chrome.tabs.sendMessage(tab.id, {
+    const [tab] = await browser.tabs.query({active: true, currentWindow: true});
+    const response = await browser.tabs.sendMessage(tab.id,{
         config: newConfig
     });
 }

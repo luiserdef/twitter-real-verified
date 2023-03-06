@@ -6,7 +6,7 @@ const addElement = document.createElement("script")
 
   const LOCAL_STORAGE_NAME = "TRVerifiedConfig"
 
-  chrome.runtime.onMessage.addListener(
+  browser.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.config){
         saveChanges(request.config)
