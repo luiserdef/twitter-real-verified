@@ -1,25 +1,41 @@
 {
-    "name": "Twitter Real Verified",
-    "version": "1.1.0",
-    "description": "Identifies verified users against users with Blue Twitter subscription",
-    "author": "@luiserdef",
-    "manifest_version":2,
-    "icons": {
-      "16": "assets/icon16.png",
-      "48": "assets/icon48.png",
-      "128": "assets/icon128.png" 
-    },
-    "browser_action":{
-      "default_popup":"popup/popup.html"
-    },
-    "content_scripts": [
-      {
-        "js": ["contentScript.js"],
-        "matches": [
+  "name": "Twitter Real Verified",
+  "version": "1.1.0",
+  "description": "Identifies verified users against users with Blue Twitter subscription",
+  "author": "@luiserdef",
+  "manifest_version":3,
+  "permissions": [
+    "declarativeContent"
+  ],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png" 
+  },
+  "action":{
+    "default_popup":"popup/popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["contentScript.js"],
+      "matches": [
+        "https://mobile.twitter.com/*",
+        "https://twitter.com/*"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+          "script.js"
+      ],
+      "matches": [
           "https://mobile.twitter.com/*",
           "https://twitter.com/*"
-        ]
-      }
-    ],
-    "web_accessible_resources": ["script.js"]
-  }
+      ]
+    }
+  ]
+}

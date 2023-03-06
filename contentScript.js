@@ -1,12 +1,12 @@
 const addElement = document.createElement("script")
 
-  addElement.src = browser.runtime.getURL("script.js")
+  addElement.src = chrome.runtime.getURL("script.js")
   addElement.onload = function () { this.remove() }
   document.head.appendChild(addElement)
 
   const LOCAL_STORAGE_NAME = "TRVerifiedConfig"
 
-  browser.runtime.onMessage.addListener(
+  chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.config){
         saveChanges(request.config)
