@@ -61,9 +61,11 @@ section{
 .badge-color-container .bg-badge{
     padding: 10px;
 }
+
 .badge-color-container .bg-badge:nth-child(1){
     background-color:  #192734;
 }
+
 .badge-color-container .bg-badge:nth-child(2){
     background-color: #ffffff;
 }
@@ -74,6 +76,7 @@ section{
     align-items: center;
     gap: 1em;
 }
+
 #color-picker{
     cursor: pointer;
     width: 80px;
@@ -83,18 +86,22 @@ section{
     background-color: none;
     border: none;
 }
+
 #color-picker::-webkit-color-swatch{
     border-radius: 5px;
 }
+
 .pick-color-box{
     display: flex;
     align-items: center;
 }
+
 .action-bt{
     margin-top: 5px;
     display: flex;
     gap: 5px;
 }
+
 .bt{
     color: #ffffff;
     display: flex;
@@ -112,6 +119,7 @@ section{
     cursor: pointer;
     background-color: #467e48;
 }
+
 .bt-save:hover{
     background-color: #5a9e5e;
 }
