@@ -33,8 +33,7 @@
             <h2 class="title_popup">Change badge color</h2>
             <div class="change-badge-container">
                 <div class="pick-color-box">
-                    <label for="color-picker">Color:</label>
-                    <input type="color" id="color-picker" name="color-picker">
+                    <input id="color-picker" value="#2C85AD" data-jscolor='{"width": 123, "position":"top"}'> 
                 </div>
                 <div class="badge-color-container">
                     <div class="bg-badge">
@@ -57,10 +56,9 @@
         <div class="action-bt">
             <button disabled class="bt bt-save-action">Save</button>
         </div>
-        <p id="info-save" style="text-align: center; display: none;">*
-            To view the changes, it's necessary to refresh the page.
-            *</p>
+        <p id="info-save" style="text-align: center; display: none; margin-top: 1em;">To view the changes, it's necessary to refresh the page.</p>
     </div>
     <script src="popup.js"></script>
+    <script src="jscolor.min.js"></script> 
 </body>
 </html>

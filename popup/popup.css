@@ -70,16 +70,17 @@ section{
 
 .change-badge-container{
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 1em;
 }
 #color-picker{
-    border-radius: 10px;
     cursor: pointer;
-    appearance: none;
-    background-color: transparent;
-    width: 40px;
+    width: 80px;
     height: 40px;
+    outline: none;
+    border-radius: 10px;
+    background-color: none;
     border: none;
 }
 #color-picker::-webkit-color-swatch{
