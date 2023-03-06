@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+    font-size: 16px;
 }
 
 .content{
@@ -15,6 +17,7 @@
 }
 
 .title_popup{
+    font-size: 1.2rem;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -34,6 +37,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.info-element p{
+    font-size: .8rem;
 }
 
 .info-element .two-badges-info{
@@ -61,9 +68,11 @@ section{
 .badge-color-container .bg-badge{
     padding: 10px;
 }
+
 .badge-color-container .bg-badge:nth-child(1){
     background-color:  #192734;
 }
+
 .badge-color-container .bg-badge:nth-child(2){
     background-color: #ffffff;
 }
@@ -74,6 +83,7 @@ section{
     align-items: center;
     gap: 1em;
 }
+
 #color-picker{
     cursor: pointer;
     width: 80px;
@@ -83,18 +93,17 @@ section{
     background-color: none;
     border: none;
 }
-#color-picker::-webkit-color-swatch{
-    border-radius: 5px;
-}
+
 .pick-color-box{
-    display: flex;
-    align-items: center;
+    margin: 7px 0;
 }
+
 .action-bt{
     margin-top: 5px;
     display: flex;
     gap: 5px;
 }
+
 .bt{
     color: #ffffff;
     display: flex;
@@ -112,6 +121,7 @@ section{
     cursor: pointer;
     background-color: #467e48;
 }
+
 .bt-save:hover{
     background-color: #5a9e5e;
 }
