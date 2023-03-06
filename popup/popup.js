@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 })
 
 //Change badge color options
-colorPicker.addEventListener("input",(e)=>{
+colorPicker.addEventListener("input",()=>{
     badgePickColor.forEach(element => {
-        element.style.fill= e.target.value
+        element.style.fill= colorPicker.value
     });
     activateChangeOptions()
-    blueVerifiedBadgeColor = e.target.value
+    blueVerifiedBadgeColor = colorPicker.value
 })
 
 btSaveAction.addEventListener("click",()=>{ 
