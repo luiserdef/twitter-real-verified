@@ -1,10 +1,13 @@
 const colorPicker = document.getElementById("color-picker")
 const blueBadgePopup = document.getElementById("blue-badge-popup")
 const badgePickColor = document.querySelectorAll(".badge-pick-color")
+const resetDefault = document.querySelector('.reset-default')
 const btSaveAction = document.querySelector(".bt-save-action")
 const infoSaveText = document.getElementById("info-save")
 let configExtensionValues ={}
-let blueVerifiedBadgeColor = '#3297c579'
+const defaultVerifyColor = '#1d9bf0'
+let blueVerifiedBadgeColor = defaultVerifyColor
+
 
 //Loading Config
 document.addEventListener("DOMContentLoaded", async ()=>{
@@ -24,12 +27,20 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 
 //Change badge color options
 colorPicker.addEventListener("input",(e)=>{
+    changeBadgeColor(e.target.value)
+})
+
+resetDefault.addEventListener("click",()=>{
+    changeBadgeColor(defaultVerifyColor)
+})
+
+function changeBadgeColor(color){
     badgePickColor.forEach(element => {
-        element.style.fill= e.target.value
+        element.style.fill= color
     });
     activateChangeOptions()
-    blueVerifiedBadgeColor = e.target.value
-})
+    blueVerifiedBadgeColor = color
+}
 
 btSaveAction.addEventListener("click",()=>{ 
     infoSaveText.style.display="block"

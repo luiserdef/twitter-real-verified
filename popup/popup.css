@@ -54,7 +54,7 @@ section{
 
 .badge-color-container{
     overflow: hidden;
-    border-radius: 10px;
+    align-items: center;
     display: flex;
 }
 
@@ -63,11 +63,13 @@ section{
 }
 
 .badge-color-container .bg-badge:nth-child(1){
+    border-radius: 10px 0 0 10px;
     background-color:  #192734;
 }
 
 .badge-color-container .bg-badge:nth-child(2){
     background-color: #ffffff;
+    border-radius: 0 10px 10px 0;
 }
 
 .change-badge-container{
@@ -94,6 +96,11 @@ section{
 .pick-color-box{
     display: flex;
     align-items: center;
+}
+
+.reset-default{
+    cursor: pointer;
+    color: #cfe1ff;
 }
 
 .action-bt{
