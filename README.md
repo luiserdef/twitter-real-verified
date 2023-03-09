@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/Icon.png" width="200px" alt="Real Verify Extension" />
+  <img src="firefox/assets/Icon.png" width="200px" alt="Real Verify Extension" />
 </p>
 <h3 align="center">Twitter Real Verified</h3>
 <p align="center">
@@ -24,15 +24,38 @@
 
 ## 👀 Overview - Screenshots
 
+Identify which users are actually verified and which users are verified by paying for a twitter blue subscription.
+- You can customize the color of the icon to better differentiate.
+
+
 Recognition in themes            |  Identification in the timeline
 :-------------------------:|:-------------------------:
-<img src="assets/overview1.jpg" alt="AdGuard Browser Extension" />  |  <img src="assets/overview2.png"  alt="AdGuard Browser Extension" />
+<img src="overview-img/overview1.jpg" alt="AdGuard Browser Extension" />  |  <img src="overview-img/overview2.png"  alt="AdGuard Browser Extension" />
 <p align="center">
-  <img src="assets/overview3.PNG" width="300px" alt="Real Verify Extension" />
+  <img src="overview-img/color-picker.png" width="600px" alt="Real Verify Extension" />
 </p>
 
-## :page_with_curl: Manifest
-This extension use manifest V2 for Firefox and manifest V3 for Edge (for develepment purpouse)
+## Dev
+After cloning the project.
+
+```bash
+pnpm install # install dependencies
+
+npx standard --fix # run and fix linter issues
+```
+
+Load the extension on Edge and Chrome:
+
+- Access edge://extensions/ or chrome://extensions/
+- Check Developer mode
+- Click on Load unpacked extension
+- Select the folder: edge-chrome.
+
+Load the extension on Firefox
+- Access about:addons
+- In the left-hand menu of the "Add-ons Manager" page, select "Extensions".
+- Click on the gear icon in the top-right corner and select "Install Add-on From File" from the dropdown menu.
+- Select the folder: firefox.
 
 ## :bulb: Can I contribute?
 Off Course! You can open a new issue or pull request with a new improvement or fix bugs.
