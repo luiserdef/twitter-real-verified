@@ -1,6 +1,6 @@
 {
     "name": "Twitter Real Verified",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Identifies verified users against users with Blue Twitter subscription",
     "author": "@luiserdef",
     "manifest_version":2,
