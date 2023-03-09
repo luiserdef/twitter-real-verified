@@ -103,6 +103,10 @@ section{
     color: #cfe1ff;
 }
 
+.reset-default:hover{
+    color: #9bdef8;
+}
+
 .action-bt{
     margin-top: 5px;
     display: flex;

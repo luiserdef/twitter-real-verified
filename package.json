@@ -1,8 +1,7 @@
 {
   "name": "twitter-real-verified",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "standard": "^17.0.0"
+  },
+  "standard": {
+    "globals": [ "chrome", "localStorage","MutationObserver","node","browser" ]
   }
 }
