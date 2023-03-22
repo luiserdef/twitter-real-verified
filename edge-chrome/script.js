@@ -8,53 +8,39 @@ if (localStorageConfig) {
   blueVerifiedBadgeColor = actualConfig.badgeColor
 }
 
-//* *Target badges**
-const checkAtTopProfile = 'css-901oao css-16my406 r-xoduu5 r-18u37iz r-1q142lx r-poiln3 r-bcqeeo r-qvutc0'
-const checkAtNameProfile = 'css-901oao css-16my406 r-xoduu5 r-18u37iz r-1q142lx r-poiln3 r-adyw6z r-135wba7 r-bcqeeo r-qvutc0'
-// DarkMode => DM
-const checkAtTimelineDM = 'css-901oao r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-const hoveredUserDM = 'css-901oao r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-const checkAtNotificationDM = 'css-4rbku5 css-18t94o4 css-901oao css-16my406 r-1nao33i r-1loqt21 r-poiln3 r-b88u0q r-bcqeeo r-qvutc0'
-const notificationHoveredProfileDM = 'css-901oao css-16my406 r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-// LightMode => LM
-const checkAtTimelineLM = 'css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-const hoveredUserLM = 'css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-const checkAtNotificationLM = 'css-4rbku5 css-18t94o4 css-901oao css-16my406 r-18jsvk2 r-1loqt21 r-poiln3 r-b88u0q r-bcqeeo r-qvutc0'
-const notificationHoveredProfileLM = 'css-901oao css-16my406 r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-// DimMode => DMM
-const checkAtTimelineDMM = 'css-901oao r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-const hoveredUserDimMode = 'css-901oao r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
-const checkAtNotificationDMM = 'css-4rbku5 css-18t94o4 css-901oao css-16my406 r-vlxjld r-1loqt21 r-poiln3 r-b88u0q r-bcqeeo r-qvutc0'
-const notificationHoveredProfileDMM = 'css-901oao css-16my406 r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
+// **Target badges**
+// DarkMode => DM, LightMode => LM, DimMode => DMM
+const badgesTargets = {
+  checkAtTopProfile: 'css-901oao css-16my406 r-xoduu5 r-18u37iz r-1q142lx r-poiln3 r-bcqeeo r-qvutc0',
+  checkAtNameProfile: 'css-901oao css-16my406 r-xoduu5 r-18u37iz r-1q142lx r-poiln3 r-adyw6z r-135wba7 r-bcqeeo r-qvutc0',
+  checkAtTimelineDM: 'css-901oao r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  hoveredUserDM: 'css-901oao r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  checkAtNotificationDM: 'css-901oao css-16my406 r-poiln3 r-bcqeeo r-bnwqim r-1jy2w8o r-qvutc0',
+  notificationHoveredProfileDM: 'css-901oao css-16my406 r-1nao33i r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  checkAtTimelineLM: 'css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  hoveredUserLM: 'css-901oao r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  checkAtNotificationLM: 'css-4rbku5 css-18t94o4 css-901oao css-16my406 r-18jsvk2 r-1loqt21 r-poiln3 r-b88u0q r-bcqeeo r-qvutc0',
+  notificationHoveredProfileLM: 'css-901oao css-16my406 r-18jsvk2 r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  checkAtTimelineDMM: 'css-901oao r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  hoveredUserDimMode: 'css-901oao r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0',
+  checkAtNotificationDMM: 'css-4rbku5 css-18t94o4 css-901oao css-16my406 r-vlxjld r-1loqt21 r-poiln3 r-b88u0q r-bcqeeo r-qvutc0',
+  notificationHoveredProfileDMM: 'css-901oao css-16my406 r-vlxjld r-xoduu5 r-18u37iz r-1q142lx r-37j5jr r-1inkyih r-16dba41 r-rjixqe r-bcqeeo r-qvutc0'
+}
 
-const badgesTargets = [
-  checkAtTopProfile,
-  checkAtNameProfile,
-  checkAtNotificationDM,
-  checkAtNotificationLM,
-  checkAtNotificationDMM,
-  notificationHoveredProfileDM,
-  notificationHoveredProfileLM,
-  notificationHoveredProfileDMM,
-  checkAtTimelineDM,
-  checkAtTimelineLM,
-  checkAtTimelineDMM,
-  hoveredUserDimMode,
-  hoveredUserLM,
-  hoveredUserDM
-]
-
-// find elements that target badges (elements)
-function findElement (element) {
-  if (badgesTargets.includes(element.className)) {
-    if (element.className === checkAtNotificationDM ||
-           element.className === checkAtNotificationLM ||
-           element.className === checkAtNotificationDMM) {
-      // 1 is for sending position to find correct props
-      userVerifyStatus(element, 1)
-    } else {
-      userVerifyStatus(element)
+const isBadgeTargeted = (elementClass) => {
+  let isElementExist = false
+  for (const key in badgesTargets) {
+    if (badgesTargets.hasOwnProperty(key) && badgesTargets[key] === elementClass) {
+      isElementExist = true
+      break
     }
+  }
+  return isElementExist
+}
+
+function findElement (element) {
+  if (isBadgeTargeted(element.className)) {
+    userVerifyStatus(element)
   }
 
   if (element.childNodes) {
@@ -68,20 +54,18 @@ function changeBadge (element) {
     element.style.fill = blueVerifiedBadgeColor
   }
 
-  // find svg element
-  if (element.childNodes) {
+  if (element.childNodes) { // find svg path element
     [...element.childNodes].forEach(changeBadge)
   }
 }
 
-function userVerifyStatus (element, especialPosition) {
+function userVerifyStatus (element) {
   const elementPropsNames = Object.getOwnPropertyNames(element)
   const reactProps = elementPropsNames.find(nameProp => nameProp.startsWith('__reactProps'))
-  const positionValue = especialPosition || 0
   const mainProps = element[reactProps]
 
-  const isBlueVerified = mainProps.children.props.children[0][positionValue].props.isBlueVerified
-  const isVerified = mainProps.children.props.children[0][positionValue].props.isVerified
+  const isBlueVerified = mainProps.children.props.children[0][0].props.isBlueVerified
+  const isVerified = mainProps.children.props.children[0][0].props.isVerified
 
   if (!isVerified) {
     if (isBlueVerified) {
