@@ -1,9 +1,12 @@
 {
     "name": "Twitter Real Verified",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "description": "Identifies verified users against users with Twitter Blue subscription",
     "author": "@luiserdef",
     "manifest_version":2,
+    "permissions": [
+      "tabs"
+    ],
     "icons": {
       "16": "assets/icon16.png",
       "48": "assets/icon48.png",
@@ -11,6 +14,9 @@
     },
     "browser_action":{
       "default_popup":"popup/popup.html"
+    },
+    "background": {
+      "scripts": ["background.js"]
     },
     "content_scripts": [
       {
