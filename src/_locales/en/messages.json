@@ -1,0 +1,35 @@
+{
+    "app_title": {
+        "message": "Twitter Real Verified"
+    },
+    "app_description": {
+        "message": "Change the Twitter verification badge for those who have obtained it through a Twitter Blue subscription"
+    },
+    "verified_badge": {
+     "message": "Verified User"
+    },
+    "bussiness_badge": {
+        "message": "Business"
+    },
+    "goverment_organization_badge": {
+        "message": "Government/Org"
+    },
+    "twitter_blue_badge": {
+        "message": "Twitter Blue"
+    },
+    "option_change_color": {
+        "message": "Change badge color"
+    },
+    "option_change_color_reset_default": {
+        "message": "Reset to default"
+    },
+    "bt_save": {
+        "message": "Save"
+    },
+    "alert_refresh_page": {
+        "message": "To see the changes, it is necessary to refresh the page."
+    },
+    "alert_stay_on_twitter": {
+        "message": "This extension only works on Twitter."
+    }
+}

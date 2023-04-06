@@ -3,9 +3,11 @@
     "version": "1.2.0",
     "description": "Identifies verified users against users with Twitter Blue subscription",
     "author": "@luiserdef",
+    "default_locale": "en",
     "manifest_version":2,
     "permissions": [
-      "tabs"
+      "tabs",
+      "i18n"
     ],
     "icons": {
       "16": "assets/icon16.png",

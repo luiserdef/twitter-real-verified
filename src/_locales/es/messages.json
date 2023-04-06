@@ -1,0 +1,35 @@
+{
+    "app_title": {
+        "message": "Twitter Real Verified"
+    },
+    "app_description": {
+        "message": "Cambia el ícono de verificado de Twitter para aquellos usuarios que lo han obtenido a través de la suscripción a Twitter Blue"
+    },
+    "verified_badge": {
+        "message": "Usuario verificado"
+    },
+    "bussiness_badge": {
+        "message": "Negocio"
+    },
+    "goverment_organization_badge": {
+        "message": "Gobierno/Org"
+    },
+    "twitter_blue_badge": {
+        "message": "Twitter Blue"
+    },
+    "option_change_color": {
+        "message": "Cambiar color de ícono"
+    },
+    "option_change_color_reset_default": {
+        "message": "Restablecer a default"
+    },
+    "bt_save": {
+        "message": "Guardar"
+    },
+    "alert_refresh_page": {
+        "message": "Para ver los cambios, es necesario actualizar la página."
+    },
+    "alert_stay_on_twitter": {
+        "message": "Esta extensión solo funciona en Twitter."
+    }
+}

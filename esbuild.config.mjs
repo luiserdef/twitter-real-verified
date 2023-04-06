@@ -9,6 +9,7 @@ const files = [
   { out: 'popup/popup', in: './src/popup/popup.html' },
   { out: 'popup/popup', in: './src/popup/popup.css' },
   { out: 'popup/popup', in: './src/popup/popup.js' },
+  { out: 'popup/txtElements', in: './src/popup/txtElements.js' },
   { out: 'popup/jscolor.min', in: './src/popup/jscolor.min.js' },
   { out: 'contentScript', in: './src/contentScript.js' },
   { out: 'background', in: './src/background.js' },
@@ -23,6 +24,7 @@ const chromeBuild = async () => {
     loader: { '.html': 'copy' }
   }).then(() => {
     copySync('./assets', `${CHROMEOUTPUT}/assets`)
+    copySync('./src/_locales', `${CHROMEOUTPUT}/_locales`)
     copySync('./manifestV3.json', `${CHROMEOUTPUT}/manifest.json`)
   }).catch(error => {
     console.log('Build failed in ChromeBuild:' + error)
@@ -37,6 +39,7 @@ const firefoxBuild = async () => {
     loader: { '.html': 'copy' }
   }).then(() => {
     copySync('./assets', `${FIREFOXOUTPUT}/assets`)
+    copySync('./src/_locales', `${FIREFOXOUTPUT}/_locales`)
     copySync('./manifestV2.json', `${FIREFOXOUTPUT}/manifest.json`)
   }).catch(error => {
     console.log('Build failed in FirefoxBuild:' + error)
