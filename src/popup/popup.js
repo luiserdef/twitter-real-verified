@@ -1,3 +1,4 @@
+
 let browserAPI = chrome
 if (typeof browser !== 'undefined') {
   browserAPI = browser
@@ -7,7 +8,7 @@ const blueBadgePopup = document.getElementById('blue-badge-popup')
 const badgePickColor = document.querySelectorAll('.badge-pick-color')
 const resetDefault = document.querySelector('.reset-default')
 const btSaveAction = document.querySelector('.bt-save-action')
-const infoSaveText = document.getElementById('save-alert')
+const txtAlertRefreshPage = document.getElementById('txt-alert-refresh-page')
 const configExtensionValues = {}
 const defaultVerifyColor = '#1d9bf0'
 let blueVerifiedBadgeColor = defaultVerifyColor
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const content = document.querySelector('.content')
       const hElement = document.createElement('h1')
-      hElement.textContent = 'Make sure you are on Twitter'
+      hElement.textContent = browserAPI.i18n.getMessage('alert_stay_on_twitter')
       hElement.style.fontSize = '1rem'
       content.appendChild(hElement)
     }
@@ -61,7 +62,7 @@ function changeBadgeColor (color) {
 }
 
 btSaveAction.addEventListener('click', () => {
-  infoSaveText.style.display = 'block'
+  txtAlertRefreshPage.style.display = 'block'
   saveChanges('badgeColor', blueVerifiedBadgeColor)
 })
 
