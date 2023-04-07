@@ -36,13 +36,14 @@ It is created with React and bundled with esbuild.
 After cloning the project.
 
 ```bash
-pnpm install # install dependencies
+ pnpm install # install dependencies
 
-pnpm run dev # Generate the files for testing in Chrome and Firefox. Also, start watching for changes in files
+ #Generate the files for testing in Chrome and Firefox. Also, start watching for changes in files
+ pnpm run dev
 
-
-# run and fix linter issues (Optional if you have the standardjs extension for VSCode and changes are made on save.)
-npx standard --fix 
+ #run and fix linter issues 
+ #(Optional if you have the standardjs extension for VSCode and changes are made on save.)
+ npx standard --fix 
 ```
 
 Load the extension on Edge and Chrome:
