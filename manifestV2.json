@@ -1,13 +1,12 @@
 {
-    "name": "Twitter Real Verified",
+    "name": "__MSG_app_title__",
     "version": "1.2.0",
-    "description": "Identifies verified users against users with Twitter Blue subscription",
+    "description": "__MSG_app_description__",
     "author": "@luiserdef",
     "default_locale": "en",
     "manifest_version":2,
     "permissions": [
-      "tabs",
-      "i18n"
+      "tabs"
     ],
     "icons": {
       "16": "assets/icon16.png",
