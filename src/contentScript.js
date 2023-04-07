@@ -1,24 +1,22 @@
-let browserAPI = chrome
-if (typeof browser !== 'undefined') {
-  browserAPI = browser
-}
+import { validateBrowserAPI as browserAPI } from './utils/validateUserBrowser'
 
 const addElement = document.createElement('script')
-addElement.src = browserAPI.runtime.getURL('script.js')
+addElement.src = chrome.runtime.getURL('script.js')
 addElement.onload = function () { this.remove() }
 document.head.appendChild(addElement)
 
 const LOCAL_STORAGE_NAME = 'TRVerifiedConfig'
-browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browserAPI().runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.saveConfig) {
     saveChanges(request.saveConfig)
+    sendResponse({ status: 'correct', content: null, message: 'Saved Settings' })
   }
-  if (request.requestConfig) {
+  if (request.getConfig) {
     const getLocalStorage = localStorage.getItem(LOCAL_STORAGE_NAME)
     if (getLocalStorage !== null) {
-      sendResponse(JSON.parse(getLocalStorage))
+      sendResponse({ status: 'correct', content: JSON.parse(getLocalStorage), message: 'Config Loaded' })
     } else {
-      sendResponse('Not Found')
+      sendResponse({ status: 'correct', content: null, message: 'There is no data saved' })
     }
   }
 })

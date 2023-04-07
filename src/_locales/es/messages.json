@@ -21,7 +21,7 @@
         "message": "Cambiar color de ícono"
     },
     "option_change_color_reset_default": {
-        "message": "Restablecer a default"
+        "message": "Restablecer a color por defecto"
     },
     "bt_save": {
         "message": "Guardar"
