@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Twitter Real Verified</h3>
 <p align="center">
-  Identify which users are actually verified from those who have purchased a subscription (Twitter Blue subscription)
+ Change the Twitter verification badge for those who have obtained it through a Twitter Blue subscription
 </p>
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -24,19 +24,25 @@
 
 
 ## 👀 Overview - Screenshots
-
+<p>This extension allows you to differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money icon.</p>
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
   <img src="overview-img/twVerified-preview2.png" width="600px" alt="Real Verify Extension" />
 </p>
 
 ## Dev
+It is created with React and bundled with esbuild.
+
 After cloning the project.
 
 ```bash
 pnpm install # install dependencies
 
-npx standard --fix # run and fix linter issues
+pnpm run dev # Generate the files for testing in Chrome and Firefox. Also, start watching for changes in files
+
+
+# run and fix linter issues (Optional if you have the standardjs extension for VSCode and changes are made on save.)
+npx standard --fix 
 ```
 
 Load the extension on Edge and Chrome:
