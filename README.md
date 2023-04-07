@@ -22,17 +22,12 @@
   </tr>
 </table>
 
+
 ## 👀 Overview - Screenshots
 
-Identify which users are actually verified and which users are verified by paying for a twitter blue subscription.
-- You can customize the color of the icon to better differentiate.
-
-
-Recognition in themes            |  Identification in the timeline
-:-------------------------:|:-------------------------:
-<img src="overview-img/overview1.jpg" alt="AdGuard Browser Extension" />  |  <img src="overview-img/overview2.png"  alt="AdGuard Browser Extension" />
 <p align="center">
-  <img src="overview-img/color-picker.png" width="600px" alt="Real Verify Extension" />
+  <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
+  <img src="overview-img/twVerified-preview2.png" width="600px" alt="Real Verify Extension" />
 </p>
 
 ## Dev
