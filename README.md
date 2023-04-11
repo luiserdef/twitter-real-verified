@@ -8,6 +8,12 @@
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td valign="center">
+      <a href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
+        <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/chrome-webstore.png" alt="Chrome extension" />
+        <p align="center">Chrome Extension</p>
+      </a>
+    </td>
+    <td valign="center">
       <a href="https://addons.mozilla.org/es/firefox/addon/twitter-real-verified/">
         <img src="https://user-images.githubusercontent.com/22908993/166417727-3481fef4-00e5-4cf0-bb03-27fb880d993c.png" alt="Firefox add-ons" />
         <p align="center">Firefox Add-ons</p>
