@@ -19,7 +19,7 @@ const files = [
 const chromeBuild = async () => {
   await esbuild.build({
     entryPoints: files,
-    minify: true,
+    // minify: true,
     bundle: true,
     outdir: CHROMEOUTPUT,
     loader: { '.html': 'copy' },
