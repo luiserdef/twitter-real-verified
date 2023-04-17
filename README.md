@@ -8,12 +8,6 @@
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td valign="center">
-      <a href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
-        <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/chrome-webstore.png" alt="Chrome extension" />
-        <p align="center">Chrome Extension</p>
-      </a>
-    </td>
-    <td valign="center">
       <a href="https://addons.mozilla.org/es/firefox/addon/twitter-real-verified/">
         <img src="https://user-images.githubusercontent.com/22908993/166417727-3481fef4-00e5-4cf0-bb03-27fb880d993c.png" alt="Firefox add-ons" />
         <p align="center">Firefox Add-ons</p>
@@ -25,10 +19,14 @@
         <p align="center">Edge Extension</p>
       </a>
     </td>
+        <td valign="center">
+      <a href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
+        <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/chrome-webstore.png" alt="Chrome extension" />
+        <p align="center">Chrome Extension</p>
+      </a>
+    </td>
   </tr>
 </table>
-
-
 ## 👀 Overview - Screenshots
 <p>This extension allows you to differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money icon.</p>
 <p align="center">
