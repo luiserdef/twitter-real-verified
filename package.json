@@ -1,6 +1,6 @@
 {
   "name": "twitter Real Verified",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Identifies verified users against users with Twitter Blue subscription",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
