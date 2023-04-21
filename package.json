@@ -1,7 +1,7 @@
 {
   "name": "twitter Real Verified",
   "version": "2.0.0",
-  "description": "Identifies legacy verified users against users with Twitter Blue subscription",
+  "description": "Return Twitter's legacy verification and change the verification badge for users with a Twitter Blue subscription.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-chrome": "node ./esbuild/buildChrome.mjs ",
