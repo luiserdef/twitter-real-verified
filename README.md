@@ -27,8 +27,10 @@ Return Twitter's legacy verification and change the verification badge for users
     </td>
   </tr>
 </table>
-## 👀 Overview - Screenshots
-<p> All the verified badges that were removed due to Twitter Blue changes will be restored</p>
+
+## Overview - Screenshots
+<p> All the legacy verified badges that were removed due to Twitter Blue changes on april, 20 2023 will be restored</p>
+<p>Legacy verified users was taken before april,6 2023. Thanks to the <a href="https://github.com/thansen0/verified_twitters">Verified Twitter User List</a> project.</p>
 <p>Differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money badge.</p>
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
@@ -36,7 +38,8 @@ Return Twitter's legacy verification and change the verification badge for users
 </p>
 
 ## Dev
-Popup it is created with React and bundled with esbuild.
+Popup it's created with React.
+Proyect use esbuild.
 
 After cloning the project.
 
