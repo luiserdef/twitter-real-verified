@@ -4,9 +4,8 @@
   "description": "Identifies legacy verified users against users with Twitter Blue subscription",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:chrome": "node --experimental-modules esbuild.config.mjs -e \"import { buildChrome } from './esbuild.config.mjs'; buildChrome();\"",
-    "build:firefox": "node esbuild.config.mjs chrome",
-    "watch": "node esbuild.config.mjs watch"
+    "build-chrome": "node ./esbuild/buildChrome.mjs ",
+    "build-Firefox": "node ./esbuild/buildFirefox.mjs "
   },
   "keywords": [],
   "author": "",
