@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-chrome": "node ./esbuild/buildChrome.mjs ",
-    "build-Firefox": "node ./esbuild/buildFirefox.mjs "
+    "build-firefox": "node ./esbuild/buildFirefox.mjs "
   },
   "keywords": [],
   "author": "",
