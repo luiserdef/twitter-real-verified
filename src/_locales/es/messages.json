@@ -3,7 +3,7 @@
         "message": "Twitter Real Verified"
     },
     "app_description": {
-        "message": "Cambia el ícono de verificado de Twitter para aquellos usuarios que lo han obtenido a través de la suscripción a Twitter Blue"
+        "message": "Trae de vuelta la verificación heredada de Twitter y cambia el ícono de verificación para aquellos usuarios que lo hayan obtenido a través de la suscripción a Twitter Blue."
     },
     "verified_badge": {
         "message": "Usuario verificado"

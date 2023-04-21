@@ -1,10 +1,12 @@
 {
   "name": "twitter Real Verified",
   "version": "2.0.0",
-  "description": "Identifies verified users against users with Twitter Blue subscription",
+  "description": "Identifies legacy verified users against users with Twitter Blue subscription",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node esbuild.config.mjs"
+    "build:chrome": "node --experimental-modules esbuild.config.mjs -e \"import { buildChrome } from './esbuild.config.mjs'; buildChrome();\"",
+    "build:firefox": "node esbuild.config.mjs chrome",
+    "watch": "node esbuild.config.mjs watch"
   },
   "keywords": [],
   "author": "",
@@ -23,9 +25,9 @@
   "standard": {
     "globals": [
       "chrome",
+      "browser",
       "localStorage",
-      "node",
-      "browser"
+      "node"
     ]
   }
 }

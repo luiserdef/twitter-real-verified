@@ -1,3 +1,5 @@
+import { legacyVerifiedUsers } from './legacyVerifiedUsers'
+import { findUserName } from './utils/findUserName'
 import { elementsPaths, propsPaths } from './utils/elementPathsUserName'
 import { LOCAL_STORAGE } from './constants/localStorage'
 import {
@@ -23,13 +25,13 @@ function findElementBadge (element) {
       handleVerificationStatus(elementProps, element)
     }
   } else {
-    // Checks for changes when is switching between user profiles
+    // Checks for changes when switching between user profiles
     // Changes in description act like a trigger
     if (element.dataset?.testid === 'UserDescription') {
       const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
       for (let i = 0; i < badgeElements.length; i++) {
-        const path = badgeElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
-        if (path.role === 'heading') {
+        const profileHeadingPath = badgeElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+        if (profileHeadingPath.role === 'heading') {
           // Heading
           const elementProps = getMainReactProps(badgeElements[i].parentNode.parentNode.parentNode, badgeElements[i])
           handleVerificationStatus(elementProps, badgeElements[i], true)
@@ -54,39 +56,36 @@ function handleVerificationStatus (elementProps, element, isAtProfile) {
     }
   }
 
+  const verifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
-  const isVerified = elementProps.isVerified
+  const isUserVerified = isUserLegacyVerified(element)
 
-  if (!isVerified) {
-    if (isBlueVerified) {
-      createBadge(element)
+  if (isBlueVerified) {
+    if (isUserVerified) {
+      createBadge(element, 'verified', verifiedType)
     } else {
-      if (isUserLegacyVerified(element)) {
-        createBadge(element, 'verified')
-      }
+      createBadge(element, 'blueVerified', verifiedType)
     }
   } else {
-    const verifiedType = elementProps.verifiedType
-    createBadge(element, 'verified', verifiedType)
+    if (isUserVerified) createBadge(element, 'verified', verifiedType)
   }
 }
 
-// For test!
-const legacyVerifiedUsers = ['luiserdef']
-
 function isUserLegacyVerified (element) {
-  let userVerified = false
   const elementPaths = elementsPaths(element)
 
   for (let i = 0; i < elementPaths.length; i++) {
     const elementProps = elementPaths[i] && getReactProps(elementPaths[i])
     const actualUser = propsPaths(elementProps)
     if (elementProps !== undefined && actualUser !== undefined) {
-      userVerified = legacyVerifiedUsers.some(user => user.toLowerCase() === actualUser.toLowerCase())
-      break
+      for (let index = 0; index < legacyVerifiedUsers.length; index++) {
+        if (legacyVerifiedUsers[index].key === actualUser[0]) {
+          if (findUserName(legacyVerifiedUsers[index].users, actualUser) !== -1) return true
+        }
+      }
     }
   }
-  return userVerified
+  return false
 }
 
 function getReactProps (element) {
@@ -106,6 +105,7 @@ function createBadge (element, userVerifyStatus, verifiedType) {
 
   let BadgeColor = blueVerifiedBadgeColor
   let UserVerificationBadge = BLUE_VERIFIED_BADGE
+
   if (userVerifyStatus === 'verified') {
     UserVerificationBadge = VERIFIED_BADGE
     BadgeColor = VERIFIED_BADGE_DEFAULT_COLOR

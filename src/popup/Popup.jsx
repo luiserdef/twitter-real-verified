@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { validateBrowserAPI as browserAPI } from '../utils/validateUserBrowser'
 import { VERIFIED_BADGE_DEFAULT_COLOR } from '../constants/badge'
-import ChangeBadgeColor from './components/changeBadgeColor'
+import ChangeBadgeColor from './components/ChangeBadgeColor'
 import InfoBadges from './components/InfoBadges'
-import ButtonSave from './components/ButtonSave'
+import SaveButton from './components/SaveButton'
 
 function Popup () {
   const txt = (text) => browserAPI().i18n.getMessage(text)
@@ -69,7 +69,7 @@ function Popup () {
             defaultVerifyColor={VERIFIED_BADGE_DEFAULT_COLOR}
             updateConfig={updateConfig}
           />
-          <ButtonSave txt={txt} isThereChanges={isThereChanges} saveChanges={saveChanges} />
+          <SaveButton txt={txt} isThereChanges={isThereChanges} saveChanges={saveChanges} />
           {changeMade && <p className='save-alert-message'>{changeMade.description}</p>}
           {/* eslint-disable react/jsx-indent */}
           </>}
