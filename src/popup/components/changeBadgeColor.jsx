@@ -1,5 +1,6 @@
 import * as React from 'react'
 import TwitterBlueBadge from '../assets/twitterBlueBadge.svg'
+
 function ChangeBadgeColor ({ txt, userBadgeColor, updateConfig, defaultVerifyColor }) {
   const colorPickerRef = React.useRef(null)
 
