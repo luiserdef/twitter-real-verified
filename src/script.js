@@ -59,7 +59,6 @@ function handleVerificationStatus (elementProps, element, isAtProfile) {
   const verifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
   const isUserVerified = isUserLegacyVerified(element)
-
   if (isBlueVerified) {
     if (isUserVerified) {
       createBadge(element, 'verified', verifiedType)
@@ -80,7 +79,11 @@ function isUserLegacyVerified (element) {
     if (elementProps !== undefined && actualUser !== undefined) {
       for (let index = 0; index < legacyVerifiedUsers.length; index++) {
         if (legacyVerifiedUsers[index].key === actualUser[0]) {
-          if (findUserName(legacyVerifiedUsers[index].users, actualUser) !== -1) return true
+          if (findUserName(legacyVerifiedUsers[index].users, actualUser) !== -1){
+            return true
+          }else{
+            return false
+          }
         }
       }
     }
