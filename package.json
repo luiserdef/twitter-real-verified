@@ -24,10 +24,16 @@
   "standard": {
     "globals": [
       "MutationObserver",
+      "localStorage",
+      "verifiedusersList1",
+      "verifiedusersList2",
       "chrome",
       "browser",
-      "localStorage",
       "node"
+    ],
+    "ignore": [
+      "/src/legacyVerifiedUsers1.js",
+      "/src/legacyVerifiedUsers2.js"
     ]
   }
 }

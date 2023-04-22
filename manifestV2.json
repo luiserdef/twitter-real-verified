@@ -28,5 +28,9 @@
         ]
       }
     ],
-    "web_accessible_resources": ["script.js"]
+    "web_accessible_resources": [
+      "legacyVerifiedUsers1.js",
+      "legacyVerifiedUsers2.js",
+      "script.js"
+    ]
   }
