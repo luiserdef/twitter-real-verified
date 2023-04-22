@@ -17,27 +17,51 @@ if (localStorageConfig) {
   blueVerifiedBadgeColor = actualConfig.badgeColor
 }
 
+function getParentElementByLevel (element, parentLevel) {
+  let parentTarget = element
+  let level = 0
+  while (level < parentLevel) {
+    parentTarget = parentTarget.parentElement
+    level++
+  }
+  return parentTarget
+}
+
 function findElementBadge (element) {
+  console.log(element)
   if (BADGE_CLASS_TARGET === element.className) {
-    const elementProps = getMainReactProps(element.parentNode.parentNode.parentNode, element)
-    const profileBadgeHeading = element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
-    if (elementProps !== undefined && profileBadgeHeading.role !== 'heading') {
+    const elementProps = getMainReactProps(getParentElementByLevel(element, 3), element)
+    const profileBadgeHeading = getParentElementByLevel(element, 6)
+
+    if (elementProps !== undefined && profileBadgeHeading?.tagName !== 'H2') {
       handleVerificationStatus(elementProps, element)
+    }
+
+    if (profileBadgeHeading?.tagName === 'H2') {
+      handleVerificationStatus(elementProps, element, true)
+    }
+
+    const profileBadgeUsername = getParentElementByLevel(element, 9)
+    if (profileBadgeUsername?.dataset?.testid === 'UserName') {
+      const elementProps2 = getMainReactProps(getParentElementByLevel(element, 6), element)
+      handleVerificationStatus(elementProps2, element, true)
     }
   }
 
   // Checks for changes when switching between user profiles
-  // Changes in description act like a trigger
+  // Changes in description act like a trigger at this moment (there could be a better way to do this)
+  // This is because MutationObserver doesn't detect changes for both badges
   if (element.dataset?.testid === 'UserDescription') {
     const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
+
     for (let i = 0; i < badgeElements.length; i++) {
-      const profileHeadingPath = badgeElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+      const profileHeadingPath = getParentElementByLevel(badgeElements[i], 6)
       if (profileHeadingPath?.tagName === 'H2') {
         // Heading
-        const elementProps = getMainReactProps(badgeElements[i].parentNode.parentNode.parentNode, badgeElements[i])
+        const elementProps = getMainReactProps(getParentElementByLevel(badgeElements[i], 3), badgeElements[i])
         handleVerificationStatus(elementProps, badgeElements[i], true)
         // At user name, below profile photo
-        const elementProps2 = getMainReactProps(badgeElements[i + 1].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode, badgeElements[i + 1])
+        const elementProps2 = getMainReactProps(getParentElementByLevel(badgeElements[i + 1], 6), badgeElements[i + 1])
         handleVerificationStatus(elementProps2, badgeElements[i + 1], true)
         break
       }
