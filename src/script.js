@@ -24,22 +24,22 @@ function findElementBadge (element) {
     if (elementProps !== undefined && profileBadgeHeading.role !== 'heading') {
       handleVerificationStatus(elementProps, element)
     }
-  } else {
-    // Checks for changes when switching between user profiles
-    // Changes in description act like a trigger
-    if (element.dataset?.testid === 'UserDescription') {
-      const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
-      for (let i = 0; i < badgeElements.length; i++) {
-        const profileHeadingPath = badgeElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
-        if (profileHeadingPath.role === 'heading') {
-          // Heading
-          const elementProps = getMainReactProps(badgeElements[i].parentNode.parentNode.parentNode, badgeElements[i])
-          handleVerificationStatus(elementProps, badgeElements[i], true)
-          // At user name, below profile photo
-          const elementProps2 = getMainReactProps(badgeElements[i + 1].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode, badgeElements[i + 1])
-          handleVerificationStatus(elementProps2, badgeElements[i + 1], true)
-          break
-        }
+  }
+
+  // Checks for changes when switching between user profiles
+  // Changes in description act like a trigger
+  if (element.dataset?.testid === 'UserDescription') {
+    const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
+    for (let i = 0; i < badgeElements.length; i++) {
+      const profileHeadingPath = badgeElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+      if (profileHeadingPath?.tagName === 'H2') {
+        // Heading
+        const elementProps = getMainReactProps(badgeElements[i].parentNode.parentNode.parentNode, badgeElements[i])
+        handleVerificationStatus(elementProps, badgeElements[i], true)
+        // At user name, below profile photo
+        const elementProps2 = getMainReactProps(badgeElements[i + 1].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode, badgeElements[i + 1])
+        handleVerificationStatus(elementProps2, badgeElements[i + 1], true)
+        break
       }
     }
   }
@@ -51,7 +51,7 @@ function findElementBadge (element) {
 
 function handleVerificationStatus (elementProps, element, isAtProfile) {
   if (isAtProfile && element.firstChild?.tagName === 'svg') {
-    if (element.firstChild.ariaLabel === 'Legacy Verified') {
+    if (element.firstChild.id === 'legacy') {
       element.removeChild(element.firstChild)
     }
   }
@@ -59,6 +59,7 @@ function handleVerificationStatus (elementProps, element, isAtProfile) {
   const verifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
   const isUserVerified = isUserLegacyVerified(element)
+
   if (isBlueVerified) {
     if (isUserVerified) {
       createBadge(element, 'verified', verifiedType)
@@ -126,8 +127,8 @@ function createBadge (element, userVerifyStatus, verifiedType) {
     parentElement.appendChild(gElement)
   } else {
     const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    svgElement.id = 'legacy'
     svgElement.setAttribute('viewBox', '0 0 22 22')
-    svgElement.setAttribute('aria-label', 'Legacy Verified')
     svgElement.setAttribute('class', 'r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr')
 
     svgElement.appendChild(gElement)
@@ -188,7 +189,6 @@ function getMainReactProps (parent, target) {
   return state
 }
 
-/* eslint-disable no-undef */
 const observer = new MutationObserver(callbackObserver)
 
 function callbackObserver (mutationList) {

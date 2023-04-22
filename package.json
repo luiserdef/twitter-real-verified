@@ -23,6 +23,7 @@
   },
   "standard": {
     "globals": [
+      "MutationObserver",
       "chrome",
       "browser",
       "localStorage",
