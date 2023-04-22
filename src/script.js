@@ -1,6 +1,6 @@
-import { legacyVerifiedUsers } from './legacyVerifiedUsers'
 import { findUserName } from './utils/findUserName'
 import { elementsPaths, propsPaths } from './utils/elementPathsUserName'
+import { verifiedUsers1Promise as loadUserList1, verifiedUsers2Promise as loadUserList2 } from './utils/loadUserList'
 import { LOCAL_STORAGE } from './constants/localStorage'
 import {
   BADGE_CLASS_TARGET,
@@ -8,6 +8,17 @@ import {
   VERIFIED_BADGE,
   VERIFIED_BADGE_DEFAULT_COLOR
 } from './constants/badge'
+
+let usersList1 = []
+let usersList2 = []
+
+loadUserList1.then((vUsersList1) => {
+  usersList1 = vUsersList1
+})
+
+loadUserList2.then((vUsersList2) => {
+  usersList2 = vUsersList2
+})
 
 let blueVerifiedBadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
 
@@ -28,7 +39,6 @@ function getParentElementByLevel (element, parentLevel) {
 }
 
 function findElementBadge (element) {
-  console.log(element)
   if (BADGE_CLASS_TARGET === element.className) {
     const elementProps = getMainReactProps(getParentElementByLevel(element, 3), element)
     const profileBadgeHeading = getParentElementByLevel(element, 6)
@@ -37,10 +47,12 @@ function findElementBadge (element) {
       handleVerificationStatus(elementProps, element)
     }
 
+    // Header title on a user's profile
     if (profileBadgeHeading?.tagName === 'H2') {
       handleVerificationStatus(elementProps, element, true)
     }
 
+    // username, below profile photo
     const profileBadgeUsername = getParentElementByLevel(element, 9)
     if (profileBadgeUsername?.dataset?.testid === 'UserName') {
       const elementProps2 = getMainReactProps(getParentElementByLevel(element, 6), element)
@@ -49,7 +61,7 @@ function findElementBadge (element) {
   }
 
   // Checks for changes when switching between user profiles
-  // Changes in description act like a trigger at this moment (there could be a better way to do this)
+  // Changes in description act like a trigger at this moment. (This could be improved)
   // This is because MutationObserver doesn't detect changes for both badges
   if (element.dataset?.testid === 'UserDescription') {
     const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
@@ -57,10 +69,10 @@ function findElementBadge (element) {
     for (let i = 0; i < badgeElements.length; i++) {
       const profileHeadingPath = getParentElementByLevel(badgeElements[i], 6)
       if (profileHeadingPath?.tagName === 'H2') {
-        // Heading
+        // Header title on a user's profile
         const elementProps = getMainReactProps(getParentElementByLevel(badgeElements[i], 3), badgeElements[i])
         handleVerificationStatus(elementProps, badgeElements[i], true)
-        // At user name, below profile photo
+        // username, below profile photo
         const elementProps2 = getMainReactProps(getParentElementByLevel(badgeElements[i + 1], 6), badgeElements[i + 1])
         handleVerificationStatus(elementProps2, badgeElements[i + 1], true)
         break
@@ -95,21 +107,36 @@ function handleVerificationStatus (elementProps, element, isAtProfile) {
   }
 }
 
+function legacyUserExists (actualUser) {
+  for (let index = 0; index < usersList1.length; index++) {
+    if (usersList1[index].key === actualUser[0]) {
+      if (findUserName(usersList1[index].users, actualUser) !== -1) {
+        return true
+      }
+    }
+  }
+
+  for (let index = 0; index < usersList2.length; index++) {
+    if (usersList2[index].key === actualUser[0]) {
+      if (findUserName(usersList2[index].users, actualUser) !== -1) {
+        return true
+      }
+    }
+  }
+
+  return false
+}
+
 function isUserLegacyVerified (element) {
   const elementPaths = elementsPaths(element)
-
   for (let i = 0; i < elementPaths.length; i++) {
     const elementProps = elementPaths[i] && getReactProps(elementPaths[i])
     const actualUser = propsPaths(elementProps)
     if (elementProps !== undefined && actualUser !== undefined) {
-      for (let index = 0; index < legacyVerifiedUsers.length; index++) {
-        if (legacyVerifiedUsers[index].key === actualUser[0]) {
-          if (findUserName(legacyVerifiedUsers[index].users, actualUser) !== -1) {
-            return true
-          } else {
-            return false
-          }
-        }
+      if (legacyUserExists(actualUser)) {
+        return true
+      } else {
+        return false
       }
     }
   }

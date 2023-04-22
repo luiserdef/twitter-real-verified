@@ -25,6 +25,8 @@ esbuild.build({
   copySync('./assets', `${FIREFOXOUTPUT}/assets`)
   copySync('./src/_locales', `${FIREFOXOUTPUT}/_locales`)
   copySync('./manifestV2.json', `${FIREFOXOUTPUT}/manifest.json`)
+  copySync('./src/legacyVerifiedUsers1.js', `${FIREFOXOUTPUT}/legacyVerifiedUsers1.js`)
+  copySync('./src/legacyVerifiedUsers2.js', `${FIREFOXOUTPUT}/legacyVerifiedUsers2.js`)
 }).catch(error => {
   console.log('Build failed in buildFirefox:' + error)
 })
