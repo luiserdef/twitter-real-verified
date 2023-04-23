@@ -22,7 +22,7 @@ esbuild.build({
   loader: { '.html': 'copy' },
   plugins: [svgr()]
 }).then(() => {
-  copySync('./assets', `${FIREFOXOUTPUT}/assets`)
+  copySync('./src/assets', `${FIREFOXOUTPUT}/assets`)
   copySync('./src/_locales', `${FIREFOXOUTPUT}/_locales`)
   copySync('./manifestV2.json', `${FIREFOXOUTPUT}/manifest.json`)
   copySync('./src/legacyVerifiedUsers1.js', `${FIREFOXOUTPUT}/legacyVerifiedUsers1.js`)

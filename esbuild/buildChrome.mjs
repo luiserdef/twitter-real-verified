@@ -22,7 +22,7 @@ esbuild.build({
   loader: { '.html': 'copy' },
   plugins: [svgr()]
 }).then(() => {
-  copySync('./assets', `${CHROMEOUTPUT}/assets`)
+  copySync('./src/assets', `${CHROMEOUTPUT}/assets`)
   copySync('./src/_locales', `${CHROMEOUTPUT}/_locales`)
   copySync('./manifestV3.json', `${CHROMEOUTPUT}/manifest.json`)
   copySync('./src/legacyVerifiedUsers1.js', `${CHROMEOUTPUT}/legacyVerifiedUsers1.js`)
