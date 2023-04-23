@@ -10,19 +10,19 @@ Return Twitter's legacy verification and change the verification badge for users
     <td valign="center">
       <a href="https://addons.mozilla.org/es/firefox/addon/twitter-real-verified/">
         <img src="https://user-images.githubusercontent.com/22908993/166417727-3481fef4-00e5-4cf0-bb03-27fb880d993c.png" alt="Firefox add-ons" />
-        <p align="center">Firefox Add-ons</p>
+        <p align="center">Firefox :green_circle: Available</p>
       </a>
     </td>
         <td valign="center">
       <a href="https://microsoftedge.microsoft.com/addons/detail/twitter-real-verified/llkfeengcmnpbpcgmchgjcjmfoekedij">
         <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/microsoftstore.png?mode=crop" alt="Firefox add-ons" />
-        <p align="center">Edge Extension</p>
+        <p align="center">Edge :orange_circle: In review process</p>
       </a>
     </td>
         <td valign="center">
       <a href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
         <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/chrome-webstore.png" alt="Chrome extension" />
-        <p align="center">Chrome Extension</p>
+        <p align="center">Chrome :orange_circle: In review process</p>
       </a>
     </td>
   </tr>
