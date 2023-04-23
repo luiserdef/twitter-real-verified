@@ -29,19 +29,19 @@ Return Twitter's legacy verification and change the verification badge for users
 </table>
 
 ## Overview - Screenshots
-<p> All the legacy verified badges that were removed due to Twitter Blue changes on april 20, 2023, will be restored</p>
-<p>Legacy verified users list was taken before april,6 2023. Thanks to the <a href="https://github.com/thansen0/verified_twitters">Verified Twitter User List</a> project.</p>
-<p>Differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money badge.</p>
+<p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023.</p>
+<p>The list of legacy verified users was taken before April 6, 2023. Thanks to the <a href="https://github.com/thansen0/verified_twitters">Verified Twitter User List</a> project.</p>
+<p>This add-on can differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money badge.</p>
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
   <img src="overview-img/twVerified-preview2.png" width="600px" alt="Real Verify Extension" />
 </p>
 
 ## Dev
-Popup it's created with React.
-Proyect use esbuild.
+Popup is created with React.
+The project uses esbuild.
 
-After cloning the project.
+After cloning the project, do the following:
 
 ```bash
  pnpm install # install dependencies
@@ -73,4 +73,4 @@ Load the extension on Firefox
 - Select any file in the folder firefox-extension
 
 ## :bulb: Can I contribute?
-Off Course! You can open a new issue or pull request with a new improvement or fix bugs.
+Of course! You can open a new issue, or a pull request with a new improvement, or fix bugs.
