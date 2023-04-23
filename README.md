@@ -29,7 +29,7 @@ Return Twitter's legacy verification and change the verification badge for users
 </table>
 
 ## Overview - Screenshots
-<p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023./p>
+<p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023.</p>
 <p>The list of legacy verified users was taken before April 6, 2023. Thanks to the <a href="https://github.com/thansen0/verified_twitters">Verified Twitter User List</a> project.</p>
 <p>This add-on can differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money badge.</p>
 <p align="center">
