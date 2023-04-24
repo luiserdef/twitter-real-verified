@@ -16,6 +16,8 @@
     --light-blue: #56CCF2;
 }
 
+
+
 .content{
     background: var(--light-blue);  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #330841, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
@@ -23,7 +25,7 @@
 
     border: solid 1px #ffffff;
     color: #21539c;
-    width: 280px;
+    width: 290px;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -58,10 +60,9 @@
     align-items: center;
 }
 
-.info-badge .verified-list p{
+.verified-list p{
     font-size: .7rem;
 }
-
 .info-element{
     display: flex;
     flex-direction: column;
@@ -79,6 +80,7 @@ section{
     border: 1px solid;
     border-radius: 10px;
     padding: 1em;
+    font-size: .8rem;
 }
 
 .badge-color-container{
@@ -145,6 +147,37 @@ section{
     color: #9bdef8;
 }
 
+.option-container{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.hide-twitter-blue{
+    position: relative;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+	-moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #32808a;
+    border-radius: 5px;
+    border: 1px solid #17356e;
+}
+.hide-twitter-blue:checked{
+    background-color: #5ece68;
+}
+
+.hide-twitter-blue:checked::after {
+    content: '\2714';
+    color: green;
+    font-size: 16px;
+    position: absolute;
+    left: 2px;
+    bottom: 0px;
+  }
+
 .action-bt{
     margin-top: 5px;
     display: flex;
@@ -173,9 +206,6 @@ section{
     background-color: #5a9e5e;
 }
 
-/* .bt-save-action{
-    background-color: #62b4b2;
-} */
 .save-alert-message{
     text-align: center;
     font-size: .8rem;
