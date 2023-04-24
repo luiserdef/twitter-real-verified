@@ -1,7 +1,7 @@
 import * as React from 'react'
 import TwitterBlueBadge from '../assets/twitterBlueBadge.svg'
 
-function ChangeBadgeColor ({ txt, userBadgeColor, updateConfig, defaultVerifyColor }) {
+function ChangeBadgeColor ({ hideTB, txt, userBadgeColor, updateConfig, defaultVerifyColor }) {
   const colorPickerRef = React.useRef(null)
 
   React.useEffect(() => {
@@ -13,9 +13,10 @@ function ChangeBadgeColor ({ txt, userBadgeColor, updateConfig, defaultVerifyCol
   function resetColorToDefault () {
     updateConfig('badgeColor', defaultVerifyColor)
   }
+  const displaySection = hideTB ? { display: 'none' } : { display: 'flex' }
 
   return (
-    <section>
+    <section style={displaySection}>
       <h3 className='title_popup secondary-title'>{txt('option_change_color')}</h3>
       <div className='change-badge-container'>
         <div id='pick-color-box'>

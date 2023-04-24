@@ -17,6 +17,12 @@
     "twitter_blue_badge": {
         "message": "Twitter Blue"
     },
+    "options": {
+        "message": "Options"
+    },
+    "hide_twitter_blue": {
+        "message": "Hide Twitter Blue badges"
+    },
     "option_change_color": {
         "message": "Change badge color"
     },

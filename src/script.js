@@ -21,11 +21,13 @@ loadUserList2.then((vUsersList2) => {
 })
 
 let blueVerifiedBadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
+let hideTwitterBlueBadge = false
 
 const localStorageConfig = localStorage.getItem(LOCAL_STORAGE)
 if (localStorageConfig) {
   const actualConfig = JSON.parse(localStorageConfig)
   blueVerifiedBadgeColor = actualConfig.badgeColor
+  hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge
 }
 
 function getParentElementByLevel (element, parentLevel) {
@@ -40,29 +42,29 @@ function getParentElementByLevel (element, parentLevel) {
 
 function findElementBadge (element) {
   if (BADGE_CLASS_TARGET === element.className) {
-    const elementProps = getMainReactProps(getParentElementByLevel(element, 3), element)
     const profileBadgeHeading = getParentElementByLevel(element, 6)
 
-    if (elementProps !== undefined && profileBadgeHeading?.tagName !== 'H2') {
-      handleVerificationStatus(elementProps, element)
+    if (profileBadgeHeading?.tagName !== 'H2') {
+      handleVerificationStatus(element)
     }
 
     // Header title on a user's profile
     if (profileBadgeHeading?.tagName === 'H2') {
-      handleVerificationStatus(elementProps, element, true)
+      handleVerificationStatus(element, { isViewingUserProfile: true })
     }
 
     // username, below profile photo
     const profileBadgeUsername = getParentElementByLevel(element, 9)
     if (profileBadgeUsername?.dataset?.testid === 'UserName') {
-      const elementProps2 = getMainReactProps(getParentElementByLevel(element, 6), element)
-      handleVerificationStatus(elementProps2, element, true)
+      handleVerificationStatus(element, { isViewingUserProfile: true, isSecondBadgeProfile: true })
     }
   }
 
   // Checks for changes when switching between user profiles
+  // e.g. user profile1 --> user profile 2
+  // In this case MutationObserver doesn't detect changes for both badges
+  // so you can't retrieve updated props of the user
   // Changes in description act like a trigger at this moment. (This could be improved)
-  // This is because MutationObserver doesn't detect changes for both badges
   if (element.dataset?.testid === 'UserDescription') {
     const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
 
@@ -70,11 +72,11 @@ function findElementBadge (element) {
       const profileHeadingPath = getParentElementByLevel(badgeElements[i], 6)
       if (profileHeadingPath?.tagName === 'H2') {
         // Header title on a user's profile
-        const elementProps = getMainReactProps(getParentElementByLevel(badgeElements[i], 3), badgeElements[i])
-        handleVerificationStatus(elementProps, badgeElements[i], true)
+        handleVerificationStatus(badgeElements[i], { isViewingUserProfile: true })
+
         // username, below profile photo
-        const elementProps2 = getMainReactProps(getParentElementByLevel(badgeElements[i + 1], 6), badgeElements[i + 1])
-        handleVerificationStatus(elementProps2, badgeElements[i + 1], true)
+        handleVerificationStatus(badgeElements[i + 1], { isViewingUserProfile: true, isSecondBadgeProfile: true })
+
         break
       }
     }
@@ -85,8 +87,17 @@ function findElementBadge (element) {
   }
 }
 
-function handleVerificationStatus (elementProps, element, isAtProfile) {
-  if (isAtProfile && element.firstChild?.tagName === 'svg') {
+function handleVerificationStatus (element, options) {
+  let elementProps
+  if (options?.isSecondBadgeProfile) {
+    elementProps = getMainReactProps(getParentElementByLevel(element, 6), element)
+  } else {
+    elementProps = getMainReactProps(getParentElementByLevel(element, 3), element)
+  }
+
+  if (elementProps === undefined) return
+
+  if (options?.isViewingUserProfile && element.firstChild?.tagName === 'svg') {
     if (element.firstChild.id === 'legacy') {
       element.removeChild(element.firstChild)
     }
@@ -100,7 +111,7 @@ function handleVerificationStatus (elementProps, element, isAtProfile) {
     if (isUserVerified) {
       createBadge(element, 'verified', verifiedType)
     } else {
-      createBadge(element, 'blueVerified', verifiedType)
+      createBadge(element, 'blueVerified', verifiedType, options?.isViewingUserProfile)
     }
   } else {
     if (isUserVerified) createBadge(element, 'verified', verifiedType)
@@ -128,9 +139,9 @@ function legacyUserExists (actualUser) {
 }
 
 function isUserLegacyVerified (element) {
-  const elementPaths = elementsPaths(element)
-  for (let i = 0; i < elementPaths.length; i++) {
-    const elementProps = elementPaths[i] && getReactProps(elementPaths[i])
+  const posibleElementPaths = elementsPaths(element)
+  for (let i = 0; i < posibleElementPaths.length; i++) {
+    const elementProps = posibleElementPaths[i] && getReactProps(posibleElementPaths[i])
     const actualUser = propsPaths(elementProps)
     if (elementProps !== undefined && actualUser !== undefined) {
       if (legacyUserExists(actualUser)) {
@@ -150,13 +161,35 @@ function getReactProps (element) {
   return reactProps
 }
 
-function createBadge (element, userVerifyStatus, verifiedType) {
+// There is a special case for both two badges in a user profile
+// svg element can't be eliminated, that trown a error when is switching between user profiles
+// error: Something went wrong, but don’t fret — it’s not your fault.
+
+function createBadge (element, userVerifyStatus, verifiedType, isViewingUserProfile) {
   let svgElementG = element
   while (svgElementG !== null && svgElementG.tagName !== 'g') {
     svgElementG = svgElementG.firstChild
   }
 
   if (svgElementG !== null && (verifiedType === 'Business' || verifiedType === 'Government')) return
+
+  if (hideTwitterBlueBadge && userVerifyStatus === 'blueVerified') {
+    if (svgElementG !== null) {
+      if (!isViewingUserProfile) {
+        const parentSvgElementG = svgElementG.parentElement.parentElement
+        parentSvgElementG.removeChild(parentSvgElementG.firstChild)
+        return
+      } else {
+        const parentSvgElementG = svgElementG.parentElement
+        parentSvgElementG.removeChild(parentSvgElementG.firstChild)
+        const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+        parentSvgElementG.appendChild(gElement)
+        return
+      }
+    } else {
+      return
+    }
+  }
 
   let BadgeColor = blueVerifiedBadgeColor
   let UserVerificationBadge = BLUE_VERIFIED_BADGE

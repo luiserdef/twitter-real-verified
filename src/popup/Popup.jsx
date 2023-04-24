@@ -4,6 +4,7 @@ import { VERIFIED_BADGE_DEFAULT_COLOR } from '../constants/badge'
 import ChangeBadgeColor from './components/ChangeBadgeColor'
 import InfoBadges from './components/InfoBadges'
 import SaveButton from './components/SaveButton'
+import HideTwitterBlue from './components/HideTwitterBlue'
 
 function Popup () {
   const txt = (text) => browserAPI().i18n.getMessage(text)
@@ -14,7 +15,8 @@ function Popup () {
     description: ''
   })
   const [userConfig, setUserConfig] = React.useState({
-    badgeColor: VERIFIED_BADGE_DEFAULT_COLOR
+    badgeColor: VERIFIED_BADGE_DEFAULT_COLOR,
+    hideTwitterBlueBadge: false
   })
 
   React.useEffect(() => {
@@ -63,7 +65,13 @@ function Popup () {
             defaultVerifyColor={VERIFIED_BADGE_DEFAULT_COLOR}
             userBadgeColor={userConfig.badgeColor}
           />
+          <HideTwitterBlue
+            txt={txt}
+            hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
+            updateConfig={updateConfig}
+          />
           <ChangeBadgeColor
+            hideTB={userConfig.hideTwitterBlueBadge}
             txt={txt}
             userBadgeColor={userConfig.badgeColor}
             defaultVerifyColor={VERIFIED_BADGE_DEFAULT_COLOR}
@@ -78,7 +86,7 @@ function Popup () {
 }
 export default Popup
 
-async function handleUserConfig (request, value) {
+function handleUserConfig (request, value) {
   return new Promise((resolve, reject) => {
     try {
       browserAPI().tabs.query({ active: true, lastFocusedWindow: true })
