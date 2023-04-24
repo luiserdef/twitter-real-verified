@@ -22,7 +22,7 @@ Return Twitter's legacy verification and change the verification badge for users
         <td valign="center">
       <a href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
         <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/chrome-webstore.png" alt="Chrome extension" />
-        <p align="center">Chrome :orange_circle: In review process</p>
+        <p align="center">Chrome :green_circle: Available</p>
       </a>
     </td>
   </tr>
