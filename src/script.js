@@ -53,7 +53,7 @@ function findElementBadge (element) {
       handleVerificationStatus(element, { isViewingUserProfile: true })
     }
 
-    // username, below profile photo
+    // Username, below profile photo
     const profileBadgeUsername = getParentElementByLevel(element, 9)
     if (profileBadgeUsername?.dataset?.testid === 'UserName') {
       handleVerificationStatus(element, { isViewingUserProfile: true, isSecondBadgeProfile: true })
@@ -64,8 +64,8 @@ function findElementBadge (element) {
   // e.g. user profile1 --> user profile 2
   // In this case MutationObserver doesn't detect changes for both badges
   // so you can't retrieve updated props of the user
-  // Changes in description act like a trigger at this moment. (This could be improved)
-  if (element.dataset?.testid === 'UserDescription') {
+  // UserProfileSchema-test act like a trigger at this moment.
+  if (element?.dataset?.testid === 'UserProfileSchema-test') {
     const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
 
     for (let i = 0; i < badgeElements.length; i++) {
