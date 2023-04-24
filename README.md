@@ -37,6 +37,11 @@ Return Twitter's legacy verification and change the verification badge for users
   <img src="overview-img/twVerified-preview2.png" width="600px" alt="Real Verify Extension" />
 </p>
 
+## What's New: 
+### Updates Coming in the Next Release
+- Hide Twitter Blue badges
+- More accurate data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's</a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy-verified</a> list project.
+
 ## Dev
 Popup is created with React.
 The project uses esbuild.
