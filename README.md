@@ -16,7 +16,7 @@ Return Twitter's legacy verification and change the verification badge for users
         <td valign="center">
       <a href="https://microsoftedge.microsoft.com/addons/detail/twitter-real-verified/llkfeengcmnpbpcgmchgjcjmfoekedij">
         <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/microsoftstore.png?mode=crop" alt="Firefox add-ons" />
-        <p align="center">Edge :orange_circle: In review process</p>
+        <p align="center">Edge :green_circle: Available</p>
       </a>
     </td>
         <td valign="center">
