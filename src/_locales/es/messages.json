@@ -23,6 +23,9 @@
     "hide_twitter_blue": {
         "message": "Ocultar íconos de Twitter Blue"
     },
+    "revoke_verified": {
+        "message": "Revocar las insignias verificadas de los suscriptores de Twitter Blue"
+    },
     "option_change_color": {
         "message": "Cambiar color de ícono"
     },
