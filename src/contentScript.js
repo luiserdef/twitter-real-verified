@@ -1,5 +1,5 @@
 import { validateBrowserAPI as browserAPI } from './utils/validateUserBrowser'
-import { LOCAL_STORAGE } from './constants/localStorage'
+import { LOCAL_STORAGE, CONFIG_REQUEST } from './constants'
 
 const addElementVerifiedList1 = document.createElement('script')
 addElementVerifiedList1.src = browserAPI().runtime.getURL('legacyVerifiedUsers1.js')
@@ -17,16 +17,17 @@ document.head.appendChild(addElementScript)
 addElementScript.onload = function () { this.remove() }
 
 browserAPI().runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.saveConfig) {
-    saveChanges(request.saveConfig)
-    sendResponse({ status: 'correct', content: null, message: 'Saved Settings' })
+  if (request[CONFIG_REQUEST.SAVE]) {
+    console.log(request[CONFIG_REQUEST.SAVE])
+    saveChanges(request[CONFIG_REQUEST.SAVE])
+    sendResponse({ status: true, content: request[CONFIG_REQUEST.SAVE], message: 'Saved Settings' })
   }
-  if (request.getConfig) {
+  if (request[CONFIG_REQUEST.LOAD]) {
     const getLocalStorage = localStorage.getItem(LOCAL_STORAGE)
     if (getLocalStorage !== null) {
-      sendResponse({ status: 'correct', content: JSON.parse(getLocalStorage), message: 'Config Loaded' })
+      sendResponse({ status: true, content: JSON.parse(getLocalStorage), message: 'Config Loaded' })
     } else {
-      sendResponse({ status: 'correct', content: null, message: 'There is no data saved' })
+      sendResponse({ status: true, content: null, message: 'There is no data saved' })
     }
   }
 })

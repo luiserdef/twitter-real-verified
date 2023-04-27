@@ -19,7 +19,7 @@ esbuild.build({
   minify: true,
   bundle: true,
   outdir: FIREFOXOUTPUT,
-  loader: { '.html': 'copy' },
+  loader: { '.html': 'copy', '.png': 'file' },
   plugins: [svgr()]
 }).then(() => {
   copySync('./src/assets', `${FIREFOXOUTPUT}/assets`)

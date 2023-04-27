@@ -32,6 +32,22 @@
     gap:.5em;
 }
 
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header > .title{
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+.title > img{
+    width: 20px;
+    height: 20px;
+}
+
 .txt-title-popup{
     font-size: 1.2rem;
     text-align: center;
@@ -72,15 +88,19 @@
 }
 
 section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     color: #ffffff;
     background-color: var(--medium-blue);
     border: 1px solid;
     border-radius: 10px;
     padding: 1em;
     font-size: .8rem;
+}
+
+.column-align-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .badge-color-container{
@@ -146,14 +166,17 @@ section{
 .reset-default:hover{
     color: #9bdef8;
 }
-
-.option-container{
+.options-container{
+    display: flex;
+    justify-content: flex-start !important;
+}
+.input-option{
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: .5em;
 }
 
-.hide-twitter-blue{
+.checkbox-input{
     position: relative;
     cursor: pointer;
     appearance: none;
@@ -164,12 +187,13 @@ section{
     background-color: #32808a;
     border-radius: 5px;
     border: 1px solid #17356e;
+    flex-shrink: 0;
 }
-.hide-twitter-blue:checked{
+.checkbox-input:checked{
     background-color: #5ece68;
 }
 
-.hide-twitter-blue:checked::after {
+.checkbox-input:checked::after {
     content: '\2714';
     color: green;
     font-size: 16px;

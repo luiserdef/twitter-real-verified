@@ -1,7 +1,8 @@
 import * as React from 'react'
 import TwitterBlueBadge from '../assets/twitterBlueBadge.svg'
+import { VERIFIED_BADGE_DEFAULT_COLOR } from '../../constants'
 
-function ChangeBadgeColor ({ hideTB, txt, userBadgeColor, updateConfig, defaultVerifyColor }) {
+function ChangeBadgeColor ({ hideTB, txt, userBadgeColor, updateConfig }) {
   const colorPickerRef = React.useRef(null)
 
   React.useEffect(() => {
@@ -11,14 +12,14 @@ function ChangeBadgeColor ({ hideTB, txt, userBadgeColor, updateConfig, defaultV
   }, [])
 
   function resetColorToDefault () {
-    updateConfig('badgeColor', defaultVerifyColor)
+    updateConfig('badgeColor', VERIFIED_BADGE_DEFAULT_COLOR)
   }
   const displaySection = hideTB ? { display: 'none' } : { display: 'flex' }
 
   return (
-    <section style={displaySection}>
-      <h3 className='title_popup secondary-title'>{txt('option_change_color')}</h3>
-      <div className='change-badge-container'>
+    <section className='column-align-center' style={displaySection}>
+      <h3 className='secondary-title'>{txt('option_change_color')}</h3>
+      <div className='change-badge-container '>
         <div id='pick-color-box'>
           {/* eslint-disable quotes */}
           <input style={{ background: userBadgeColor }} ref={colorPickerRef} className='color-picker' data-jscolor={`{"width": 80, "position":"top", "value":"#1D9BF0"}`} />
