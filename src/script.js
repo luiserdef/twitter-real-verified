@@ -22,12 +22,14 @@ loadUserList2.then((vUsersList2) => {
 
 let blueVerifiedBadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
 let hideTwitterBlueBadge = false
+let revokeLegacyVerifiedBadge = false
 
 const localStorageConfig = localStorage.getItem(LOCAL_STORAGE)
 if (localStorageConfig) {
   const actualConfig = JSON.parse(localStorageConfig)
   blueVerifiedBadgeColor = actualConfig.badgeColor
   hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge
+  revokeLegacyVerifiedBadge = actualConfig.revokeLegacyVerifiedBadge
 }
 
 function getParentElementByLevel (element, parentLevel) {
@@ -108,7 +110,7 @@ function handleVerificationStatus (element, options) {
   const isUserVerified = isUserLegacyVerified(element)
 
   if (isBlueVerified) {
-    if (isUserVerified) {
+    if (isUserVerified && revokeLegacyVerifiedBadge === false) {
       createBadge(element, 'verified', verifiedType)
     } else {
       createBadge(element, 'blueVerified', verifiedType, options?.isViewingUserProfile)

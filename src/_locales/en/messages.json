@@ -6,7 +6,7 @@
         "message": "Return Twitter's legacy verification and change the verification badge for users with a Twitter Blue subscription."
     },
     "verified_badge": {
-     "message": "Verified User"
+        "message": "Verified User"
     },
     "bussiness_badge": {
         "message": "Business"
@@ -22,6 +22,9 @@
     },
     "hide_twitter_blue": {
         "message": "Hide Twitter Blue badges"
+    },
+    "revoke_verified": {
+        "message": "Remove verified badges from Twitter Blue subscribers"
     },
     "option_change_color": {
         "message": "Change badge color"

@@ -5,6 +5,7 @@ import ChangeBadgeColor from './components/ChangeBadgeColor'
 import InfoBadges from './components/InfoBadges'
 import SaveButton from './components/SaveButton'
 import HideTwitterBlue from './components/HideTwitterBlue'
+import RevokeVerifiedBadge from './components/RevokeVerifiedBadge'
 
 function Popup () {
   const txt = (text) => browserAPI().i18n.getMessage(text)
@@ -16,7 +17,8 @@ function Popup () {
   })
   const [userConfig, setUserConfig] = React.useState({
     badgeColor: VERIFIED_BADGE_DEFAULT_COLOR,
-    hideTwitterBlueBadge: false
+    hideTwitterBlueBadge: false,
+    revokeLegacyVerifiedBadge: false
   })
 
   React.useEffect(() => {
@@ -68,6 +70,11 @@ function Popup () {
           <HideTwitterBlue
             txt={txt}
             hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
+            updateConfig={updateConfig}
+          />
+          <RevokeVerifiedBadge
+            revokeLegacyVerifiedBadge={userConfig.revokeLegacyVerifiedBadge}
+            txt={txt}
             updateConfig={updateConfig}
           />
           <ChangeBadgeColor
