@@ -24,7 +24,7 @@
         "message": "Hide Twitter Blue badges"
     },
     "revoke_verified": {
-        "message": "Revoke verified badges from Twitter Blue subscribers"
+        "message": "Remove verified badges from Twitter Blue subscribers"
     },
     "option_change_color": {
         "message": "Change badge color"

@@ -24,7 +24,7 @@
         "message": "Ocultar íconos de Twitter Blue"
     },
     "revoke_verified": {
-        "message": "Revocar las insignias verificadas de los suscriptores de Twitter Blue"
+        "message": "Quitar ícono de verificado a usuarios con Twitter Blue"
     },
     "option_change_color": {
         "message": "Cambiar color de ícono"
