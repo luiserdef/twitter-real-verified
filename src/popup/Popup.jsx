@@ -6,6 +6,7 @@ import InfoBadges from './components/InfoBadges'
 import SaveButton from './components/SaveButton'
 import Options from './components/Options'
 import PopupHeader from './components/PopupHeader'
+import Dropdown from './components/Dropdown'
 
 function Popup () {
   const txt = (text) => browserAPI().i18n.getMessage(text)
@@ -70,18 +71,22 @@ function Popup () {
             txt={txt}
             userBadgeColor={userConfig.badgeColor}
           />
-          <Options
-            txt={txt}
-            hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
-            revokeLegacyVerifiedBadge={userConfig.revokeLegacyVerifiedBadge}
-            updateConfig={updateConfig}
-          />
-          <ChangeBadgeColor
-            hideTB={userConfig.hideTwitterBlueBadge}
-            txt={txt}
-            userBadgeColor={userConfig.badgeColor}
-            updateConfig={updateConfig}
-          />
+          <Dropdown title={txt('options')}>
+            <Options
+              txt={txt}
+              hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
+              revokeLegacyVerifiedBadge={userConfig.revokeLegacyVerifiedBadge}
+              updateConfig={updateConfig}
+            />
+          </Dropdown>
+          <Dropdown title={txt('option_change_color')}>
+            <ChangeBadgeColor
+              hideTB={userConfig.hideTwitterBlueBadge}
+              txt={txt}
+              userBadgeColor={userConfig.badgeColor}
+              updateConfig={updateConfig}
+            />
+          </Dropdown>
           <SaveButton txt={txt} isThereChanges={isThereChanges} saveChanges={saveChanges} />
           {changeMade && <p className='save-alert-message'>{changeMade.description}</p>}
           {/* eslint-disable react/jsx-indent */}
