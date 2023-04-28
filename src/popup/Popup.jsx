@@ -15,10 +15,13 @@ function Popup () {
     status: false,
     description: ''
   })
+
   const [userConfig, setUserConfig] = React.useState({
     badgeColor: DEFAULT_CONFIG.BADGE_COLOR,
-    hideTwitterBlueBadge: DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE
+    hideTwitterBlueBadge: DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE,
+    revokeLegacyVerifiedBadge: DEFAULT_CONFIG.REVOKE_LEGACY_VERIFIED_BADGE
   })
+
   React.useEffect(() => {
     handleUserConfig(CONFIG_REQUEST.LOAD, true)
       .then(res => {
@@ -70,6 +73,7 @@ function Popup () {
           <Options
             txt={txt}
             hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
+            revokeLegacyVerifiedBadge={userConfig.revokeLegacyVerifiedBadge}
             updateConfig={updateConfig}
           />
           <ChangeBadgeColor

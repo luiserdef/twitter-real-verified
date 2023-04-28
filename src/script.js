@@ -24,12 +24,14 @@ loadUserList2.then((vUsersList2) => {
 
 let twitterBlueBadgeColor = DEFAULT_CONFIG.BADGE_COLOR
 let hideTwitterBlueBadge = DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE
+let revokeLegacyVerifiedBadge = DEFAULT_CONFIG.REVOKE_LEGACY_VERIFIED_BADGE
 
 const localStorageConfig = localStorage.getItem(LOCAL_STORAGE)
 if (localStorageConfig) {
   const actualConfig = JSON.parse(localStorageConfig)
-  twitterBlueBadgeColor = actualConfig.badgeColor
-  hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge
+  twitterBlueBadgeColor = actualConfig.badgeColor ?? hideTwitterBlueBadge
+  hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge ?? hideTwitterBlueBadge
+  revokeLegacyVerifiedBadge = actualConfig.revokeLegacyVerifiedBadge ?? revokeLegacyVerifiedBadge
 }
 
 function getParentElementByLevel (element, parentLevel) {
@@ -110,7 +112,7 @@ function handleVerificationStatus (element, options) {
   const isUserVerified = isUserLegacyVerified(element)
 
   if (isBlueVerified) {
-    if (isUserVerified) {
+    if (isUserVerified && revokeLegacyVerifiedBadge === false) {
       createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, currentVerifiedType)
     } else {
       createBadge(element, VERIFIED_TYPE.TWITTER_BLUE, currentVerifiedType, options?.isViewingUserProfile)
@@ -197,10 +199,9 @@ function createBadge (element, userVerifiedStatus, currentVerifiedType, isViewin
   let userVerificationBadge = TWITTER_BLUE_BADGE
 
   if (userVerifiedStatus === VERIFIED_TYPE.LEGACY_VERIFIED) {
-    userVerificationBadge = VERIFIED_BADGE
     BadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
+    userVerificationBadge = VERIFIED_BADGE
   }
-
   const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
   pathElement.setAttribute('fill', BadgeColor)

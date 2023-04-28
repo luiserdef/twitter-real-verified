@@ -168,7 +168,8 @@ section{
 }
 .options-container{
     display: flex;
-    justify-content: flex-start !important;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .input-option{
     display: flex;

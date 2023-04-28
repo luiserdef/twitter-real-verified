@@ -1,8 +1,12 @@
 import * as React from 'react'
 
-function Options ({ txt, hideTwitterBlueBadge, updateConfig }) {
+function Options ({ txt, hideTwitterBlueBadge, revokeLegacyVerifiedBadge, updateConfig }) {
   function updatehideTwitterBlue () {
     updateConfig('hideTwitterBlueBadge', !hideTwitterBlueBadge)
+  }
+
+  function updaterevokeVerified () {
+    updateConfig('revokeLegacyVerifiedBadge', !revokeLegacyVerifiedBadge)
   }
 
   return (
@@ -19,6 +23,18 @@ function Options ({ txt, hideTwitterBlueBadge, updateConfig }) {
           />
           <label for='hide-twitter-blue'>
             {txt('hide_twitter_blue')}
+          </label>
+        </div>
+        <div className='input-option'>
+          <input
+            id='revoke-verified'
+            className='checkbox-input'
+            type='checkbox'
+            onChange={updaterevokeVerified}
+            checked={revokeLegacyVerifiedBadge}
+          />
+          <label for='revoke-verified'>
+            {txt('revoke_verified')}
           </label>
         </div>
       </div>
