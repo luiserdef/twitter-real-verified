@@ -19,7 +19,7 @@ esbuild.build({
   minify: true,
   bundle: true,
   outdir: CHROMEOUTPUT,
-  loader: { '.html': 'copy' },
+  loader: { '.html': 'copy', '.png': 'file' },
   plugins: [svgr()]
 }).then(() => {
   copySync('./src/assets', `${CHROMEOUTPUT}/assets`)

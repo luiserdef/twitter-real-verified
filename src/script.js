@@ -1,13 +1,15 @@
 import { findUserName } from './utils/findUserName'
 import { elementsPaths, propsPaths } from './utils/elementPathsUserName'
 import { verifiedUsers1Promise as loadUserList1, verifiedUsers2Promise as loadUserList2 } from './utils/loadUserList'
-import { LOCAL_STORAGE } from './constants/localStorage'
 import {
+  LOCAL_STORAGE,
+  DEFAULT_CONFIG,
+  VERIFIED_TYPE,
   BADGE_CLASS_TARGET,
-  BLUE_VERIFIED_BADGE,
+  TWITTER_BLUE_BADGE,
   VERIFIED_BADGE,
   VERIFIED_BADGE_DEFAULT_COLOR
-} from './constants/badge'
+} from './constants'
 
 let usersList1 = []
 let usersList2 = []
@@ -20,16 +22,16 @@ loadUserList2.then((vUsersList2) => {
   usersList2 = vUsersList2
 })
 
-let blueVerifiedBadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
-let hideTwitterBlueBadge = false
-let revokeLegacyVerifiedBadge = false
+let twitterBlueBadgeColor = DEFAULT_CONFIG.BADGE_COLOR
+let hideTwitterBlueBadge = DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE
+let revokeLegacyVerifiedBadge = DEFAULT_CONFIG.REVOKE_LEGACY_VERIFIED_BADGE
 
 const localStorageConfig = localStorage.getItem(LOCAL_STORAGE)
 if (localStorageConfig) {
   const actualConfig = JSON.parse(localStorageConfig)
-  blueVerifiedBadgeColor = actualConfig.badgeColor
-  hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge
-  revokeLegacyVerifiedBadge = actualConfig.revokeLegacyVerifiedBadge
+  twitterBlueBadgeColor = actualConfig.badgeColor ?? hideTwitterBlueBadge
+  hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge ?? hideTwitterBlueBadge
+  revokeLegacyVerifiedBadge = actualConfig.revokeLegacyVerifiedBadge ?? revokeLegacyVerifiedBadge
 }
 
 function getParentElementByLevel (element, parentLevel) {
@@ -100,23 +102,23 @@ function handleVerificationStatus (element, options) {
   if (elementProps === undefined) return
 
   if (options?.isViewingUserProfile && element.firstChild?.tagName === 'svg') {
-    if (element.firstChild.id === 'legacy') {
+    if (element.firstChild.id === VERIFIED_TYPE.LEGACY_VERIFIED) {
       element.removeChild(element.firstChild)
     }
   }
 
-  const verifiedType = elementProps.verifiedType
+  const currentVerifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
   const isUserVerified = isUserLegacyVerified(element)
 
   if (isBlueVerified) {
     if (isUserVerified && revokeLegacyVerifiedBadge === false) {
-      createBadge(element, 'verified', verifiedType)
+      createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, currentVerifiedType)
     } else {
-      createBadge(element, 'blueVerified', verifiedType, options?.isViewingUserProfile)
+      createBadge(element, VERIFIED_TYPE.TWITTER_BLUE, currentVerifiedType, options?.isViewingUserProfile)
     }
   } else {
-    if (isUserVerified) createBadge(element, 'verified', verifiedType)
+    if (isUserVerified) createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, currentVerifiedType)
   }
 }
 
@@ -167,15 +169,15 @@ function getReactProps (element) {
 // svg element can't be eliminated, that trown a error when is switching between user profiles
 // error: Something went wrong, but don’t fret — it’s not your fault.
 
-function createBadge (element, userVerifyStatus, verifiedType, isViewingUserProfile) {
+function createBadge (element, userVerifiedStatus, currentVerifiedType, isViewingUserProfile) {
   let svgElementG = element
   while (svgElementG !== null && svgElementG.tagName !== 'g') {
     svgElementG = svgElementG.firstChild
   }
 
-  if (svgElementG !== null && (verifiedType === 'Business' || verifiedType === 'Government')) return
+  if (svgElementG !== null && (currentVerifiedType === VERIFIED_TYPE.BUSINESS || currentVerifiedType === VERIFIED_TYPE.GOVERNMENT)) return
 
-  if (hideTwitterBlueBadge && userVerifyStatus === 'blueVerified') {
+  if (hideTwitterBlueBadge && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
     if (svgElementG !== null) {
       if (!isViewingUserProfile) {
         const parentSvgElementG = svgElementG.parentElement.parentElement
@@ -193,18 +195,17 @@ function createBadge (element, userVerifyStatus, verifiedType, isViewingUserProf
     }
   }
 
-  let BadgeColor = blueVerifiedBadgeColor
-  let UserVerificationBadge = BLUE_VERIFIED_BADGE
+  let BadgeColor = twitterBlueBadgeColor
+  let userVerificationBadge = TWITTER_BLUE_BADGE
 
-  if (userVerifyStatus === 'verified') {
-    UserVerificationBadge = VERIFIED_BADGE
+  if (userVerifiedStatus === VERIFIED_TYPE.LEGACY_VERIFIED) {
     BadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
+    userVerificationBadge = VERIFIED_BADGE
   }
-
   const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
   pathElement.setAttribute('fill', BadgeColor)
-  pathElement.setAttribute('d', UserVerificationBadge)
+  pathElement.setAttribute('d', userVerificationBadge)
   gElement.appendChild(pathElement)
 
   if (svgElementG !== null) {
@@ -213,7 +214,7 @@ function createBadge (element, userVerifyStatus, verifiedType, isViewingUserProf
     parentElement.appendChild(gElement)
   } else {
     const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-    svgElement.id = 'legacy'
+    svgElement.id = VERIFIED_TYPE.LEGACY_VERIFIED
     svgElement.setAttribute('viewBox', '0 0 22 22')
     svgElement.setAttribute('class', 'r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr')
 

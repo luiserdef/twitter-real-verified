@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { validateBrowserAPI as browserAPI } from '../utils/validateUserBrowser'
-import { VERIFIED_BADGE_DEFAULT_COLOR } from '../constants/badge'
+import { CONFIG_REQUEST, DEFAULT_CONFIG } from '../constants'
 import ChangeBadgeColor from './components/ChangeBadgeColor'
 import InfoBadges from './components/InfoBadges'
 import SaveButton from './components/SaveButton'
-import HideTwitterBlue from './components/HideTwitterBlue'
-import RevokeVerifiedBadge from './components/RevokeVerifiedBadge'
+import Options from './components/Options'
+import PopupHeader from './components/PopupHeader'
 
 function Popup () {
   const txt = (text) => browserAPI().i18n.getMessage(text)
@@ -15,14 +15,15 @@ function Popup () {
     status: false,
     description: ''
   })
+
   const [userConfig, setUserConfig] = React.useState({
-    badgeColor: VERIFIED_BADGE_DEFAULT_COLOR,
-    hideTwitterBlueBadge: false,
-    revokeLegacyVerifiedBadge: false
+    badgeColor: DEFAULT_CONFIG.BADGE_COLOR,
+    hideTwitterBlueBadge: DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE,
+    revokeLegacyVerifiedBadge: DEFAULT_CONFIG.REVOKE_LEGACY_VERIFIED_BADGE
   })
 
   React.useEffect(() => {
-    handleUserConfig('getConfig', true)
+    handleUserConfig(CONFIG_REQUEST.LOAD, true)
       .then(res => {
         setLoadExtension(true)
         if (res.content != null) {
@@ -35,8 +36,9 @@ function Popup () {
   }, [])
 
   function saveChanges () {
-    handleUserConfig('saveConfig', userConfig)
-      .then(() => {
+    handleUserConfig(CONFIG_REQUEST.SAVE, userConfig)
+      .then((res) => {
+        console.log(res)
         setChangeMade({
           status: true,
           description: txt('alert_refresh_page')
@@ -61,27 +63,23 @@ function Popup () {
       {!loadExtension
         ? <h1 className='stay-on-twitter'>{txt('alert_stay_on_twitter')}</h1>
         : <>
-          <h1 className='txt-title-popup'>{txt('app_title')}</h1>
+          <PopupHeader
+            txt={txt}
+          />
           <InfoBadges
             txt={txt}
-            defaultVerifyColor={VERIFIED_BADGE_DEFAULT_COLOR}
             userBadgeColor={userConfig.badgeColor}
           />
-          <HideTwitterBlue
+          <Options
             txt={txt}
             hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
-            updateConfig={updateConfig}
-          />
-          <RevokeVerifiedBadge
             revokeLegacyVerifiedBadge={userConfig.revokeLegacyVerifiedBadge}
-            txt={txt}
             updateConfig={updateConfig}
           />
           <ChangeBadgeColor
             hideTB={userConfig.hideTwitterBlueBadge}
             txt={txt}
             userBadgeColor={userConfig.badgeColor}
-            defaultVerifyColor={VERIFIED_BADGE_DEFAULT_COLOR}
             updateConfig={updateConfig}
           />
           <SaveButton txt={txt} isThereChanges={isThereChanges} saveChanges={saveChanges} />
@@ -94,6 +92,7 @@ function Popup () {
 export default Popup
 
 function handleUserConfig (request, value) {
+  console.log(value)
   return new Promise((resolve, reject) => {
     try {
       browserAPI().tabs.query({ active: true, lastFocusedWindow: true })
@@ -104,12 +103,12 @@ function handleUserConfig (request, value) {
             if (!browserAPI().runtime.lastError) {
               resolve(response)
             } else {
-              reject(new Error('request failed'))
+              reject(new Error('Request failed'))
             }
           })
         })
     } catch (e) {
-      reject(new Error('request failed'))
+      reject(new Error('Request failed'))
     }
   })
 }
