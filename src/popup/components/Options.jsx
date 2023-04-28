@@ -11,7 +11,6 @@ function Options ({ txt, hideTwitterBlueBadge, revokeLegacyVerifiedBadge, update
 
   return (
     <section>
-      <h3 className='column-align-center secondary-title'>{txt('options')}</h3>
       <div className='options-container'>
         <div className='input-option'>
           <input
@@ -21,7 +20,7 @@ function Options ({ txt, hideTwitterBlueBadge, revokeLegacyVerifiedBadge, update
             onChange={updatehideTwitterBlue}
             checked={hideTwitterBlueBadge}
           />
-          <label for='hide-twitter-blue'>
+          <label htmlFor='hide-twitter-blue'>
             {txt('hide_twitter_blue')}
           </label>
         </div>
@@ -33,7 +32,7 @@ function Options ({ txt, hideTwitterBlueBadge, revokeLegacyVerifiedBadge, update
             onChange={updaterevokeVerified}
             checked={revokeLegacyVerifiedBadge}
           />
-          <label for='revoke-verified'>
+          <label htmlFor='revoke-verified'>
             {txt('revoke_verified')}
           </label>
         </div>

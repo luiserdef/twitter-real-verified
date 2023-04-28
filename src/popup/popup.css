@@ -14,6 +14,7 @@
     --dark-blue: #09204b;
     --medium-blue: #2b6194;
     --light-blue: #56CCF2;
+    --container-border-radius:10px
 }
 
 
@@ -29,13 +30,31 @@
     padding: 1em;
     display: flex;
     flex-direction: column;
-    gap:.5em;
+    gap:.2em;
 }
 
 .header{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.header > .info{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.visit-github{
+    border: 1px solid #09204b;
+    border-radius: 50px;
+    padding: 2px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.ext-version{
+    font-size: .9rem;
 }
 
 .header > .title{
@@ -58,6 +77,33 @@
     margin-bottom: .8em;
 }
 
+.dropdown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-blue);
+    color: #ffffff;
+    border-radius: 5px 5px 3px 3px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.dropdown-open{
+    transform: rotate(180deg);
+    transition: .4s;
+}
+.dropdown-close{
+    transform: rotate(0deg);
+    transition: .4s;
+}
+
+.dropdown-content{
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
 .info-badge{
     background-color: var(--dark-blue);
     color: #ffffff;
@@ -66,7 +112,8 @@
     gap: 2em;
     justify-content: space-around;
     align-items: center;
-    border-radius: 10px;
+    border-radius: var(--container-border-radius);
+    margin-bottom: 1em;
 }
 
 .info-badge .verified-list{
@@ -92,7 +139,7 @@ section{
     color: #ffffff;
     background-color: var(--medium-blue);
     border: 1px solid;
-    border-radius: 10px;
+    border-radius: 3px 3px var(--container-border-radius) var(--container-border-radius);
     padding: 1em;
     font-size: .8rem;
 }
