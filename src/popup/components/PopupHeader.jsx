@@ -10,11 +10,11 @@ function PopupHeader ({ txt }) {
         <h1 className='txt-title-popup'>{txt('app_title')}</h1>
       </div>
       <div className='info'>
-        <span className='ext-version'>V.2.1.0</span>
-        <div className='visit-github'>
-          <span>Github</span>
+        <span className='ext-version'>v2.1.0 </span>
+        <a className='visit-github' href='https://github.com/luiserdef/twitter-real-verified' target='_blank' rel='noreferrer'>
+          <span>GitHub</span>
           <Github width='15' height='15' />
-        </div>
+        </a>
       </div>
     </div>
   )

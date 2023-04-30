@@ -1,39 +1,69 @@
 import * as React from 'react'
+import { getText as txt } from '../../utils/getText'
+import VerifiedBadge from '../assets/verifiedBadge.svg'
 import TwitterBlueBadge from '../assets/twitterBlueBadge.svg'
-import { VERIFIED_BADGE_DEFAULT_COLOR } from '../../constants'
+import ColorPicker from './ColorPicker'
+import BadgeColorSelection from './BadgeColorSelection'
 
-function ChangeBadgeColor ({ hideTB, txt, userBadgeColor, updateConfig }) {
-  const colorPickerRef = React.useRef(null)
-
-  React.useEffect(() => {
-    colorPickerRef.current.addEventListener('input', (e) => {
-      updateConfig('badgeColor', e.target.value)
-    })
-  }, [])
-
-  function resetColorToDefault () {
-    updateConfig('badgeColor', VERIFIED_BADGE_DEFAULT_COLOR)
+function ChangeBadgeColor ({
+  hideTwitterBlue,
+  badgeColors,
+  updateConfig
+}) {
+  const selectBadge = {
+    verified: false,
+    verifiedAndWithTwitterBlue: false,
+    twitterBlue: false
   }
-  const displaySection = hideTB ? { display: 'none' } : { display: 'flex' }
+  const [isBadgeSelected, setIsBadgeSelected] = React.useState({ ...selectBadge, verified: true })
+
+  function updateSelection (key) {
+    setIsBadgeSelected({ ...selectBadge, [key]: true })
+  }
+
+  function badgeSelection () {
+    for (const property in isBadgeSelected) {
+      if (isBadgeSelected[property] === true) {
+        return property
+      }
+    }
+  }
+  console.log(badgeSelection())
+  function updateCurrentColor (key, value) {
+    const currentBadgeColors = { ...badgeColors, [key]: value }
+    updateConfig('badgeColors', currentBadgeColors)
+  }
 
   return (
-    <section className='column-align-center' style={displaySection}>
-      <h3 className='secondary-title'>{txt('option_change_color')}</h3>
-      <div className='change-badge-container '>
-        <div id='pick-color-box'>
-          {/* eslint-disable quotes */}
-          <input style={{ background: userBadgeColor }} ref={colorPickerRef} className='color-picker' data-jscolor={`{"width": 80, "position":"top", "value":"#1D9BF0"}`} />
-        </div>
-        <div className='badge-color-container'>
-          <div className='bg-badge'>
-            <TwitterBlueBadge width='30px' heigth='30px' fill={userBadgeColor} />
-          </div>
-          <div className='bg-badge'>
-            <TwitterBlueBadge width='30px' heigth='30px' fill={userBadgeColor} />
-          </div>
-        </div>
+    <section className='column-center' style={{ gap: '.5em', paddingTop: 0 }}>
+      <div className='row-center' style={{ gap: '.5em', alignItems: 'flex-start' }}>
+        <BadgeColorSelection
+          updateSelection={() => updateSelection('verified')}
+          title={txt('verified')}
+          Badge={VerifiedBadge}
+          currentUserColor={badgeColors.verified}
+          isBadgeSelected={isBadgeSelected.verified}
+        />
+        <BadgeColorSelection
+          updateSelection={() => updateSelection('verifiedAndWithTwitterBlue')}
+          title={txt('verified_and_with_twitter_blue')}
+          Badge={VerifiedBadge}
+          currentUserColor={badgeColors.verifiedAndWithTwitterBlue}
+          isBadgeSelected={isBadgeSelected.verifiedAndWithTwitterBlue}
+        />
+        <BadgeColorSelection
+          updateSelection={() => updateSelection('twitterBlue')}
+          title={txt('twitter_blue')}
+          Badge={TwitterBlueBadge}
+          currentUserColor={badgeColors.twitterBlue}
+          isBadgeSelected={isBadgeSelected.twitterBlue}
+        />
       </div>
-      <p onClick={resetColorToDefault} className='reset-default'>{txt('option_change_color_reset_default')} </p>
+      <ColorPicker
+        propertyKey={badgeSelection()}
+        currentUserColor={badgeColors[badgeSelection()]}
+        updateCurrentColor={updateCurrentColor}
+      />
     </section>
   )
 }

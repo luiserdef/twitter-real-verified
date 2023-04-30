@@ -18,7 +18,6 @@ addElementScript.onload = function () { this.remove() }
 
 browserAPI().runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request[CONFIG_REQUEST.SAVE]) {
-    console.log(request[CONFIG_REQUEST.SAVE])
     saveChanges(request[CONFIG_REQUEST.SAVE])
     sendResponse({ status: true, content: request[CONFIG_REQUEST.SAVE], message: 'Saved Settings' })
   }

@@ -5,8 +5,14 @@
     "app_description": {
         "message": "Return Twitter's legacy verification and change the verification badge for users with a Twitter Blue subscription."
     },
-    "verified_badge": {
-        "message": "Verified User"
+    "twitter_blue": {
+        "message": "Twitter Blue"
+    },
+    "verified": {
+        "message": "Verified"
+    },
+    "verified_and_with_twitter_blue": {
+        "message": "Verified and with Twitter Blue"
     },
     "bussiness_badge": {
         "message": "Business"
@@ -21,22 +27,25 @@
         "message": "Options"
     },
     "hide_twitter_blue": {
-        "message": "Hide Twitter Blue badges"
+        "message": "Hide Twitter Blue badges."
     },
     "revoke_verified": {
-        "message": "Remove verified badges from Twitter Blue subscribers"
+        "message": "Remove verified badges from users who are now subscribers to Twitter Blue."
+    },
+    "replace_twitter_blue_badge_with_clown":{
+        "message": "Replace Twitter Blue badges with"
     },
     "option_change_color": {
         "message": "Change badge color"
     },
-    "option_change_color_reset_default": {
-        "message": "Reset to default"
-    },
     "bt_save": {
         "message": "Save"
     },
-    "alert_refresh_page": {
+    "alert_config_saved": {
         "message": "To see the changes, it is necessary to refresh the page."
+    },
+    "alert_saved_failed": {
+        "message": "Something went wrong. Please Refresh the Page."
     },
     "alert_stay_on_twitter": {
         "message": "This extension only works on Twitter."

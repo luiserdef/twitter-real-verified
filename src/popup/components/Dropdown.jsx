@@ -14,8 +14,8 @@ function Dropdown ({ title, children }) {
   }, [isOpen])
 
   return (
-    <>
-      <button onClick={() => setIsOpen(last => !last)} className='dropdown'>
+    <div className='dropdown'>
+      <button onClick={() => setIsOpen(last => !last)} className='dropdown-bt'>
         {title}
         <DropdownIcon
           className={`${isOpen ? 'dropdown-open' : 'dropdown-close'}`}
@@ -28,7 +28,7 @@ function Dropdown ({ title, children }) {
         {children}
       </div>
       {/* {isOpen && children} */}
-    </>
+    </div>
   )
 }
 
