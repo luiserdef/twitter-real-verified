@@ -5,8 +5,14 @@
     "app_description": {
         "message": "Recupera la verificación heredada de Twitter y cambia el ícono de verificado a usuarios con suscripción de Twitter Blue."
     },
-    "verified_badge": {
-        "message": "Usuario verificado"
+    "twitter_blue": {
+        "message": "Twitter Blue"
+    },
+    "verified": {
+        "message": "Verificado"
+    },
+    "verified_and_with_twitter_blue": {
+        "message": "Verificado y con Twitter Blue"
     },
     "bussiness_badge": {
         "message": "Negocio"
@@ -24,19 +30,22 @@
         "message": "Ocultar íconos de Twitter Blue"
     },
     "revoke_verified": {
-        "message": "Quitar ícono de verificado a usuarios con Twitter Blue"
+        "message": "Quitar ícono de verificado a usuarios que ahora tienen Twitter Blue."
+    },
+    "replace_twitter_blue_badge_with_clown":{
+        "message": "Íconos de Twitter Blue como"
     },
     "option_change_color": {
         "message": "Cambiar color de ícono"
-    },
-    "option_change_color_reset_default": {
-        "message": "Restablecer a color por defecto"
     },
     "bt_save": {
         "message": "Guardar"
     },
     "alert_refresh_page": {
         "message": "Para ver los cambios, es necesario actualizar la página."
+    },
+    "alert_saved_failed": {
+        "message": "Algo salió mal al intentar guardar. Por favor, refresca la página."
     },
     "alert_stay_on_twitter": {
         "message": "Esta extensión solo funciona en Twitter."

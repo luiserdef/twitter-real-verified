@@ -1,15 +1,22 @@
 import * as React from 'react'
 import { validateBrowserAPI as browserAPI } from '../utils/validateUserBrowser'
+import { getText as txt } from '../utils/getText'
 import { CONFIG_REQUEST, DEFAULT_CONFIG } from '../constants'
-import ChangeBadgeColor from './components/ChangeBadgeColor'
-import InfoBadges from './components/InfoBadges'
-import SaveButton from './components/SaveButton'
-import Options from './components/Options'
+import { retrieveData } from '../utils/retrieveNewData'
 import PopupHeader from './components/PopupHeader'
+import InfoBadges from './components/InfoBadges'
 import Dropdown from './components/Dropdown'
+import Options from './components/Options'
+import ChangeBadgeColor from './components/ChangeBadgeColor'
+import SaveButton from './components/SaveButton'
+
+const ERRORMESSAGE = {
+  SAVED_FAILED: txt('alert_saved_failed'),
+  NOT_ON_TWITTER: txt('alert_stay_on_twitter')
+}
 
 function Popup () {
-  const txt = (text) => browserAPI().i18n.getMessage(text)
+  const [userConfig, setUserConfig] = React.useState(DEFAULT_CONFIG)
   const [isThereChanges, setIsThereChanges] = React.useState(false)
   const [loadExtension, setLoadExtension] = React.useState(true)
   const [changeMade, setChangeMade] = React.useState({
@@ -17,18 +24,12 @@ function Popup () {
     description: ''
   })
 
-  const [userConfig, setUserConfig] = React.useState({
-    badgeColor: DEFAULT_CONFIG.BADGE_COLOR,
-    hideTwitterBlueBadge: DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE,
-    revokeLegacyVerifiedBadge: DEFAULT_CONFIG.REVOKE_LEGACY_VERIFIED_BADGE
-  })
-
   React.useEffect(() => {
     handleUserConfig(CONFIG_REQUEST.LOAD, true)
       .then(res => {
         setLoadExtension(true)
         if (res.content != null) {
-          setUserConfig(res.content)
+          setUserConfig(retrieveData(res.content))
         }
       }
       ).catch(() => {
@@ -39,14 +40,16 @@ function Popup () {
   function saveChanges () {
     handleUserConfig(CONFIG_REQUEST.SAVE, userConfig)
       .then((res) => {
-        console.log(res)
         setChangeMade({
           status: true,
-          description: txt('alert_refresh_page')
+          description: txt('alert_config_saved')
         })
       }
-      ).catch(() => {
-        setLoadExtension(false)
+      ).catch((error) => {
+        setChangeMade({
+          status: true,
+          description: error.message
+        })
       })
   }
 
@@ -62,28 +65,25 @@ function Popup () {
   return (
     <div className='content'>
       {!loadExtension
-        ? <h1 className='stay-on-twitter'>{txt('alert_stay_on_twitter')}</h1>
+        ? <h1 className='stay-on-twitter'>{ERRORMESSAGE.NOT_ON_TWITTER}</h1>
         : <>
           <PopupHeader
             txt={txt}
           />
           <InfoBadges
-            txt={txt}
-            userBadgeColor={userConfig.badgeColor}
+            badgeColors={userConfig.badgeColors}
+            isTwitterBlueClown={userConfig.options.replaceTBWithClown}
           />
           <Dropdown title={txt('options')}>
             <Options
-              txt={txt}
-              hideTwitterBlueBadge={userConfig.hideTwitterBlueBadge}
-              revokeLegacyVerifiedBadge={userConfig.revokeLegacyVerifiedBadge}
+              userOptions={userConfig.options}
               updateConfig={updateConfig}
             />
           </Dropdown>
           <Dropdown title={txt('option_change_color')}>
             <ChangeBadgeColor
-              hideTB={userConfig.hideTwitterBlueBadge}
-              txt={txt}
-              userBadgeColor={userConfig.badgeColor}
+              hideTwitterBlue={userConfig.options.hideTwitterBlueBadge}
+              badgeColors={userConfig.badgeColors}
               updateConfig={updateConfig}
             />
           </Dropdown>
@@ -97,23 +97,26 @@ function Popup () {
 export default Popup
 
 function handleUserConfig (request, value) {
-  console.log(value)
   return new Promise((resolve, reject) => {
     try {
       browserAPI().tabs.query({ active: true, lastFocusedWindow: true })
         .then(([tab]) => {
-          browserAPI().tabs.sendMessage(tab.id, {
-            [request]: value
-          }, (response) => {
-            if (!browserAPI().runtime.lastError) {
-              resolve(response)
-            } else {
-              reject(new Error('Request failed'))
-            }
-          })
+          if (tab !== undefined) {
+            browserAPI().tabs.sendMessage(tab.id, {
+              [request]: value
+            }, (response) => {
+              if (!browserAPI().runtime.lastError) {
+                resolve(response)
+              } else {
+                reject(new Error(ERRORMESSAGE.NOT_ON_TWITTER))
+              }
+            })
+          } else {
+            reject(new Error(ERRORMESSAGE.SAVED_FAILED))
+          }
         })
     } catch (e) {
-      reject(new Error('Request failed'))
+      reject(new Error(ERRORMESSAGE.NOT_ON_TWITTER))
     }
   })
 }

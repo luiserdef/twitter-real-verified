@@ -1,14 +1,15 @@
 import { findUserName } from './utils/findUserName'
 import { elementsPaths, propsPaths } from './utils/elementPathsUserName'
 import { verifiedUsers1Promise as loadUserList1, verifiedUsers2Promise as loadUserList2 } from './utils/loadUserList'
+import { retrieveData } from './utils/retrieveNewData'
 import {
+  CLOWN,
   LOCAL_STORAGE,
   DEFAULT_CONFIG,
   VERIFIED_TYPE,
   BADGE_CLASS_TARGET,
   TWITTER_BLUE_BADGE,
-  VERIFIED_BADGE,
-  VERIFIED_BADGE_DEFAULT_COLOR
+  VERIFIED_BADGE
 } from './constants'
 
 let usersList1 = []
@@ -22,16 +23,14 @@ loadUserList2.then((vUsersList2) => {
   usersList2 = vUsersList2
 })
 
-let twitterBlueBadgeColor = DEFAULT_CONFIG.BADGE_COLOR
-let hideTwitterBlueBadge = DEFAULT_CONFIG.HIDE_TWITTER_BLUE_BADGE
-let revokeLegacyVerifiedBadge = DEFAULT_CONFIG.REVOKE_LEGACY_VERIFIED_BADGE
+let userBadgeColors = DEFAULT_CONFIG.badgeColors
+let userOptions = DEFAULT_CONFIG.options
 
 const localStorageConfig = localStorage.getItem(LOCAL_STORAGE)
 if (localStorageConfig) {
-  const actualConfig = JSON.parse(localStorageConfig)
-  twitterBlueBadgeColor = actualConfig.badgeColor ?? hideTwitterBlueBadge
-  hideTwitterBlueBadge = actualConfig.hideTwitterBlueBadge ?? hideTwitterBlueBadge
-  revokeLegacyVerifiedBadge = actualConfig.revokeLegacyVerifiedBadge ?? revokeLegacyVerifiedBadge
+  const currentUserConfig = retrieveData(JSON.parse(localStorageConfig))
+  userBadgeColors = currentUserConfig.badgeColors
+  userOptions = currentUserConfig.options
 }
 
 function getParentElementByLevel (element, parentLevel) {
@@ -69,7 +68,7 @@ function findElementBadge (element) {
   // In this case MutationObserver doesn't detect changes for both badges
   // so you can't retrieve updated props of the user
   // UserProfileSchema-test act like a trigger at this moment.
-  if (element?.dataset?.testid === 'UserProfileSchema-test') {
+  if (element?.dataset?.testid === 'UserProfileSchema-test' || element.dataset?.testid === 'UserDescription') {
     const badgeElements = document.querySelectorAll(`.${BADGE_CLASS_TARGET.replaceAll(' ', '.')}`)
 
     for (let i = 0; i < badgeElements.length; i++) {
@@ -91,9 +90,9 @@ function findElementBadge (element) {
   }
 }
 
-function handleVerificationStatus (element, options) {
+function handleVerificationStatus (element, elementOptions) {
   let elementProps
-  if (options?.isSecondBadgeProfile) {
+  if (elementOptions?.isSecondBadgeProfile) {
     elementProps = getMainReactProps(getParentElementByLevel(element, 6), element)
   } else {
     elementProps = getMainReactProps(getParentElementByLevel(element, 3), element)
@@ -101,7 +100,7 @@ function handleVerificationStatus (element, options) {
 
   if (elementProps === undefined) return
 
-  if (options?.isViewingUserProfile && element.firstChild?.tagName === 'svg') {
+  if (elementOptions?.isViewingUserProfile && element.firstChild?.tagName === 'svg') {
     if (element.firstChild.id === VERIFIED_TYPE.LEGACY_VERIFIED) {
       element.removeChild(element.firstChild)
     }
@@ -112,13 +111,13 @@ function handleVerificationStatus (element, options) {
   const isUserVerified = isUserLegacyVerified(element)
 
   if (isBlueVerified) {
-    if (isUserVerified && revokeLegacyVerifiedBadge === false) {
-      createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, currentVerifiedType)
+    if (isUserVerified && userOptions.revokeLegacyVerifiedBadge === false) {
+      createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, userBadgeColors.verifiedAndWithTwitterBlue, currentVerifiedType)
     } else {
-      createBadge(element, VERIFIED_TYPE.TWITTER_BLUE, currentVerifiedType, options?.isViewingUserProfile)
+      createBadge(element, VERIFIED_TYPE.TWITTER_BLUE, userBadgeColors.twitterBlue, currentVerifiedType, elementOptions?.isViewingUserProfile)
     }
   } else {
-    if (isUserVerified) createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, currentVerifiedType)
+    if (isUserVerified) createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, userBadgeColors.verified, currentVerifiedType)
   }
 }
 
@@ -169,7 +168,7 @@ function getReactProps (element) {
 // svg element can't be eliminated, that trown a error when is switching between user profiles
 // error: Something went wrong, but don’t fret — it’s not your fault.
 
-function createBadge (element, userVerifiedStatus, currentVerifiedType, isViewingUserProfile) {
+function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedType, isViewingUserProfile) {
   let svgElementG = element
   while (svgElementG !== null && svgElementG.tagName !== 'g') {
     svgElementG = svgElementG.firstChild
@@ -177,7 +176,7 @@ function createBadge (element, userVerifiedStatus, currentVerifiedType, isViewin
 
   if (svgElementG !== null && (currentVerifiedType === VERIFIED_TYPE.BUSINESS || currentVerifiedType === VERIFIED_TYPE.GOVERNMENT)) return
 
-  if (hideTwitterBlueBadge && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
+  if (userOptions.hideTwitterBlueBadge && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
     if (svgElementG !== null) {
       if (!isViewingUserProfile) {
         const parentSvgElementG = svgElementG.parentElement.parentElement
@@ -195,18 +194,19 @@ function createBadge (element, userVerifiedStatus, currentVerifiedType, isViewin
     }
   }
 
-  let BadgeColor = twitterBlueBadgeColor
   let userVerificationBadge = TWITTER_BLUE_BADGE
-
   if (userVerifiedStatus === VERIFIED_TYPE.LEGACY_VERIFIED) {
-    BadgeColor = VERIFIED_BADGE_DEFAULT_COLOR
     userVerificationBadge = VERIFIED_BADGE
   }
   const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-  const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-  pathElement.setAttribute('fill', BadgeColor)
-  pathElement.setAttribute('d', userVerificationBadge)
-  gElement.appendChild(pathElement)
+  if (userOptions.replaceTBWithClown && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
+    gElement.innerHTML = CLOWN
+  } else {
+    const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+    pathElement.setAttribute('fill', badgeColor)
+    pathElement.setAttribute('d', userVerificationBadge)
+    gElement.appendChild(pathElement)
+  }
 
   if (svgElementG !== null) {
     const parentElement = svgElementG.parentElement
