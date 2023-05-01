@@ -48,6 +48,6 @@
         "message": "Algo salió mal al intentar guardar. Por favor, refresca la página."
     },
     "alert_stay_on_twitter": {
-        "message": "Esta extensión solo funciona en Twitter."
+        "message": "Esta extensión solo funciona en Twitter. (Si estás en Twitter, intenta refrescar la página)"
     }
 }

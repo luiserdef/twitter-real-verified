@@ -48,6 +48,6 @@
         "message": "Something went wrong. Please Refresh the Page."
     },
     "alert_stay_on_twitter": {
-        "message": "This extension only works on Twitter."
+        "message": "This extension only works on Twitter. If you are on Twitter, you might need to refresh the page."
     }
 }
