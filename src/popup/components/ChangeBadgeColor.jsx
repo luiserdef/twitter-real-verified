@@ -6,7 +6,6 @@ import ColorPicker from './ColorPicker'
 import BadgeColorSelection from './BadgeColorSelection'
 
 function ChangeBadgeColor ({
-  hideTwitterBlue,
   badgeColors,
   updateConfig
 }) {
@@ -28,7 +27,7 @@ function ChangeBadgeColor ({
       }
     }
   }
-  console.log(badgeSelection())
+
   function updateCurrentColor (key, value) {
     const currentBadgeColors = { ...badgeColors, [key]: value }
     updateConfig('badgeColors', currentBadgeColors)

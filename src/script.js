@@ -1,6 +1,6 @@
-import { findUserName } from './utils/findUserName'
-import { elementsPaths, propsPaths } from './utils/elementPathsUserName'
-import { verifiedUsers1Promise as loadUserList1, verifiedUsers2Promise as loadUserList2 } from './utils/loadUserList'
+import { elementsPaths, propsPaths } from './utils/screenNamePaths'
+import { loadVerifiedList } from './utils/loadVerifiedList'
+import { getMainReactProps } from './utils/getMainReactProps'
 import { retrieveData } from './utils/retrieveNewData'
 import {
   CLOWN,
@@ -11,17 +11,6 @@ import {
   TWITTER_BLUE_BADGE,
   VERIFIED_BADGE
 } from './constants'
-
-let usersList1 = []
-let usersList2 = []
-
-loadUserList1.then((vUsersList1) => {
-  usersList1 = vUsersList1
-})
-
-loadUserList2.then((vUsersList2) => {
-  usersList2 = vUsersList2
-})
 
 let userBadgeColors = DEFAULT_CONFIG.badgeColors
 let userOptions = DEFAULT_CONFIG.options
@@ -90,13 +79,9 @@ function findElementBadge (element) {
   }
 }
 
-function handleVerificationStatus (element, elementOptions) {
-  let elementProps
-  if (elementOptions?.isSecondBadgeProfile) {
-    elementProps = getMainReactProps(getParentElementByLevel(element, 6), element)
-  } else {
-    elementProps = getMainReactProps(getParentElementByLevel(element, 3), element)
-  }
+async function handleVerificationStatus (element, elementOptions) {
+  const parentLevel = elementOptions?.isSecondBadgeProfile ? 6 : 3
+  const elementProps = getMainReactProps(getParentElementByLevel(element, parentLevel), element)
 
   if (elementProps === undefined) return
 
@@ -108,7 +93,7 @@ function handleVerificationStatus (element, elementOptions) {
 
   const currentVerifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
-  const isUserVerified = isUserLegacyVerified(element)
+  const isUserVerified = await isUserLegacyVerified(element)
 
   if (isBlueVerified) {
     if (isUserVerified && userOptions.revokeLegacyVerifiedBadge === false) {
@@ -121,47 +106,31 @@ function handleVerificationStatus (element, elementOptions) {
   }
 }
 
-function legacyUserExists (actualUser) {
-  for (let index = 0; index < usersList1.length; index++) {
-    if (usersList1[index].key === actualUser[0]) {
-      if (findUserName(usersList1[index].users, actualUser) !== -1) {
-        return true
-      }
-    }
-  }
-
-  for (let index = 0; index < usersList2.length; index++) {
-    if (usersList2[index].key === actualUser[0]) {
-      if (findUserName(usersList2[index].users, actualUser) !== -1) {
-        return true
-      }
-    }
-  }
-
-  return false
-}
-
-function isUserLegacyVerified (element) {
+async function isUserLegacyVerified (element) {
   const posibleElementPaths = elementsPaths(element)
+
   for (let i = 0; i < posibleElementPaths.length; i++) {
-    const elementProps = posibleElementPaths[i] && getReactProps(posibleElementPaths[i])
-    const actualUser = propsPaths(elementProps)
-    if (elementProps !== undefined && actualUser !== undefined) {
-      if (legacyUserExists(actualUser)) {
-        return true
-      } else {
-        return false
+    if (posibleElementPaths[i] === undefined) continue
+
+    const currentElement = posibleElementPaths[i]
+    const reactProps = currentElement[Object.keys(currentElement).find(k => k.startsWith('__reactProps$'))]
+    const currentUser = propsPaths(reactProps)
+
+    if (currentUser !== undefined) {
+      const verifiedUserList = await loadVerifiedList
+
+      for (let index = 0; index < verifiedUserList.length; index++) {
+        if (verifiedUserList[index].key === currentUser[0]) {
+          if (verifiedUserList[index].users.some(user => user === currentUser)) {
+            return true
+          } else {
+            return false
+          }
+        }
       }
     }
   }
   return false
-}
-
-function getReactProps (element) {
-  const elementPropsNames = Object.getOwnPropertyNames(element)
-  const reactPropsTarget = elementPropsNames.find(nameProp => nameProp.startsWith('__reactProps'))
-  const reactProps = element[reactPropsTarget]
-  return reactProps
 }
 
 // There is a special case for both two badges in a user profile
@@ -174,7 +143,11 @@ function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedTy
     svgElementG = svgElementG.firstChild
   }
 
-  if (svgElementG !== null && (currentVerifiedType === VERIFIED_TYPE.BUSINESS || currentVerifiedType === VERIFIED_TYPE.GOVERNMENT)) return
+  if (svgElementG !== null) {
+    if (currentVerifiedType === VERIFIED_TYPE.BUSINESS || currentVerifiedType === VERIFIED_TYPE.GOVERNMENT) {
+      return
+    }
+  }
 
   if (userOptions.hideTwitterBlueBadge && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
     if (svgElementG !== null) {
@@ -194,17 +167,15 @@ function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedTy
     }
   }
 
-  let userVerificationBadge = TWITTER_BLUE_BADGE
-  if (userVerifiedStatus === VERIFIED_TYPE.LEGACY_VERIFIED) {
-    userVerificationBadge = VERIFIED_BADGE
-  }
+  const badge = userVerifiedStatus === VERIFIED_TYPE.LEGACY_VERIFIED ? VERIFIED_BADGE : TWITTER_BLUE_BADGE
+
   const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   if (userOptions.replaceTBWithClown && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
     gElement.innerHTML = CLOWN
   } else {
     const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
     pathElement.setAttribute('fill', badgeColor)
-    pathElement.setAttribute('d', userVerificationBadge)
+    pathElement.setAttribute('d', badge)
     gElement.appendChild(pathElement)
   }
 
@@ -221,59 +192,6 @@ function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedTy
     svgElement.appendChild(gElement)
     element.appendChild(svgElement)
   }
-}
-
-// https://stackoverflow.com/a/74240138/2230249
-function getMainReactProps (parent, target) {
-  const keyOfReactProps = Object.keys(parent).find(k => k.startsWith('__reactProps$'))
-  const symofReactFragment = Symbol.for('react.fragment')
-
-  // Find the path from target to parent
-  const path = []
-  let elem = target
-  while (elem !== parent) {
-    let index = 0
-    for (let sibling = elem; sibling != null;) {
-      if (sibling[keyOfReactProps]) index++
-      sibling = sibling.previousElementSibling
-    }
-    path.push({ child: elem, index })
-    elem = elem.parentElement
-  }
-  // Walk down the path to find the react state props
-  let state = elem[keyOfReactProps]
-  for (let i = path.length - 1; i >= 0 && state != null; i--) {
-    // Find the target child state index
-    let childStateIndex = 0; let childElemIndex = 0
-    while (childStateIndex < state.children.length) {
-      const childState = state.children[childStateIndex]
-      if (childState instanceof Object) {
-        // Fragment children are inlined in the parent DOM element
-        const isFragment = childState.type === symofReactFragment && childState.props.children.length
-        childElemIndex += isFragment ? childState.props.children.length : 1
-        if (childElemIndex === path[i].index) break
-      }
-      childStateIndex++
-    }
-    let childState = null
-    if (state.children[childStateIndex]) {
-      childState = state.children[childStateIndex]
-    } else {
-      if (childStateIndex === 0) {
-        childState = state.children
-      } else {
-        for (let i = 0; i <= 3; i++) {
-          if (state.children[i].props) {
-            childState = state.children[i]
-            break
-          }
-        }
-      }
-    }
-    state = childState?.props
-    elem = path[i].child
-  }
-  return state
 }
 
 const observer = new MutationObserver(callbackObserver)
