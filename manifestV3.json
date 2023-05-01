@@ -28,8 +28,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "legacyVerifiedUsers1.js",
-        "legacyVerifiedUsers2.js",
+        "verifiedUsers.jsonx",
         "script.js"
       ],
       "matches": [
