@@ -16,18 +16,14 @@
     --light-blue: #56CCF2;
     --container-border-radius:10px
 }
-
-
-
 .content{
     background: var(--light-blue);  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #330841, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #65a7fc, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    overflow: hidden;
     border: solid 1px #ffffff;
     color: #21539c;
     width: 320px;
-    height: 100%;
+    min-height: 300px;
     padding: 1em;
     display: flex;
     flex-direction: column;
