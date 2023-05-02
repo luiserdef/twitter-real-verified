@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { validateBrowserAPI as browserAPI } from '../utils/validateUserBrowser'
 import { getText as txt } from '../utils/getText'
 import { CONFIG_REQUEST, DEFAULT_CONFIG } from '../constants'
+import { validateBrowserAPI as browserAPI } from '../utils/validateUserBrowser'
 import { retrieveData } from '../utils/retrieveNewData'
 import PopupHeader from './components/PopupHeader'
 import InfoBadges from './components/InfoBadges'
@@ -10,19 +10,27 @@ import Options from './components/Options'
 import ChangeBadgeColor from './components/ChangeBadgeColor'
 import SaveButton from './components/SaveButton'
 
-const ERRORMESSAGE = {
-  SAVED_FAILED: txt('alert_saved_failed'),
-  NOT_ON_TWITTER: txt('alert_stay_on_twitter')
+export const ERRORMESSAGE = {
+  REFRESH_PAGE: txt('alert_refresh_page')
 }
 
 function Popup () {
   const [userConfig, setUserConfig] = React.useState(DEFAULT_CONFIG)
   const [isThereChanges, setIsThereChanges] = React.useState(false)
-  const [loadExtension, setLoadExtension] = React.useState(true)
+  const [loadExtension, setLoadExtension] = React.useState(false)
   const [changeMade, setChangeMade] = React.useState({
     status: false,
     description: ''
   })
+
+  React.useEffect(() => {
+    // When there is a new update, this will remove the notification when the user opens the Popup
+    if (typeof browser !== 'undefined') {
+      loadExtension && browser.browserAction.setBadgeText({ text: '' })
+    } else {
+      loadExtension && chrome.action.setBadgeText({ text: '' })
+    }
+  }, [loadExtension])
 
   React.useEffect(() => {
     handleUserConfig(CONFIG_REQUEST.LOAD, true)
@@ -65,7 +73,7 @@ function Popup () {
   return (
     <div className='content'>
       {!loadExtension
-        ? <h1 className='stay-on-twitter'>{ERRORMESSAGE.NOT_ON_TWITTER}</h1>
+        ? <h1 className='refresh-page'>{ERRORMESSAGE.REFRESH_PAGE}</h1>
         : <>
           <PopupHeader
             txt={txt}
@@ -108,15 +116,15 @@ function handleUserConfig (request, value) {
               if (!browserAPI().runtime.lastError) {
                 resolve(response)
               } else {
-                reject(new Error(ERRORMESSAGE.NOT_ON_TWITTER))
+                reject(new Error(ERRORMESSAGE.REFRESH_PAGE))
               }
             })
           } else {
-            reject(new Error(ERRORMESSAGE.SAVED_FAILED))
+            reject(new Error(ERRORMESSAGE.REFRESH_PAGE))
           }
         })
     } catch (e) {
-      reject(new Error(ERRORMESSAGE.NOT_ON_TWITTER))
+      reject(new Error(ERRORMESSAGE.REFRESH_PAGE))
     }
   })
 }

@@ -23,7 +23,7 @@
     border: solid 1px #ffffff;
     color: #21539c;
     width: 320px;
-    min-height: 300px;
+    height: 100%;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -316,7 +316,7 @@ section{
 
 .checkbox-input:checked::after {
     content: '\2714';
-    color: green;
+    color: #008000;
     font-size: 16px;
     position: absolute;
     left: 2px;
@@ -364,7 +364,7 @@ section{
     font-weight: 600;
 }
 
-.stay-on-twitter{
+.refresh-page{
     font-size: 1rem;
 }
   
