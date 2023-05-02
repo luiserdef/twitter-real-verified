@@ -1,15 +1,28 @@
 import * as React from 'react'
 import DropdownIcon from '../assets/dropdownIcon.svg'
 
-function Dropdown ({ title, children }) {
+function Dropdown ({ title, documentHeight, children }) {
   const [isOpen, setIsOpen] = React.useState(false)
   const dropdownContentRef = React.useRef(null)
+
+  // This fixes issues when the content changes to avoid scrollbar in Firefox browser.
+  function contentChanged (isContentExpanded, expandedValue) {
+    if (typeof browser !== 'undefined') {
+      if (isContentExpanded) {
+        documentHeight.current.style.height = `${documentHeight.current.clientHeight + expandedValue}px`
+      } else {
+        documentHeight.current.style.height = '100%'
+      }
+    }
+  }
 
   React.useEffect(() => {
     if (isOpen) {
       dropdownContentRef.current.style.height = `${dropdownContentRef.current.scrollHeight}px`
+      contentChanged(true, dropdownContentRef.current.scrollHeight)
     } else {
       dropdownContentRef.current.style.height = '0px'
+      contentChanged(false)
     }
   }, [isOpen])
 

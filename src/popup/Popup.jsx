@@ -18,6 +18,7 @@ function Popup () {
   const [userConfig, setUserConfig] = React.useState(DEFAULT_CONFIG)
   const [isThereChanges, setIsThereChanges] = React.useState(false)
   const [loadExtension, setLoadExtension] = React.useState(false)
+  const documentHeight = React.useRef(null)
   const [changeMade, setChangeMade] = React.useState({
     status: false,
     description: ''
@@ -71,7 +72,7 @@ function Popup () {
   }
 
   return (
-    <div className='content'>
+    <div className='content' ref={documentHeight}>
       {!loadExtension
         ? <h1 className='refresh-page'>{ERRORMESSAGE.REFRESH_PAGE}</h1>
         : <>
@@ -82,13 +83,13 @@ function Popup () {
             badgeColors={userConfig.badgeColors}
             isTwitterBlueClown={userConfig.options.replaceTBWithClown}
           />
-          <Dropdown title={txt('options')}>
+          <Dropdown title={txt('options')} documentHeight={documentHeight}>
             <Options
               userOptions={userConfig.options}
               updateConfig={updateConfig}
             />
           </Dropdown>
-          <Dropdown title={txt('option_change_color')}>
+          <Dropdown title={txt('option_change_color')} documentHeight={documentHeight}>
             <ChangeBadgeColor
               hideTwitterBlue={userConfig.options.hideTwitterBlueBadge}
               badgeColors={userConfig.badgeColors}
