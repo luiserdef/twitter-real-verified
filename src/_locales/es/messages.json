@@ -41,13 +41,10 @@
     "bt_save": {
         "message": "Guardar"
     },
-    "alert_refresh_page": {
+    "alert_config_saved": {
         "message": "Para ver los cambios, es necesario actualizar la página."
     },
-    "alert_saved_failed": {
-        "message": "Algo salió mal al intentar guardar. Por favor, refresca la página."
-    },
-    "alert_stay_on_twitter": {
-        "message": "Esta extensión solo funciona en Twitter. (Si estás en Twitter, intenta refrescar la página)"
+    "alert_refresh_page": {
+        "message": "Es posible que necesites refrescar la página"
     }
 }

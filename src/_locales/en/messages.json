@@ -44,10 +44,7 @@
     "alert_config_saved": {
         "message": "To see the changes, it is necessary to refresh the page."
     },
-    "alert_saved_failed": {
-        "message": "Something went wrong. Please Refresh the Page."
-    },
-    "alert_stay_on_twitter": {
-        "message": "This extension only works on Twitter. If you are on Twitter, you might need to refresh the page."
+    "alert_refresh_page": {
+        "message": "You may need to refresh the page."
     }
 }
