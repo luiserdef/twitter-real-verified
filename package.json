@@ -1,7 +1,7 @@
 {
-  "name": "twitter Real Verified",
+  "name": "twitter-real-verified",
   "version": "2.1.0",
-  "description": "Return Twitter's legacy verification and change the verification badge for users with a Twitter Blue subscription.",
+  "description": "Return Twitter's legacy verification and change the verification badge from users with Twitter Blue",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-chrome": "node ./esbuild/buildChrome.mjs ",
@@ -30,15 +30,12 @@
     "globals": [
       "MutationObserver",
       "localStorage",
-      "verifiedusersList1",
-      "verifiedusersList2",
       "chrome",
       "browser",
       "node"
     ],
     "ignore": [
-      "/src/legacyVerifiedUsers1.js",
-      "/src/legacyVerifiedUsers2.js"
+      "/src/verifiedUsers.jsonx"
     ]
   }
 }
