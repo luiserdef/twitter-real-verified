@@ -2,9 +2,14 @@ import { validateBrowserAPI as browserAPI } from './utils/validateUserBrowser'
 import { LOCAL_STORAGE, CONFIG_REQUEST } from './constants'
 
 const addElementVerifiedList = document.createElement('script')
-addElementVerifiedList.src = browserAPI().runtime.getURL('verifiedUsers.jsonx')
+addElementVerifiedList.src = browserAPI().runtime.getURL('verifiedUserList1.js')
 document.head.appendChild(addElementVerifiedList)
 addElementVerifiedList.onload = function () { this.remove() }
+
+const addElementVerifiedList2 = document.createElement('script')
+addElementVerifiedList2.src = browserAPI().runtime.getURL('verifiedUserList2.js')
+document.head.appendChild(addElementVerifiedList2)
+addElementVerifiedList2.onload = function () { this.remove() }
 
 const addElementScript = document.createElement('script')
 addElementScript.src = browserAPI().runtime.getURL('script.js')

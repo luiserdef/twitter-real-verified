@@ -1,5 +1,5 @@
 import { elementsPaths, propsPaths } from './utils/screenNamePaths'
-import { loadVerifiedList } from './utils/loadVerifiedList'
+import { loadVerifiedList1, loadVerifiedList2 } from './utils/loadVerifiedList'
 import { getMainReactProps } from './utils/getMainReactProps'
 import { retrieveData } from './utils/retrieveNewData'
 import {
@@ -117,17 +117,24 @@ async function isUserLegacyVerified (element) {
     const currentUser = propsPaths(reactProps)
 
     if (currentUser !== undefined) {
-      const verifiedUserList = await loadVerifiedList
+      const legacyUsers1 = await loadVerifiedList1
+      const legacyUsers2 = await loadVerifiedList2
 
-      for (let index = 0; index < verifiedUserList.length; index++) {
-        if (verifiedUserList[index].key === currentUser[0]) {
-          if (verifiedUserList[index].users.some(user => user === currentUser)) {
+      for (let index = 0; index < legacyUsers1.length; index++) {
+        if (legacyUsers1[index].key === currentUser[0]) {
+          if (legacyUsers1[index].users.some(user => user === currentUser)) {
             return true
-          } else {
-            return false
           }
         }
       }
+      for (let index = 0; index < legacyUsers2.length; index++) {
+        if (legacyUsers2[index].key === currentUser[0]) {
+          if (legacyUsers2[index].users.some(user => user === currentUser)) {
+            return true
+          }
+        }
+      }
+      return false
     }
   }
   return false
