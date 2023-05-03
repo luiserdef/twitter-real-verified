@@ -91,7 +91,7 @@ The verified user list is splitted in two files and has the following format:
 You can generate the files by running this python script.
 
 ```bash
-# Move to verifiedList Folder
+# Move to the verifiedList folder
 cd verifiedList
  
 # Run the script
