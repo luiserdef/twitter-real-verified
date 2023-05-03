@@ -82,7 +82,7 @@ The verified user list used by the extension has the following format:
 }]
 
 # key: The first character of the username.
-# users: an array of all the usernames where the first letter matches the "key"
+# users: An array of all the usernames where the first letter matches the "key"
 
 ```
 You can generate the file by running this Python script in ./verifiedList 
