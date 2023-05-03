@@ -41,7 +41,7 @@ Return Twitter's legacy verification and change the verification badge for users
 ## What's New: 
 ### Options
 - Hide Twitter Blue badges
-- Remove the verification badge for users who have Twitter Blue.
+- Remove the verification badge from users who have Twitter Blue.
 - Replace Twitter Blue badges with a clown.
 
 ### Change badge color
