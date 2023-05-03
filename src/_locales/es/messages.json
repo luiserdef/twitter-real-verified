@@ -27,7 +27,7 @@
         "message": "Opciones"
     },
     "hide_twitter_blue": {
-        "message": "Ocultar íconos de Twitter Blue"
+        "message": "Ocultar íconos de Twitter Blue."
     },
     "revoke_verified": {
         "message": "Quitar ícono de verificado si el usuario también tiene Twitter Blue."
