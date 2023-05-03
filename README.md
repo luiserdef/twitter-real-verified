@@ -30,7 +30,7 @@ Return Twitter's legacy verification and change the verification badge from user
 
 ## Overview - Screenshots
 <p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023.</p>
-<p>The list of legacy verified users was taken before April 4, 2023. Thanks to the data collected by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown</a> , you can find the complete list on: <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">Twitter accounts with legacy verification</a>
+<p>The list of legacy verified users was taken before April 4, 2023. Thanks to the data collected by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown</a>. You can find the complete list on: <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">Twitter accounts with legacy verification</a>
 <p>The way in which you view the badges can be customized.</p>
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
@@ -57,25 +57,25 @@ The project uses esbuild.
 After cloning the project, do the following:
 
 ```bash
- #Install pnpm 
+ # Install pnpm 
  npm install -g pnpm 
  
- #Install dependencies
+ # Install dependencies
  pnpm install 
 
- #Generate the files for Chrome
+ # Generate the files for Chrome
  pnpm run build-chrome
  
- #Generate the files for Firefox
+ # Generate the files for Firefox
  pnpm run build-firefox
  
- #Run and fix linter issues 
+ # Run and fix linter issues 
  npx standard --fix 
- #If you have the standardjs extension for VSCode, changes are made on save.
+ # If you have the standardjs extension for VSCode, changes are made on save.
 ```
 
 ### Optional
-The verified user list used by the extension has the following format:
+The verified user list is splitted in two files and has the following format:
 ```bash
 [{
   "key": "u",
@@ -83,17 +83,19 @@ The verified user list used by the extension has the following format:
 }]
 
 # key: The first character of the username.
-# users: An array of all the usernames where the first letter matches the "key"
+# users: An array of all the usernames where the first character matches the "key"
 
 ```
-You can generate the file by running this Python script in ./verifiedList 
-
-You have to have python installed. The output file is used in ./src
-
+You can generate the files by running this Python script.
 
 ```bash
+# Move to verifiedList Folder
+cd verifiedList
+ 
+# Run the script
 python legacy-verified.py
 ```
+You have to have python installed. The output files are used in ./src
 
 ### Test Extension
 
