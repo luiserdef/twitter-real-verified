@@ -3,7 +3,7 @@
         "message": "Twitter Real Verified"
     },
     "app_description": {
-        "message": "Return Twitter's legacy verification and change the verification badge for users with a Twitter Blue subscription."
+        "message": "Return Twitter's legacy verification and change the verification badge from users with Twitter Blue"
     },
     "twitter_blue": {
         "message": "Twitter Blue"
