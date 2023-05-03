@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Twitter Real Verified</h3>
 <p align="center">
-Return Twitter's legacy verification and change the verification badge for users with a Twitter Blue subscription.
+Return Twitter's legacy verification and change the verification badge for users with Twitter Blue.
 </p>
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -30,17 +30,24 @@ Return Twitter's legacy verification and change the verification badge for users
 
 ## Overview - Screenshots
 <p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023.</p>
-<p>The list of legacy verified users was taken before April 6, 2023. Thanks to the <a href="https://github.com/thansen0/verified_twitters">Verified Twitter User List</a> project.</p>
-<p>This add-on can differentiate between users with a legacy verification badge and those who obtained it through a Twitter Blue subscription. The verification badge for users who obtained it through Twitter Blue will be replaced by a money badge.</p>
+<p>The list of legacy verified users was taken before April 4, 2023. Thanks to the data collected by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown</a> , you can find the complete list on: <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">Twitter accounts with legacy verification</a>
+<p>The way in which you view the badges can be customized.</p>
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
   <img src="overview-img/twVerified-preview2.png" width="600px" alt="Real Verify Extension" />
+  <img src="overview-img/twVerified-preview3-en.png" width="600px" alt="Real Verify Extension" />
 </p>
 
 ## What's New: 
-### Updates Coming in the Next Release
+### Options
 - Hide Twitter Blue badges
-- More accurate data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's</a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy-verified</a> list project.
+- Remove the verification badge for users who have Twitter Blue.
+- Replace Twitter Blue badges with a clown.
+
+### Change badge color
+- Change the badge color for verified users, Twitter Blue users, and verified users who have Twitter Blue.
+
+- More accurate data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy-verified list</a>.
 
 ## Dev
 Popup is created with React.
@@ -49,7 +56,11 @@ The project uses esbuild.
 After cloning the project, do the following:
 
 ```bash
- pnpm install # install dependencies
+ #Install pnpm 
+ npm install -g pnpm 
+ 
+ #Install dependencies
+ pnpm install 
 
  #Generate the files for Chrome
  pnpm run build-chrome
@@ -57,11 +68,33 @@ After cloning the project, do the following:
  #Generate the files for Firefox
  pnpm run build-firefox
  
- 
- #run and fix linter issues 
- #If you have the standardjs extension for VSCode, changes are made on save.
+ #Run and fix linter issues 
  npx standard --fix 
+ #If you have the standardjs extension for VSCode, changes are made on save.
 ```
+
+### Optional
+The verified user list used by the extension has the following format:
+```bash
+[{
+  "key": "u",
+  "users": ["username","username2"]
+}]
+
+# key: The first character of the username.
+# users: An array of all the usernames where the first letter matches the "key"
+
+```
+You can generate the file by running this Python script in ./verifiedList 
+
+You have to have python installed. The output file is used in ./src
+
+
+```bash
+python legacy-verified.py
+```
+
+### Test Extension
 
 Load the extension on Chrome or Edge:
 
