@@ -30,7 +30,7 @@
         "message": "Hide Twitter Blue badges."
     },
     "revoke_verified": {
-        "message": "Remove verified badges from users who are now subscribers to Twitter Blue."
+        "message": "Remove the verification badge from users who have Twitter Blue."
     },
     "replace_twitter_blue_badge_with_clown":{
         "message": "Replace Twitter Blue badges with"
