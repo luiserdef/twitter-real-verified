@@ -24,7 +24,8 @@ esbuild.build({
   copySync('./src/assets', `${CHROMEOUTPUT}/assets`)
   copySync('./src/_locales', `${CHROMEOUTPUT}/_locales`)
   copySync('./manifestV3.json', `${CHROMEOUTPUT}/manifest.json`)
-  copySync('./src/verifiedUsers.jsonx', `${CHROMEOUTPUT}/verifiedUsers.jsonx`)
+  copySync('./src/verifiedUserList1.js', `${CHROMEOUTPUT}/verifiedUserList1.js`)
+  copySync('./src/verifiedUserList2.js', `${CHROMEOUTPUT}/verifiedUserList2.js`)
 }).catch(error => {
   console.log('Build failed in buildChrome:' + error)
 })
