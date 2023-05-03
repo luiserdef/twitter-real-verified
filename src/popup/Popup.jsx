@@ -17,8 +17,7 @@ export const ERRORMESSAGE = {
 function Popup () {
   const [userConfig, setUserConfig] = React.useState(DEFAULT_CONFIG)
   const [isThereChanges, setIsThereChanges] = React.useState(false)
-  const [loadExtension, setLoadExtension] = React.useState(false)
-  const documentHeight = React.useRef(null)
+  const [loadExtension, setLoadExtension] = React.useState(true)
   const [changeMade, setChangeMade] = React.useState({
     status: false,
     description: ''
@@ -72,10 +71,9 @@ function Popup () {
   }
 
   return (
-    <div className='content' ref={documentHeight}>
-      {!loadExtension
-        ? <h1 className='refresh-page'>{ERRORMESSAGE.REFRESH_PAGE}</h1>
-        : <>
+    <div className='content'>
+      {loadExtension
+        ? <>
           <PopupHeader
             txt={txt}
           />
@@ -83,23 +81,29 @@ function Popup () {
             badgeColors={userConfig.badgeColors}
             isTwitterBlueClown={userConfig.options.replaceTBWithClown}
           />
-          <Dropdown title={txt('options')} documentHeight={documentHeight}>
+          <Dropdown title={txt('options')}>
             <Options
               userOptions={userConfig.options}
               updateConfig={updateConfig}
             />
           </Dropdown>
-          <Dropdown title={txt('option_change_color')} documentHeight={documentHeight}>
+          <Dropdown title={txt('option_change_color')}>
             <ChangeBadgeColor
               hideTwitterBlue={userConfig.options.hideTwitterBlueBadge}
               badgeColors={userConfig.badgeColors}
               updateConfig={updateConfig}
             />
           </Dropdown>
-          <SaveButton txt={txt} isThereChanges={isThereChanges} saveChanges={saveChanges} />
-          {changeMade && <p className='save-alert-message'>{changeMade.description}</p>}
+          <SaveButton
+            txt={txt}
+            isThereChanges={isThereChanges}
+            saveChanges={saveChanges}
+          />
+          {changeMade.status && <p className='save-alert-message'>{changeMade.description}</p>}
+
           {/* eslint-disable react/jsx-indent */}
-          </>}
+          </>
+        : <h1 className='refresh-page'>{ERRORMESSAGE.REFRESH_PAGE}</h1>}
     </div>
   )
 }

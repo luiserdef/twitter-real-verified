@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;600&display=swap');
 *{
+
     margin: 0;
     padding: 0;
     border: 0;
@@ -10,6 +11,10 @@
     /* border: solid red 1px; */
 
 }
+html{
+    overflow: hidden;
+}
+
 :root{
     --dark-blue: #09204b;
     --medium-blue: #2b6194;
@@ -22,8 +27,8 @@
     background: linear-gradient(to right, #65a7fc, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: solid 1px #ffffff;
     color: #21539c;
-    width: 320px;
-    height: 100%;
+    max-width: 380px;
+    max-height: 600px;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -120,7 +125,7 @@
 
 .dropdown-content{
     overflow: hidden;
-    transition: height 0.3s ease-in-out;
+    transition: height 0.2s;
 }
 
 .info-badge{
@@ -365,6 +370,7 @@ section{
 }
 
 .refresh-page{
+    width: 300px;
     font-size: 1rem;
 }
   
