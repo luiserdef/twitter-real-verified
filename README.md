@@ -39,6 +39,9 @@ Return Twitter's legacy verification and change the verification badge for users
 </p>
 
 ## What's New: 
+More accurate data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy verified users list</a>.
+
+
 ### Options
 - Hide Twitter Blue badges
 - Remove the verification badge from users who have Twitter Blue.
@@ -46,8 +49,6 @@ Return Twitter's legacy verification and change the verification badge for users
 
 ### Change badge color
 - Change the badge color for verified users, Twitter Blue users, and verified users who have Twitter Blue.
-
-- More accurate data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy-verified list</a>.
 
 ## Dev
 Popup is created with React.
