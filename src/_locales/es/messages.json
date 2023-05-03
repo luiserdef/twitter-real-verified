@@ -30,7 +30,7 @@
         "message": "Ocultar íconos de Twitter Blue"
     },
     "revoke_verified": {
-        "message": "Quitar ícono de verificado a usuarios que ahora tienen Twitter Blue."
+        "message": "Quitar ícono de verificado si el usuario también tiene Twitter Blue."
     },
     "replace_twitter_blue_badge_with_clown":{
         "message": "Íconos de Twitter Blue como"
