@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Twitter Real Verified</h3>
 <p align="center">
-Return Twitter's legacy verification and change the verification badge for users with Twitter Blue.
+Return Twitter's legacy verification and change the verification badge from users with Twitter Blue.
 </p>
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
