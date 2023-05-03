@@ -41,7 +41,7 @@ Return Twitter's legacy verification and change the verification badge from user
 </p>
 
 ## What's New: 
-More accurate data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy verified users list</a>.
+New data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy verified users list</a>.
 
 
 ### Options
@@ -76,7 +76,13 @@ After cloning the project, do the following:
  # If you have the standardjs extension for VSCode, changes are made on save.
 ```
 
-### Optional
+### Legacy verified List
+This extension uses the screenname from the legacy verified list, I know this can be problematic if the user changes their username. This issue is currently being addressed in the userids branch.
+
+Data provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a>
+
+Full list: <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy-verified</a>
+
 The verified user list is splitted in two files and has the following format:
 ```bash
 [{
