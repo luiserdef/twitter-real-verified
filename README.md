@@ -41,7 +41,7 @@ Return Twitter's legacy verification and change the verification badge from user
 </p>
 
 ## What's New: 
-New data on legacy verified accounts.
+New data from legacy verified accounts.
 
 ### Options
 - Hide Twitter Blue badges
