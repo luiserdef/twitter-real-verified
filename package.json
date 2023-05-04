@@ -1,6 +1,6 @@
 {
   "name": "twitter-real-verified",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Return Twitter's legacy verification and change the verification badge from users with Twitter Blue",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -31,7 +31,11 @@
       "localStorage",
       "chrome",
       "browser",
-      "node"
+      "node",
+      "verifiedUsers_ID_1",
+      "verifiedUsers_ID_2",
+      "verifiedUsers_ScreenName_1",
+      "verifiedUsers_ScreenName_2"
     ],
     "ignore": [
       "/src/verifiedUserList1.js",
