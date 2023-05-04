@@ -1,15 +1,25 @@
 import { validateBrowserAPI as browserAPI } from './utils/validateUserBrowser'
 import { LOCAL_STORAGE, CONFIG_REQUEST } from './constants'
 
-const addElementVerifiedList = document.createElement('script')
-addElementVerifiedList.src = browserAPI().runtime.getURL('verifiedUserList1.js')
-document.head.appendChild(addElementVerifiedList)
-addElementVerifiedList.onload = function () { this.remove() }
+const addIds1 = document.createElement('script')
+addIds1.src = browserAPI().runtime.getURL('verifiedUsersID1.js')
+document.head.appendChild(addIds1)
+addIds1.onload = function () { this.remove() }
 
-const addElementVerifiedList2 = document.createElement('script')
-addElementVerifiedList2.src = browserAPI().runtime.getURL('verifiedUserList2.js')
-document.head.appendChild(addElementVerifiedList2)
-addElementVerifiedList2.onload = function () { this.remove() }
+const addIds2 = document.createElement('script')
+addIds2.src = browserAPI().runtime.getURL('verifiedUsersID2.js')
+document.head.appendChild(addIds2)
+addIds2.onload = function () { this.remove() }
+
+const addScreenNames1 = document.createElement('script')
+addScreenNames1.src = browserAPI().runtime.getURL('verifiedUsersScreenName1.js')
+document.head.appendChild(addScreenNames1)
+addScreenNames1.onload = function () { this.remove() }
+
+const addScreenNames2 = document.createElement('script')
+addScreenNames2.src = browserAPI().runtime.getURL('verifiedUsersScreenName2.js')
+document.head.appendChild(addScreenNames2)
+addScreenNames2.onload = function () { this.remove() }
 
 const addElementScript = document.createElement('script')
 addElementScript.src = browserAPI().runtime.getURL('script.js')

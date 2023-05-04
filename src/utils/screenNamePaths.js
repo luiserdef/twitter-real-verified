@@ -1,5 +1,5 @@
 
-export const elementsPaths = (element) => {
+export const elementsPathsScreenName = (element) => {
   return [
     // Account menu user profile, inbox Messages , heading title (user profile), search results, you might like section
     element?.parentElement?.parentElement?.parentElement || undefined,
@@ -17,13 +17,14 @@ export const elementsPaths = (element) => {
 }
 
 // Possible paths where screenName can be found
-export const propsPaths = (element) => {
+export const propsPathsScreenName = (element) => {
   try {
     const path =
         element?.children[0]?.props?.screenName ??
         element?.children[0]?.props?.children[2]?._owner?.memoizedProps?.screenName ??
         element?.children?.props?.screenName ??
         element?.children[0]?.props?.children?.props?.screenName ??
+        // Twitter Space
         element?.children[1]?.props?.host?.twitter_screen_name ??
         element?.children?.props?.users[0]?.screen_name ?? undefined
     return path

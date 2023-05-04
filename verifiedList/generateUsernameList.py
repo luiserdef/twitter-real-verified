@@ -5,13 +5,14 @@
 # var verifiedUsers= [
 #     {
 #         key:"a",
-#         users:["aUser,auserB"]
+#         users:["arjanwrites","alper"]
 #     },{
-#         key:"J",
-#         users:["Jmleer,JuserB"]
+#         key:"j",
+#         users:["jeremybotter","jah"]
 #     }
 # ]
-#...
+
+# Output files: verifiedUserList1.js and verifiedUserList2.js
 
 import csv
 import json
@@ -41,11 +42,11 @@ second_half = users_list[half_len:]
 
 # Convert each half to JSON and save as separate files
 output1 = json.dumps(first_half, separators=(',', ':'))
-with open('verifiedUserList1.js', 'w') as outfile1:
-    outfile1.write('var verifiedUserList1 = ')
+with open('verifiedUsersScreenName1.js', 'w') as outfile1:
+    outfile1.write('var verifiedUsers_ScreenName_1 = ')
     outfile1.write(output1)
 
 output2 = json.dumps(second_half, separators=(',', ':'))
-with open('verifiedUserList2.js', 'w') as outfile2:
-    outfile2.write('var verifiedUserList2 = ')
+with open('verifiedUsersScreenName2.js', 'w') as outfile2:
+    outfile2.write('var verifiedUsers_ScreenName_2 = ')
     outfile2.write(output2)

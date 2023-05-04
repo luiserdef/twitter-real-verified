@@ -1,5 +1,6 @@
-import { elementsPaths, propsPaths } from './utils/screenNamePaths'
-import { loadVerifiedList1, loadVerifiedList2 } from './utils/loadVerifiedList'
+import { elementsPathsScreenName, propsPathsScreenName } from './utils/screenNamePaths'
+import { elementsPathsID, propsPathsID } from './utils/userIdPaths'
+import { loadVerifiedListID1, loadVerifiedListID2, loadVerifiedListScreenName1, loadVerifiedListScreenName2 } from './utils/loadVerifiedList'
 import { getMainReactProps } from './utils/getMainReactProps'
 import { retrieveData } from './utils/retrieveNewData'
 import {
@@ -26,7 +27,7 @@ function getParentElementByLevel (element, parentLevel) {
   let parentTarget = element
   let level = 0
   while (level < parentLevel) {
-    parentTarget = parentTarget.parentElement
+    parentTarget = parentTarget?.parentElement
     level++
   }
   return parentTarget
@@ -46,10 +47,10 @@ function findElementBadge (element) {
     }
 
     // Username, below profile photo
-    const profileBadgeUsername = getParentElementByLevel(element, 9)
-    if (profileBadgeUsername?.dataset?.testid === 'UserName') {
-      handleVerificationStatus(element, { isViewingUserProfile: true, isSecondBadgeProfile: true })
-    }
+    // const profileBadgeUsername = getParentElementByLevel(element, 9)
+    // if (profileBadgeUsername?.dataset?.testid === 'UserName') {
+    //   handleVerificationStatus(element, { isViewingUserProfile: true, isSecondBadgeProfile: true })
+    // }
   }
 
   // Checks for changes when switching between user profiles
@@ -67,7 +68,7 @@ function findElementBadge (element) {
         handleVerificationStatus(badgeElements[i], { isViewingUserProfile: true })
 
         // username, below profile photo
-        handleVerificationStatus(badgeElements[i + 1], { isViewingUserProfile: true, isSecondBadgeProfile: true })
+        handleVerificationStatus(badgeElements[i + 1], { isViewingUserProfile: true, isSecondBadgeProfile: true, specialProps: badgeElements[i] })
 
         break
       }
@@ -83,6 +84,12 @@ async function handleVerificationStatus (element, elementOptions) {
   const parentLevel = elementOptions?.isSecondBadgeProfile ? 6 : 3
   const elementProps = getMainReactProps(getParentElementByLevel(element, parentLevel), element)
 
+  let targetParent = element
+  if (elementOptions?.specialProps) {
+    console.log('entro a second badge')
+    targetParent = elementOptions.specialProps
+  }
+
   if (elementProps === undefined) return
 
   if (elementOptions?.isViewingUserProfile && element.firstChild?.tagName === 'svg') {
@@ -93,7 +100,7 @@ async function handleVerificationStatus (element, elementOptions) {
 
   const currentVerifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
-  const isUserVerified = await isUserLegacyVerified(element)
+  const isUserVerified = await isUserLegacyVerified(targetParent)
 
   if (isBlueVerified) {
     if (isUserVerified && userOptions.revokeLegacyVerifiedBadge === false) {
@@ -106,9 +113,8 @@ async function handleVerificationStatus (element, elementOptions) {
   }
 }
 
-async function isUserLegacyVerified (element) {
-  const posibleElementPaths = elementsPaths(element)
-
+function hasValue (elementPaths, propsPaths) {
+  const posibleElementPaths = elementPaths
   for (let i = 0; i < posibleElementPaths.length; i++) {
     if (posibleElementPaths[i] === undefined) continue
 
@@ -117,27 +123,64 @@ async function isUserLegacyVerified (element) {
     const currentUser = propsPaths(reactProps)
 
     if (currentUser !== undefined) {
-      const legacyUsers1 = await loadVerifiedList1
-      const legacyUsers2 = await loadVerifiedList2
-
-      for (let index = 0; index < legacyUsers1.length; index++) {
-        if (legacyUsers1[index].key === currentUser[0]) {
-          if (legacyUsers1[index].users.some(user => user === currentUser)) {
-            return true
-          }
-        }
-      }
-      for (let index = 0; index < legacyUsers2.length; index++) {
-        if (legacyUsers2[index].key === currentUser[0]) {
-          if (legacyUsers2[index].users.some(user => user === currentUser)) {
-            return true
-          }
-        }
-      }
-      return false
+      return currentUser
     }
   }
-  return false
+  return undefined
+}
+
+async function isUserLegacyVerified (element) {
+  console.log(element)
+  const currentUserValue = hasValue(elementsPathsID(element), propsPathsID)
+
+  // Find by ID
+  if (currentUserValue && currentUserValue !== -1) {
+    console.log('twitter', currentUserValue)
+    const Ids1 = await loadVerifiedListID1
+    const Ids2 = await loadVerifiedListID2
+
+    for (let index = 0; index < Ids1.length; index++) {
+      if (Ids1[index].key === currentUserValue.substring(0, 2)) {
+        if (Ids1[index].users.some(user => user === currentUserValue)) {
+          return true
+        }
+      }
+    }
+    for (let index = 0; index < Ids2.length; index++) {
+      if (Ids2[index].key === currentUserValue.substring(0, 2)) {
+        if (Ids2[index].users.some(user => user === currentUserValue)) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  // Find by screenName
+  if (currentUserValue === -1) {
+    const currentUserValue = hasValue(elementsPathsScreenName(element), propsPathsScreenName)
+    console.log('Spaces', currentUserValue)
+    if (currentUserValue === undefined) return false
+
+    const screenNames1 = await loadVerifiedListScreenName1
+    const screenNames2 = await loadVerifiedListScreenName2
+
+    for (let index = 0; index < screenNames1.length; index++) {
+      if (screenNames1[index].key === currentUserValue[0]) {
+        if (screenNames1[index].users.some(user => user === currentUserValue)) {
+          return true
+        }
+      }
+    }
+    for (let index = 0; index < screenNames2.length; index++) {
+      if (screenNames2[index].key === currentUserValue[0]) {
+        if (screenNames2[index].users.some(user => user === currentUserValue)) {
+          return true
+        }
+      }
+    }
+    return false
+  }
 }
 
 // There is a special case for both two badges in a user profile

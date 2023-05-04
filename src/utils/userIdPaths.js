@@ -9,7 +9,7 @@ function getParentElementByLevel (element, parentLevel) {
   return parentTarget
 }
 
-export const elementsPaths = (element) => {
+export const elementsPathsID = (element) => {
   return [
     // Tweets, quoted tweets, notifications (reply)
     getParentElementByLevel(element, 2) || undefined,
@@ -21,6 +21,8 @@ export const elementsPaths = (element) => {
     getParentElementByLevel(element, 3) || undefined,
     // Inbox (title, homepage), Twitter space loby before enter
     getParentElementByLevel(element, 8) || undefined,
+    // Account hover, check lobby in twitter space
+    getParentElementByLevel(element, 6)?.previousSibling || undefined,
     // Inbox (title, in expanded view)
     getParentElementByLevel(element, 10)?.previousSibling?.firstChild?.lastChild?.firstChild || undefined,
     // Inbox (message list)
@@ -39,6 +41,11 @@ export const elementsPaths = (element) => {
 
 function evaluateID (userID) {
   if (userID === undefined) return userID
+
+  // periscopeUserId is a flag to determine is the user is in Twitter Space
+  // This will start to check by screenName instead of userId
+  /* eslint-disable no-prototype-builtins */
+  if (userID.hasOwnProperty('periscopeUserId')) return -1
 
   if (Number(userID)) {
     return userID
@@ -61,11 +68,13 @@ function getIdForInboxTitle (conversationProps) {
   }
 }
 
-export const propsPaths = (element) => {
+export const propsPathsID = (element) => {
   try {
     const path =
           // Twitter space preview in timeline
           // evaluateID(element?.children?.props?.space?.host?.user_id) ??
+          // check lobby in twitter space
+          evaluateID(element?.children[1]?.props) ??
           evaluateID(element?.children[1]?.props?.host?.user_id) ??
           // Tweets, quoted tweets, notifications (reply)
           evaluateID(element?.children[1]?.props?.children?._owner?.memoizedProps?.userData?.userId) ??
