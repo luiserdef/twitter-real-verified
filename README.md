@@ -41,8 +41,7 @@ Return Twitter's legacy verification and change the verification badge from user
 </p>
 
 ## What's New: 
-New data on legacy verified accounts provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a> <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">legacy verified users list</a>.
-
+New data on legacy verified accounts.
 
 ### Options
 - Hide Twitter Blue badges
@@ -77,7 +76,7 @@ After cloning the project, do the following:
 ```
 
 ### Legacy verified List
-This extension uses the screenname from the legacy verified list, I know this can be problematic if the user changes their username. This issue is currently being addressed in the userids branch.
+This extension uses the screenname from the legacy verified list. At some point this can be problematic if the user changes their username. This issue is currently being addressed in the userids branch. Any suggestion is also welcome.
 
 Data provided by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown's </a>
 
