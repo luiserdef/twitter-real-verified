@@ -1,7 +1,7 @@
 
 const browserStatus = typeof browser !== 'undefined'
 
-function updateExtensionIcon (url) {
+function updateExtensionIconFirefox (url) {
   if (url === '') return
   if (url.startsWith('https://twitter.com/')) {
     browser.browserAction.enable()
@@ -25,26 +25,26 @@ function updateExtensionIconChrome () {
   })
 }
 
-if (browserStatus) {
-  browser.tabs.onActivated.addListener(function (activeInfo) {
-    browser.tabs.get(activeInfo.tabId, function (tab) {
-      updateExtensionIcon(tab.url)
-    })
-  })
-
-  browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-    updateExtensionIcon(tab.url)
-  })
-}
-
-chrome.runtime.onInstalled.addListener((details) => {
+function runExtensionIconHandler () {
   if (browserStatus) {
     browser.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
-      updateExtensionIcon(tabs[0].url)
+      updateExtensionIconFirefox(tabs[0].url)
+    })
+    browser.tabs.onActivated.addListener(function (activeInfo) {
+      browser.tabs.get(activeInfo.tabId, function (tab) {
+        updateExtensionIconFirefox(tab.url)
+      })
+    })
+    browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+      updateExtensionIconFirefox(tab.url)
     })
   } else {
     updateExtensionIconChrome()
   }
+}
+
+chrome.runtime.onInstalled.addListener((details) => {
+  runExtensionIconHandler()
 
   // Show a notification in the extension icon when there are UI updates within the PopUp
   const isUIUpdate = false
@@ -76,4 +76,8 @@ chrome.runtime.onInstalled.addListener((details) => {
         break
     }
   }
+})
+
+chrome.runtime.onStartup.addListener(() => {
+  runExtensionIconHandler()
 })
