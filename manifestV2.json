@@ -23,7 +23,6 @@
       {
         "js": ["contentScript.js"],
         "matches": [
-          "https://mobile.twitter.com/*",
           "https://twitter.com/*"
         ]
       }

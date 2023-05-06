@@ -6,7 +6,7 @@
   "manifest_version":3,
   "default_locale":"en",
   "permissions": [
-    "tabs"
+    "declarativeContent"
   ],
   "icons": {
     "16": "assets/icon16.png",
@@ -23,7 +23,6 @@
     {
       "js": ["contentScript.js"],
       "matches": [
-        "https://mobile.twitter.com/*",
         "https://twitter.com/*"
       ]
     }
@@ -36,7 +35,6 @@
         "script.js"
       ],
       "matches": [
-        "https://mobile.twitter.com/*",
         "https://twitter.com/*"
       ]
     }
