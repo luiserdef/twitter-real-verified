@@ -1,26 +1,26 @@
 <p align="center">
   <img src="overview-img/icon.png" width="200px" alt="Real Verify Extension" />
 </p>
-<h3 align="center">Twitter Real Verified v.2.1.1</h3>
+<h3 align="center">Twitter Real Verified v.2.1.2</h3>
 <p align="center">
-Return Twitter's legacy verification and change the verification badge from users with Twitter Blue.
+A browser extension that brings back Twitter's legacy verification and distinguishes legacy verified users vs Twitter Blue users 
 </p>
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td valign="center">
-      <a href="https://addons.mozilla.org/es/firefox/addon/twitter-real-verified/">
+      <a target="_blank" href="https://addons.mozilla.org/es/firefox/addon/twitter-real-verified/">
         <img src="https://user-images.githubusercontent.com/22908993/166417727-3481fef4-00e5-4cf0-bb03-27fb880d993c.png" alt="Firefox add-ons" />
         <p align="center">Firefox :green_circle: Available</p>
       </a>
     </td>
         <td valign="center">
-      <a href="https://microsoftedge.microsoft.com/addons/detail/twitter-real-verified/llkfeengcmnpbpcgmchgjcjmfoekedij">
+      <a target="_blank" href="https://microsoftedge.microsoft.com/addons/detail/twitter-real-verified/llkfeengcmnpbpcgmchgjcjmfoekedij">
         <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/microsoftstore.png?mode=crop" alt="Firefox add-ons" />
         <p align="center">Edge :green_circle: Available</p>
       </a>
     </td>
         <td valign="center">
-      <a href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
+      <a target="_blank" href="https://chrome.google.com/webstore/detail/twitter-real-verified/jgpfnkhpecliocnopchaoogpmnejlghn">
         <img height ="55px" src="https://www.siteimprove.com/globalassets/media/shared/page-specific/integrations/browser-extensions/chrome-webstore.png" alt="Chrome extension" />
         <p align="center">Chrome :green_circle: Available</p>
       </a>
@@ -28,26 +28,27 @@ Return Twitter's legacy verification and change the verification badge from user
   </tr>
 </table>
 
-## Overview - Screenshots
+## Overview
 <p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023.</p>
 <p>The list of legacy verified users was taken before April 4, 2023. Thanks to the data collected by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown</a>. You can find the complete list on: <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">Twitter accounts with legacy verification</a>
-<p>The way in which you view the badges can be customized.</p>
+
+### Options
+- Hide Twitter Blue badges
+- Remove the verification badge from users who have Twitter Blue.
+- Replace Twitter Blue badges with 🤡
+
+### Change badge color
+- Change the badge color for verified users, Twitter Blue users, and verified users who have Twitter Blue.
+  
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
   <img src="overview-img/twVerified-preview2.png" width="600px" alt="Real Verify Extension" />
   <img src="overview-img/twVerified-preview3-en.png" width="600px" alt="Real Verify Extension" />
 </p>
 
-## What's New: 
-New data from legacy verified accounts.
-
-### Options
-- Hide Twitter Blue badges
-- Remove the verification badge from users who have Twitter Blue.
-- Replace Twitter Blue badges with a clown.
-
-### Change badge color
-- Change the badge color for verified users, Twitter Blue users, and verified users who have Twitter Blue.
+## What's New v2.1.2: 
+- Fixed issue with private accounts and the locked icon.
+- Removed permission for mobile.twitter.com
 
 ## Dev
 Popup is created with React.
