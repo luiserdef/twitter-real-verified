@@ -28,10 +28,6 @@ A browser extension that brings back Twitter's legacy verification and distingui
   </tr>
 </table>
 <p align="center">
-<a href="https://www.buymeacoffee.com/luiserdef"> ☕ Buy me a Coffee ☕ </a>
-</p>
-
-
 
 ## Overview
 <p>Installing this add-on will restore all the legacy verified badges that were removed due to Twitter Blue changes on April 20, 2023.</p>
