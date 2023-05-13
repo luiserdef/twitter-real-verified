@@ -8,7 +8,7 @@ A browser extension that brings back Twitter's legacy verification and distingui
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td valign="center">
-      <a href="https://addons.mozilla.org/es/firefox/addon/twitter-real-verified/">
+      <a href="https://addons.mozilla.org/en/firefox/addon/twitter-real-verified/">
         <img src="https://user-images.githubusercontent.com/22908993/166417727-3481fef4-00e5-4cf0-bb03-27fb880d993c.png" alt="Firefox add-ons" />
         <p align="center">Firefox :green_circle: Available</p>
       </a>
