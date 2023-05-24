@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Twitter Real Verified v.2.1.2</h3>
 <p align="center">
-A browser extension that brings back Twitter's legacy verification and distinguishes legacy verified users vs Twitter Blue users 
+A browser extension that brings back Twitter's legacy verification and distinguishes Twitter Blue users vs legacy verified users. 
 </p>
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
