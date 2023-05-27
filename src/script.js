@@ -153,6 +153,21 @@ async function isUserLegacyVerified (element) {
   return false
 }
 
+function createSimpleCheckmark (element) {
+  const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+  const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+  pathElement.setAttribute('d', 'M 12 0 C 5.373 0 0 5.373 0 12 S 5.373 24 12 24 S 24 18.627 24 12 S 18.627 0 12 0 Z M 10 21 L 3 14 L 5 11 L 10 16 L 18 4 L 21 7 L 10 21 Z')
+  pathElement.setAttribute('fill', '#00c255')
+  gElement.appendChild(pathElement)
+
+  const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  svgElement.id = VERIFIED_TYPE.LEGACY_VERIFIED
+  svgElement.setAttribute('viewBox', '-3 -2 28 28')
+  svgElement.setAttribute('class', 'r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr')
+  svgElement.appendChild(gElement)
+  element.appendChild(svgElement)
+}
+
 function createBadge (badgeConfig, userVerifiedType, badgeColor) {
   const element = badgeConfig.element
   const accountVerifiedType = badgeConfig.accountVerifiedType
@@ -164,6 +179,13 @@ function createBadge (badgeConfig, userVerifiedType, badgeColor) {
   let svgElementG = element
   while (svgElementG !== null && svgElementG.tagName !== 'g') {
     svgElementG = svgElementG.firstChild
+  }
+
+  if (userVerifiedType === VERIFIED_TYPE.LEGACY_VERIFIED || userVerifiedType === VERIFIED_TYPE.TWITTER_BLUE) {
+    if (userOptions.simpleCheckmark && userVerifiedType === VERIFIED_TYPE.LEGACY_VERIFIED) {
+      createSimpleCheckmark(element)
+    }
+    return
   }
 
   if (svgElementG !== null) {

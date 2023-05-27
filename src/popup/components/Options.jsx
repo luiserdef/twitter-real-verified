@@ -40,7 +40,12 @@ function Options ({ userOptions, updateConfig }) {
           updateFunction={updateCurrentOption}
           text={replacewithClown}
         />
-
+        <CheckboxInput
+          propertyKey='simpleCheckmark'
+          checkboxStatus={userOptions.simpleCheckmark}
+          updateFunction={updateCurrentOption}
+          text={txt('simple_checkmark')}
+        />
       </div>
     </section>
   )

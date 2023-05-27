@@ -21,7 +21,8 @@ export const DEFAULT_CONFIG = {
   options: {
     hideTwitterBlueBadge: false,
     revokeLegacyVerifiedBadge: false,
-    replaceTBWithClown: false
+    replaceTBWithClown: false,
+    simpleCheckmark: true
   }
 }
 
