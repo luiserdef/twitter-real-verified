@@ -150,6 +150,7 @@ html{
     padding: 0 0.5em ;
 }
 .info-badge .verified-list{
+    position: relative;
     list-style: none;
     display: flex;
     gap: .5em;
@@ -374,3 +375,14 @@ section{
     font-size: 1rem;
 }
   
+.disable-badge:before{
+    content: '';
+    position: absolute;
+    border-radius: var(--container-border-radius);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #19234ed2;
+    z-index: 5;
+}

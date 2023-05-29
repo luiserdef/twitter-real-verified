@@ -5,23 +5,24 @@ import GovermentBadge from '../assets/govermentBadge.svg'
 import BusinessBadge from '../assets/businessBadge.svg'
 import TwitterBlueBadge from '../assets/twitterBlueBadge.svg'
 import ClownBadge from '../assets/clownBadge.svg'
+import SimpleCheckmark from '../assets/simpleCheckmark.svg'
 
-function InfoBadges ({ badgeColors, isTwitterBlueClown }) {
+function InfoBadges ({ badgeColors, options }) {
   return (
     <div className='info-badge'>
       <ul>
-        <li className='verified-list'>
+        <li className={`verified-list ${options.simpleCheckmark ? 'disable-badge' : ''}`}>
           <VerifiedBadge fill={badgeColors.verifiedAndWithTwitterBlue} />
           <p>{txt('verified_and_with_twitter_blue')}</p>
         </li>
       </ul>
       <ul>
         <li className='verified-list'>
-          <VerifiedBadge fill={badgeColors.verified} />
+          {options.simpleCheckmark ? <SimpleCheckmark /> : <VerifiedBadge fill={badgeColors.verified} />}
           <p>{txt('verified')}</p>
         </li>
-        <li className='verified-list'>
-          {!isTwitterBlueClown ? <TwitterBlueBadge fill={badgeColors.twitterBlue} /> : <ClownBadge />}
+        <li className={`verified-list ${options.simpleCheckmark || options.hideTwitterBlueBadge ? 'disable-badge' : ''}`}>
+          {options.replaceTBWithClown ? <ClownBadge /> : <TwitterBlueBadge fill={badgeColors.twitterBlue} />}
           <p>{txt('twitter_blue_badge')}</p>
         </li>
       </ul>
