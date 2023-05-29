@@ -36,7 +36,7 @@
         "message": "Replace Twitter Blue badges with"
     },
     "simple_checkmark":{
-        "message": "Add just a simple checkmark to legacy verified accounts"
+        "message": "Add a simple green checkmark to legacy verified accounts."
     },
     "option_change_color": {
         "message": "Change badge color"
