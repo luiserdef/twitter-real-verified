@@ -37,6 +37,7 @@ A browser extension that brings back Twitter's legacy verification and distingui
 - Hide Twitter Blue badges
 - Remove the verification badge from users who have Twitter Blue.
 - Replace Twitter Blue badges with 🤡
+- Add a simple green checkmark to legacy verified accounts.
 
 ### Change badge color
 - Change the badge color for verified users, Twitter Blue users, and verified users who have Twitter Blue.
