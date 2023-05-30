@@ -49,7 +49,10 @@ A browser extension that brings back Twitter's legacy verification and distingui
 </p>
 
 ## What's New v2.1.3: 
-- Add a green checkmark next to the account names that are legacy verified.
+Add a simple green checkmark to legacy verified accounts: Keeps the current twitter verification system and only adds a green checkmark to accounts that were previously verified.
+
+
+Complete logs: <a href="https://github.com/luiserdef/twitter-real-verified/releases">Releases</a>
 
 ## Dev
 Popup is created with React.
