@@ -35,6 +35,9 @@
     "replace_twitter_blue_badge_with_clown":{
         "message": "Íconos de Twitter Blue como"
     },
+    "simple_checkmark":{
+        "message": "Agrega un simple gancho verde a las cuentas que anteriormente estaban verificadas."
+    },
     "option_change_color": {
         "message": "Cambiar color de ícono"
     },

@@ -153,9 +153,54 @@ async function isUserLegacyVerified (element) {
   return false
 }
 
+function simpleCheckmark () {
+  const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  svgElement.setAttribute('viewBox', '30 110 300 300')
+  svgElement.id = VERIFIED_TYPE.LEGACY_VERIFIED
+  svgElement.setAttribute('class', 'r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr')
+
+  const ellipse1 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+  ellipse1.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: #3e9a19;')
+  ellipse1.setAttribute('cx', '186.447')
+  ellipse1.setAttribute('cy', '260.885')
+  ellipse1.setAttribute('rx', '121.138')
+  ellipse1.setAttribute('ry', '121.138')
+  svgElement.appendChild(ellipse1)
+
+  const ellipse2 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+  ellipse2.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: #ffffff;')
+  ellipse2.setAttribute('cx', '186.446')
+  ellipse2.setAttribute('cy', '261.587')
+  ellipse2.setAttribute('rx', '110.253')
+  ellipse2.setAttribute('ry', '110.253')
+  svgElement.appendChild(ellipse2)
+
+  const ellipse3 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+  ellipse3.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: #3e9a19;')
+  ellipse3.setAttribute('cx', '186.447')
+  ellipse3.setAttribute('cy', '260.884')
+  ellipse3.setAttribute('rx', '95.857')
+  ellipse3.setAttribute('ry', '95.857')
+  svgElement.appendChild(ellipse3)
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+  path.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);')
+  path.setAttribute('d', 'M 124.297 258.426 L 165.73 290.029 L 233.849 185.393 L 257.724 212.781 L 173.455 336.376 L 106.742 283.708 L 124.297 258.426 Z')
+  svgElement.appendChild(path)
+
+  return svgElement
+}
+
 function createBadge (badgeConfig, userVerifiedType, badgeColor) {
   const element = badgeConfig.element
   const accountVerifiedType = badgeConfig.accountVerifiedType
+
+  if (userOptions.simpleCheckmark) {
+    if (userVerifiedType === VERIFIED_TYPE.TWITTER_BLUE) return
+
+    element.appendChild(simpleCheckmark())
+    return
+  }
 
   // There is a special case for both badges in a user profile
   // if a Badge exists, svg element can't be eliminated, that trown an error when is switching between user profiles

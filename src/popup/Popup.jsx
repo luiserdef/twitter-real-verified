@@ -79,6 +79,8 @@ function Popup () {
           />
           <InfoBadges
             badgeColors={userConfig.badgeColors}
+            options={userConfig.options}
+            simpleCheckmark={userConfig.options.simpleCheckmark}
             isTwitterBlueClown={userConfig.options.replaceTBWithClown}
           />
           <Dropdown title={txt('options')}>

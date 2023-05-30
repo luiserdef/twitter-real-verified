@@ -40,7 +40,13 @@ function Options ({ userOptions, updateConfig }) {
           updateFunction={updateCurrentOption}
           text={replacewithClown}
         />
-
+        <div className='line-breakup' />
+        <CheckboxInput
+          propertyKey='simpleCheckmark'
+          checkboxStatus={userOptions.simpleCheckmark}
+          updateFunction={updateCurrentOption}
+          text={txt('simple_checkmark')}
+        />
       </div>
     </section>
   )
