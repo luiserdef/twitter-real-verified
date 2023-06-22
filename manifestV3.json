@@ -23,7 +23,8 @@
     {
       "js": ["contentScript.js"],
       "matches": [
-        "https://twitter.com/*"
+        "https://twitter.com/*",
+        "https://tweetdeck.twitter.com/*"
       ]
     }
   ],
@@ -35,7 +36,8 @@
         "script.js"
       ],
       "matches": [
-        "https://twitter.com/*"
+        "https://twitter.com/*",
+        "https://tweetdeck.twitter.com/*"
       ]
     }
   ]
