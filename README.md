@@ -1,7 +1,7 @@
 <p align="center">
   <img src="overview-img/icon.png" width="200px" alt="Real Verify Extension" />
 </p>
-<h3 align="center">Twitter Real Verified v.2.1.5</h3>
+<h3 align="center">Twitter Real Verified v2.1.5</h3>
 <p align="center">
 A browser extension that brings back Twitter's legacy verification and distinguishes Twitter Blue users vs legacy verified users. 
 </p>
