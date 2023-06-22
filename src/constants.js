@@ -5,7 +5,7 @@ export const VERIFIED_BADGE = 'M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.
 export const VERIFIED_BADGE_DEFAULT_COLOR = '#1d9bf0'
 export const BADGE_CLASS_TARGET = 'css-901oao css-16my406 r-1awozwy r-xoduu5 r-poiln3 r-bcqeeo r-qvutc0'
 export const LOCAL_STORAGE = 'TRVerifiedConfig'
-export const CURRENT_VERSION = '2.1.4'
+export const CURRENT_VERSION = '2.1.5'
 
 export const CONFIG_REQUEST = {
   LOAD: 'Load-data',
