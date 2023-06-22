@@ -3,7 +3,7 @@ const browserStatus = typeof browser !== 'undefined'
 
 function updateExtensionIconFirefox (url) {
   if (url === '') return
-  if (url.startsWith('https://twitter.com/')) {
+  if (url.startsWith('https://twitter.com/') || url.startsWith('https://tweetdeck.twitter.com/')) {
     browser.browserAction.enable()
   } else {
     browser.browserAction.disable()
@@ -19,9 +19,18 @@ function updateExtensionIconChrome () {
     ],
     actions: [new chrome.declarativeContent.ShowAction()]
   }
+  const rule2 = {
+    conditions: [
+      new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: { urlPrefix: 'https://tweetdeck.twitter.com/' }
+      })
+    ],
+    actions: [new chrome.declarativeContent.ShowAction()]
+  }
   chrome.action.disable()
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     chrome.declarativeContent.onPageChanged.addRules([rule1])
+    chrome.declarativeContent.onPageChanged.addRules([rule2])
   })
 }
 
