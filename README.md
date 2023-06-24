@@ -1,7 +1,7 @@
 <p align="center">
   <img src="overview-img/icon.png" width="200px" alt="Real Verify Extension" />
 </p>
-<h3 align="center">Twitter Real Verified v.2.1.4</h3>
+<h3 align="center">Twitter Real Verified v2.1.5</h3>
 <p align="center">
 A browser extension that brings back Twitter's legacy verification and distinguishes Twitter Blue users vs legacy verified users. 
 </p>
@@ -48,9 +48,8 @@ A browser extension that brings back Twitter's legacy verification and distingui
   <img src="overview-img/twVerified-preview3-en.png" width="600px" alt="Real Verify Extension" />
 </p>
 
-## What's New v2.1.4: 
-- Fixed an issue when trying to reply to a tweet: inconsistency with twitter blue badge (dollar sign)
-
+## What's New v2.1.5:
+- TweetDeck support
 
 Complete logs: <a href="https://github.com/luiserdef/twitter-real-verified/releases">Releases</a>
 
