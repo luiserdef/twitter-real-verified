@@ -27,7 +27,7 @@ html{
     background: linear-gradient(to right, #65a7fc, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: solid 1px #ffffff;
     color: #21539c;
-    max-width: 380px;
+    width: 380px;
     max-height: 600px;
     padding: 1em;
     display: flex;
