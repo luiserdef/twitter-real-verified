@@ -9,8 +9,8 @@ dependencies:
     specifier: ^7.23.1
     version: 7.23.1
   '@uiw/color-convert':
-    specifier: ^1.2.1
-    version: 1.2.1(@babel/runtime@7.23.1)
+    specifier: ^1.4.2
+    version: 1.4.2(@babel/runtime@7.23.1)
   '@uiw/react-color-hue':
     specifier: ^1.4.2
     version: 1.4.2(@babel/runtime@7.23.1)(react-dom@18.2.0)(react@18.2.0)
@@ -695,14 +695,6 @@ packages:
   /@types/parse-json@4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
-
-  /@uiw/color-convert@1.2.1(@babel/runtime@7.23.1):
-    resolution: {integrity: sha512-/Abt2GtZaVlGy+KT6ihqbTjYynuV0dkbMyOcqcIc7tsUZlsb+02ekwrrbRkYExclc2LdkLylMFBnH8ax6LKHXQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-    dependencies:
-      '@babel/runtime': 7.23.1
-    dev: false
 
   /@uiw/color-convert@1.4.2(@babel/runtime@7.23.1):
     resolution: {integrity: sha512-+jnTg9xtZEUzrrp8FMl4Z9mbAO0HbEzEt5qR4bi/4gzlP3b5Dgwyd7WJnt9Q9BqfiWoEm2zVxFW9ty6UDtAElQ==}
