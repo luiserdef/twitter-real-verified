@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "chokidar": "^3.5.3",
-    "esbuild": "^0.19.4",
+    "esbuild": "^0.19.5",
     "esbuild-plugin-svgr": "^2.1.0",
     "fs-extra": "^11.1.1",
     "standard": "^17.1.0"
