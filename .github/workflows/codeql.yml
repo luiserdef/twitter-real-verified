@@ -17,12 +17,14 @@ on:
       - main
       - dev
       - legacy
+      - dependabot/*
   pull_request:
     # The branches below must be a subset of the branches above
     branches:
       - main
       - dev
       - legacy
+      - dependabot/*
   schedule:
     - cron: '28 7 * * 0'
 
