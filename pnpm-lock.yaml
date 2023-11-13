@@ -12,8 +12,8 @@ dependencies:
     specifier: ^2.0.1
     version: 2.0.1(@babel/runtime@7.23.2)
   '@uiw/react-color-hue':
-    specifier: ^2.0.0
-    version: 2.0.0(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^2.0.1
+    version: 2.0.1(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
   '@uiw/react-color-shade-slider':
     specifier: ^2.0.0
     version: 2.0.0(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
@@ -803,16 +803,30 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@uiw/react-color-hue@2.0.0(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-0iqC9AoMkubjQC0UtRwinwEQl5Fgj3MT980qBf5xQm2YvX7QQ1hG5sH3ZdpVE1j3aKNws7vUQhZjkxsfLYMU4w==}
+  /@uiw/react-color-alpha@2.0.1(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-u/1DANA9ZFzqvx6wqWgDb5hywpB/bBDHo7EqJj2WyJzYhkavXHrilsrfZe6Ecc3fLSuO7JWnMTVcmBTJCx5AKQ==}
     peerDependencies:
       '@babel/runtime': '>=7.19.0'
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
     dependencies:
       '@babel/runtime': 7.23.2
-      '@uiw/color-convert': 2.0.0(@babel/runtime@7.23.2)
-      '@uiw/react-color-alpha': 2.0.0(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/color-convert': 2.0.1(@babel/runtime@7.23.2)
+      '@uiw/react-drag-event-interactive': 2.0.1(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-color-hue@2.0.1(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Iyt4aBAK13CXVWhgqplj5KQ41Hf+N6fwQIG2f35sKZ79emaZANw7mLWFy1TTRMg2TBoywLXix3yo/zXnWx4jtw==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@uiw/color-convert': 2.0.1(@babel/runtime@7.23.2)
+      '@uiw/react-color-alpha': 2.0.1(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -833,6 +847,18 @@ packages:
 
   /@uiw/react-drag-event-interactive@2.0.0(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-gk/6rI0UX/AKBXqFh7YaatGq5VGCCT4ZcmbmLAUgd7W1T4YSQlWF8aAax25pA0zX/q1+jm8M/bUn5ipHKOFP4g==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.23.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-drag-event-interactive@2.0.1(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-n0ZY8K4PoIXD4lk9ryZ9Sc6UlbqET8SIW1EH7yVRfbVhbUxxHJzvtI07nXXTCchOPqXw0TbVTxe+jCqXLsmC3g==}
     peerDependencies:
       '@babel/runtime': '>=7.19.0'
       react: '>=16.9.0'
