@@ -11,19 +11,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.21.5",
-    "@uiw/color-convert": "^1.2.1",
-    "@uiw/react-color-hue": "^1.2.1",
-    "@uiw/react-color-shade-slider": "^1.2.1",
+    "@babel/runtime": "^7.23.2",
+    "@uiw/color-convert": "^2.0.1",
+    "@uiw/react-color-hue": "^2.0.1",
+    "@uiw/react-color-shade-slider": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "chokidar": "^3.5.3",
-    "esbuild": "^0.17.18",
-    "esbuild-plugin-svgr": "^1.1.0",
+    "esbuild": "^0.19.5",
+    "esbuild-plugin-svgr": "^2.1.0",
     "fs-extra": "^11.1.1",
-    "standard": "^17.0.0"
+    "standard": "^17.1.0"
   },
   "standard": {
     "globals": [
