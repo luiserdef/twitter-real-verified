@@ -55,8 +55,8 @@ function runExtensionIconHandler () {
 chrome.runtime.onInstalled.addListener((details) => {
   runExtensionIconHandler()
 
-  // Show a notification in the extension icon when there are UI updates within the PopUp
-  const isUIUpdate = false
+  // Show a notification in the extension icon when there are updates
+  const isUIUpdate = true
 
   if (isUIUpdate) {
     const currentVersion = chrome.runtime.getManifest().version
