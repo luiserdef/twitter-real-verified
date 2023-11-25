@@ -70,7 +70,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         if (currentVersion > previousVersion) {
           const color = { color: '#26ff26' }
           if (browserStatus) {
-            browser.browserAction.setBadgeText({ text: '*' })
+            browser.browserAction.setBadgeText({ text: 'new' })
             browser.browserAction.setBadgeBackgroundColor(color)
           } else {
             chrome.action.setBadgeText({ text: 'New' })
