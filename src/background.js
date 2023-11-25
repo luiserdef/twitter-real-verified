@@ -55,8 +55,8 @@ function runExtensionIconHandler () {
 chrome.runtime.onInstalled.addListener((details) => {
   runExtensionIconHandler()
 
-  // Show a notification in the extension icon when there are UI updates within the PopUp
-  const isUIUpdate = false
+  // Show a notification in the extension icon when there are updates
+  const isUIUpdate = true
 
   if (isUIUpdate) {
     const currentVersion = chrome.runtime.getManifest().version
@@ -70,7 +70,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         if (currentVersion > previousVersion) {
           const color = { color: '#26ff26' }
           if (browserStatus) {
-            browser.browserAction.setBadgeText({ text: '*' })
+            browser.browserAction.setBadgeText({ text: 'new' })
             browser.browserAction.setBadgeBackgroundColor(color)
           } else {
             chrome.action.setBadgeText({ text: 'New' })
