@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.23.2",
+    "@babel/runtime": "^7.23.9",
     "@uiw/color-convert": "^2.0.1",
     "@uiw/react-color-hue": "^2.0.1",
     "@uiw/react-color-shade-slider": "^2.0.1",
