@@ -9,7 +9,12 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+      # Disable all pull requests dependencies
+    open-pull-requests-limit: 0
+      
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+      # Disable all pull requests dependencies
+    open-pull-requests-limit: 0
