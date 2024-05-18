@@ -1,6 +1,6 @@
 {
   "name": "__MSG_app_title__",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "__MSG_app_description__",
   "author": "@luiserdef",
   "manifest_version":3,
@@ -24,7 +24,8 @@
       "js": ["contentScript.js"],
       "matches": [
         "https://twitter.com/*",
-        "https://tweetdeck.twitter.com/*"
+        "https://tweetdeck.twitter.com/*",
+        "https://x.com/*"
       ]
     }
   ],
@@ -37,7 +38,8 @@
       ],
       "matches": [
         "https://twitter.com/*",
-        "https://tweetdeck.twitter.com/*"
+        "https://tweetdeck.twitter.com/*",
+        "https://x.com/*"
       ]
     }
   ]
