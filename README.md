@@ -43,6 +43,10 @@ A browser extension that brings back Twitter's legacy verification and distingui
 </p>
 
 ## What's New 
+### v2.1.8 (Soon):
+
+- Added support for x.com
+
 ### v2.1.7:
 - Fix bug when showing verified badges.
 
