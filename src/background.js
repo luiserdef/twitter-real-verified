@@ -1,5 +1,4 @@
-
-const browserStatus = typeof browser !== 'undefined'
+const browserStatus = browser.runtime.getURL('').startsWith('moz-extension://') ? true:false
 
 function updateExtensionIconFirefox (url) {
   if (url === '') return
