@@ -1,7 +1,7 @@
 <p align="center">
   <img src="overview-img/icon.png" width="200px" alt="Real Verify Extension" />
 </p>
-<h3 align="center">Twitter Real Verified v2.1.8</h3>
+<h3 align="center">Twitter Real Verified v2.1.9</h3>
 <p align="center">
 A browser extension that brings back Twitter's legacy verification and distinguishes Twitter Blue users vs legacy verified users. 
 </p>
@@ -43,6 +43,10 @@ A browser extension that brings back Twitter's legacy verification and distingui
 </p>
 
 ## What's New 
+### v2.1.9:
+
+- Fixed a bug that prevented the options from being displayed
+
 ### v2.1.8:
 
 - Added support for x.com
@@ -50,8 +54,6 @@ A browser extension that brings back Twitter's legacy verification and distingui
 ### v2.1.7:
 - Fix bug when showing verified badges.
 
-### v2.1.6 
-- Fixed minor issue in Chrome Dev: popup's width broken.
 
 Complete logs: <a href="https://github.com/luiserdef/twitter-real-verified/releases">Releases</a>
 
