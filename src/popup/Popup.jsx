@@ -24,8 +24,10 @@ function Popup () {
   })
 
   React.useEffect(() => {
+    const isFirefox = browser.runtime.getURL('').startsWith('moz-extension://') ? true:false
+
     // When there is a new update, this will remove the notification when the user opens the Popup
-    if (typeof browser !== 'undefined') {
+    if (isFirefox) {
       loadExtension && browser.browserAction.setBadgeText({ text: '' })
     } else {
       loadExtension && chrome.action.setBadgeText({ text: '' })
@@ -79,6 +81,8 @@ function Popup () {
           />
           <InfoBadges
             badgeColors={userConfig.badgeColors}
+            options={userConfig.options}
+            simpleCheckmark={userConfig.options.simpleCheckmark}
             isTwitterBlueClown={userConfig.options.replaceTBWithClown}
           />
           <Dropdown title={txt('options')}>

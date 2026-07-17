@@ -79,30 +79,43 @@ function findElementBadge (element) {
   }
 }
 
+function cleanVerifiedBadges (element) {
+  if (element.childNodes === 1) return element
+  const currentElement = element
+  const badges = currentElement.childNodes
+
+  for (let ind = 0; ind < badges.length; ind++) {
+    if (badges[ind].tagName === 'svg' && badges[ind].id === VERIFIED_TYPE.LEGACY_VERIFIED) {
+      currentElement.removeChild(badges[ind])
+    }
+  }
+  return currentElement
+}
+
 async function handleVerificationStatus (element, elementOptions) {
   const parentLevel = elementOptions?.isSecondBadgeProfile ? 6 : 3
   const elementProps = getMainReactProps(getParentElementByLevel(element, parentLevel), element)
 
   if (elementProps === undefined) return
 
-  if (elementOptions?.isViewingUserProfile && element.firstChild?.tagName === 'svg') {
-    if (element.firstChild.id === VERIFIED_TYPE.LEGACY_VERIFIED) {
-      element.removeChild(element.firstChild)
-    }
-  }
-
-  const currentVerifiedType = elementProps.verifiedType
+  const accountVerifiedType = elementProps.verifiedType
   const isBlueVerified = elementProps.isBlueVerified
   const isUserVerified = await isUserLegacyVerified(element)
 
+  const badgeConfig = {
+    accountVerifiedType,
+    element: cleanVerifiedBadges(element),
+    isViewingUserProfile: elementOptions?.isViewingUserProfile
+  }
+
   if (isBlueVerified) {
     if (isUserVerified && userOptions.revokeLegacyVerifiedBadge === false) {
-      createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, userBadgeColors.verifiedAndWithTwitterBlue, currentVerifiedType)
+      createBadge(badgeConfig, VERIFIED_TYPE.LEGACY_VERIFIED, userBadgeColors.verifiedAndWithTwitterBlue)
     } else {
-      createBadge(element, VERIFIED_TYPE.TWITTER_BLUE, userBadgeColors.twitterBlue, currentVerifiedType, elementOptions?.isViewingUserProfile)
+      createBadge(badgeConfig, VERIFIED_TYPE.TWITTER_BLUE, userBadgeColors.twitterBlue)
     }
   } else {
-    if (isUserVerified) createBadge(element, VERIFIED_TYPE.LEGACY_VERIFIED, userBadgeColors.verified, currentVerifiedType)
+    if (isUserVerified) createBadge(badgeConfig, VERIFIED_TYPE.LEGACY_VERIFIED, userBadgeColors.verified)
   }
 }
 
@@ -140,33 +153,81 @@ async function isUserLegacyVerified (element) {
   return false
 }
 
-// There is a special case for both two badges in a user profile
-// svg element can't be eliminated, that trown a error when is switching between user profiles
-// error: Something went wrong, but don’t fret — it’s not your fault.
+function simpleCheckmark () {
+  const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  svgElement.setAttribute('viewBox', '30 110 300 300')
+  svgElement.id = VERIFIED_TYPE.LEGACY_VERIFIED
+  svgElement.setAttribute('class', 'r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr')
 
-function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedType, isViewingUserProfile) {
+  const ellipse1 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+  ellipse1.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: #3e9a19;')
+  ellipse1.setAttribute('cx', '186.447')
+  ellipse1.setAttribute('cy', '260.885')
+  ellipse1.setAttribute('rx', '121.138')
+  ellipse1.setAttribute('ry', '121.138')
+  svgElement.appendChild(ellipse1)
+
+  const ellipse2 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+  ellipse2.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: #ffffff;')
+  ellipse2.setAttribute('cx', '186.446')
+  ellipse2.setAttribute('cy', '261.587')
+  ellipse2.setAttribute('rx', '110.253')
+  ellipse2.setAttribute('ry', '110.253')
+  svgElement.appendChild(ellipse2)
+
+  const ellipse3 = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+  ellipse3.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: #3e9a19;')
+  ellipse3.setAttribute('cx', '186.447')
+  ellipse3.setAttribute('cy', '260.884')
+  ellipse3.setAttribute('rx', '95.857')
+  ellipse3.setAttribute('ry', '95.857')
+  svgElement.appendChild(ellipse3)
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+  path.setAttribute('style', 'stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);')
+  path.setAttribute('d', 'M 124.297 258.426 L 165.73 290.029 L 233.849 185.393 L 257.724 212.781 L 173.455 336.376 L 106.742 283.708 L 124.297 258.426 Z')
+  svgElement.appendChild(path)
+
+  return svgElement
+}
+
+function createBadge (badgeConfig, userVerifiedType, badgeColor) {
+  const element = badgeConfig.element
+  const accountVerifiedType = badgeConfig.accountVerifiedType
+
+  if (userOptions.simpleCheckmark) {
+    if (userVerifiedType === VERIFIED_TYPE.TWITTER_BLUE) return
+
+    element.appendChild(simpleCheckmark())
+    return
+  }
+
+  // There is a special case for both badges in a user profile
+  // if a Badge exists, svg element can't be eliminated, that trown an error when is switching between user profiles
+  // error: Something went wrong, but don’t fret — it’s not your fault.
+  // That's why the g element is replaced instead of the svg."
   let svgElementG = element
   while (svgElementG !== null && svgElementG.tagName !== 'g') {
     svgElementG = svgElementG.firstChild
   }
 
   if (svgElementG !== null) {
-    if (currentVerifiedType === VERIFIED_TYPE.BUSINESS || currentVerifiedType === VERIFIED_TYPE.GOVERNMENT) {
+    if (accountVerifiedType === VERIFIED_TYPE.BUSINESS || accountVerifiedType === VERIFIED_TYPE.GOVERNMENT) {
       return
     }
   }
 
-  if (userOptions.hideTwitterBlueBadge && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
+  if (userOptions.hideTwitterBlueBadge && userVerifiedType === VERIFIED_TYPE.TWITTER_BLUE) {
     if (svgElementG !== null) {
-      if (!isViewingUserProfile) {
-        const parentSvgElementG = svgElementG.parentElement.parentElement
-        parentSvgElementG.removeChild(parentSvgElementG.firstChild)
+      if (badgeConfig.isViewingUserProfile) {
+        const svg = svgElementG.parentElement
+        svg.removeChild(svg.firstChild)
+        const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+        svg.appendChild(gElement)
         return
       } else {
-        const parentSvgElementG = svgElementG.parentElement
-        parentSvgElementG.removeChild(parentSvgElementG.firstChild)
-        const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-        parentSvgElementG.appendChild(gElement)
+        const svgParent = svgElementG.parentElement.parentElement
+        svgParent.removeChild(svgParent.firstChild)
         return
       }
     } else {
@@ -174,10 +235,11 @@ function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedTy
     }
   }
 
-  const badge = userVerifiedStatus === VERIFIED_TYPE.LEGACY_VERIFIED ? VERIFIED_BADGE : TWITTER_BLUE_BADGE
+  const badge = userVerifiedType === VERIFIED_TYPE.LEGACY_VERIFIED ? VERIFIED_BADGE : TWITTER_BLUE_BADGE
 
   const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-  if (userOptions.replaceTBWithClown && userVerifiedStatus === VERIFIED_TYPE.TWITTER_BLUE) {
+
+  if (userOptions.replaceTBWithClown && userVerifiedType === VERIFIED_TYPE.TWITTER_BLUE) {
     gElement.innerHTML = CLOWN
   } else {
     const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path')
@@ -186,11 +248,16 @@ function createBadge (element, userVerifiedStatus, badgeColor, currentVerifiedTy
     gElement.appendChild(pathElement)
   }
 
-  if (svgElementG !== null) {
+  // Returns true if the current account is a private account and doesn't have any type of verification badge.
+  const isLockedAccount = element?.firstChild?.dataset?.testid === 'icon-lock'
+
+  if (svgElementG !== null && isLockedAccount === false) {
     const parentElement = svgElementG.parentElement
     parentElement.removeChild(svgElementG)
     parentElement.appendChild(gElement)
-  } else {
+  }
+
+  if (svgElementG === null || isLockedAccount) {
     const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     svgElement.id = VERIFIED_TYPE.LEGACY_VERIFIED
     svgElement.setAttribute('viewBox', '0 0 22 22')

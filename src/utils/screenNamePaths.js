@@ -22,8 +22,11 @@ export const propsPaths = (element) => {
     const path =
         element?.children[0]?.props?.screenName ??
         element?.children[0]?.props?.children[2]?._owner?.memoizedProps?.screenName ??
+        // Reply tweet
+        element?.children?._owner?.memoizedProps?.userData?.screenName ??
         element?.children?.props?.screenName ??
         element?.children[0]?.props?.children?.props?.screenName ??
+        // Twittter space
         element?.children[1]?.props?.host?.twitter_screen_name ??
         element?.children?.props?.users[0]?.screen_name ?? undefined
     return path

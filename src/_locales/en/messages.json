@@ -3,16 +3,16 @@
         "message": "Twitter Real Verified"
     },
     "app_description": {
-        "message": "Return Twitter's legacy verification and change the verification badge from users with Twitter Blue"
+        "message": "Return Twitter's legacy verification and change the verification badge from users with X Premium"
     },
     "twitter_blue": {
-        "message": "Twitter Blue"
+        "message": "X Premium"
     },
     "verified": {
         "message": "Verified"
     },
     "verified_and_with_twitter_blue": {
-        "message": "Verified and with Twitter Blue"
+        "message": "Verified and with X Premium"
     },
     "bussiness_badge": {
         "message": "Business"
@@ -21,19 +21,22 @@
         "message": "Government/Org"
     },
     "twitter_blue_badge": {
-        "message": "Twitter Blue"
+        "message": "X Premium"
     },
     "options": {
         "message": "Options"
     },
     "hide_twitter_blue": {
-        "message": "Hide Twitter Blue badges."
+        "message": "Hide X Premium badges."
     },
     "revoke_verified": {
-        "message": "Remove the verification badge from users who have Twitter Blue."
+        "message": "Remove the verification badge from users who have X Premium."
     },
     "replace_twitter_blue_badge_with_clown":{
-        "message": "Replace Twitter Blue badges with"
+        "message": "Replace X Premium badges with"
+    },
+    "simple_checkmark":{
+        "message": "Add a simple green checkmark to legacy verified accounts."
     },
     "option_change_color": {
         "message": "Change badge color"
