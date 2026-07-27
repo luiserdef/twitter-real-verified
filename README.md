@@ -3,7 +3,7 @@
 </p>
 <h3 align="center">Twitter Real Verified v2.1.9</h3>
 <p align="center">
-A browser extension that brings back Twitter's legacy verification and distinguishes Twitter Blue users vs legacy verified users. 
+A browser extension that brings back Twitter's legacy verification and distinguishes X Premium users vs legacy verified users. 
 </p>
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -28,13 +28,13 @@ A browser extension that brings back Twitter's legacy verification and distingui
 <p>The list of legacy verified users was taken before April 4, 2023. Thanks to the data collected by <a href="https://twitter.com/travisbrown/status/1649129052479844363">Travisbrown</a>. You can find the complete list on: <a href="https://gist.github.com/travisbrown/b50d6745298cccd6b1f4697e4ec22103">Twitter accounts with legacy verification</a>
 
 ### Options
-- Hide Twitter Blue badges
-- Remove the verification badge from users who have Twitter Blue.
-- Replace Twitter Blue badges with 🤡
+- Hide X Premium badges
+- Remove the verification badge from users who have X Premium.
+- Replace Xpremium badges with 🤡
 - Add a simple green checkmark to legacy verified accounts.
 
 ### Change badge color
-- Change the badge color for verified users, Twitter Blue users, and verified users who have Twitter Blue.
+- Change the badge color for verified users, X Premium users, and verified users who have Twitter Blue.
   
 <p align="center">
   <img src="overview-img/twVerified-preview1.png" width="600px" alt="Real Verify Extension" />
@@ -82,7 +82,7 @@ After cloning the project, do the following:
 ```
 
 ### Legacy verified List
-This extension uses the screenname from the legacy verified list. The use of user IDs is being addressed in the userids branch.
+This extension uses the screenname from the legacy verified list.
 
 Any suggestions for improvement are welcome.
 
